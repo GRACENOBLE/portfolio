@@ -1,9 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
 import Container from "../common/container";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { HexagonBackground } from "../backgrounds/hexagon";
 import Beams from "../backgrounds/beams";
+import Link from "next/link";
 
 const HeroSection = ({ heroData }: { heroData: any }) => {
   return (
@@ -32,10 +33,21 @@ const HeroSection = ({ heroData }: { heroData: any }) => {
         <span>functions great</span> and <span>scales perfectly</span>.
       </p>
       <div className="flex gap-4">
-        <Button size={"lg"}>Lets talk</Button>
-        <Button size={"lg"} variant={"outline"}>
+        <Link
+          href={"/#contact-me"}
+          className={cn("", buttonVariants({ variant: "default" }))}
+        >
+          Lets talk
+        </Link>
+        <Link
+          href={""}
+          className={cn(
+            "/all-projects",
+            buttonVariants({ variant: "outline" })
+          )}
+        >
           Explore my work
-        </Button>
+        </Link>
       </div>
     </section>
   );
