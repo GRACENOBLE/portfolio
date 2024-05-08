@@ -9,6 +9,7 @@ export default function HeroImage() {
       width={1000}
       height={1000}
       className="brightness-50"
+      priority
     />
   );
 }
