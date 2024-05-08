@@ -1,22 +1,20 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Tomorrow } from "next/font/google";
 import Image from "next/image";
 import Container from "./Container";
 import { BsChevronDown } from "react-icons/bs";
 import Link from "next/link";
-
-const tomorrow = Tomorrow({ subsets: ["latin"], weight: "400" });
+import HeroImage from "./HeroImage";
 
 export default function Hero() {
   var text = "Hello there !";
   const [word, setWord] = useState("");
 
-  var text2 = "I am Dev. Noble";
+  var text2 = "I'm Dev. Noble";
   const [word2, setWord2] = useState("");
 
-  var text3 = "Welcome to my Port folio";
+  var text3 = "Welcome to my Portfolio";
   const [word3, setWord3] = useState("");
 
   async function animateWord() {
@@ -44,44 +42,64 @@ export default function Hero() {
     animateWord();
   }, []);
 
+  const image: any[] = [
+    { value: <HeroImage /> },
+    { value: <HeroImage /> },
+    { value: <HeroImage /> },
+    { value: <HeroImage /> },
+    { value: <HeroImage /> },
+    { value: <HeroImage /> },
+  ];
+
   return (
-    <section className="bg-black h-screen">
+    <section className=" h-screen relative isolate object-contain">
+      <div className="flex flex-col h-screen overflow-hidden">
+        <div className="flex">{image.map(({ value }) => value)}</div>
+        <div className="flex">{image.map(({ value }) => value)}</div>
+      </div>
+
       <Container>
-        <div className="flex w-full h-screen items-center justify-between">
-          <div>
-            <div className={`font-extrabold text-6xl ${tomorrow.className}`}>
-              <span className="text-red-500">&lt;</span>{" "}
-              <span className="text-white">{word}</span>
-              <span className="animate-pulse text-white text-3xl">_</span>
-              <span className="text-red-500">&frasl;&gt;</span>
+        <div className="absolute top-0 h-screen flex flex-col justify-center">
+        
+          <div className="z-10 flex w-[1280px]  items-center justify-between">
+            <div>
+              <div className="font-extrabold text-6xl pb-6">
+                <span className="text-red-600 font-black">&lt;</span>{" "}
+                <span className="text-white">{word}</span>
+                <span className="animate-pulse text-white text-3xl">_</span>
+                <span className="text-red-600 font-black">&frasl;&gt;</span>
+              </div>
+
+              <div className="font-extrabold text-6xl pb-6">
+                <span className="text-red-600 font-black">&lt;</span>{" "}
+                <span className="text-white">{word2}</span>
+                <span className="animate-pulse text-white text-3xl">_</span>
+                <span className="text-red-600 font-black">&frasl;&gt;</span>
+              </div>
+              <div className="font-extrabold text-6xl">
+                <span className="text-red-600 font-black">&lt;</span>{" "}
+                <span className="text-white">{word3}</span>
+                <span className="animate-pulse text-white text-3xl">_</span>
+                <span className="text-red-600 font-black">&frasl;&gt;</span>
+              </div>
             </div>
-            <div className={`font-extrabold text-6xl ${tomorrow.className}`}>
-              <span className="text-red-500">&lt;</span>{" "}
-              <span className="text-white">{word2}</span>
-              <span className="animate-pulse text-white text-3xl">_</span>
-              <span className="text-red-500">&frasl;&gt;</span>
-            </div>
-            <div className={`font-extrabold text-6xl ${tomorrow.className}`}>
-              <span className="text-red-500">&lt;</span>{" "}
-              <span className="text-white">{word3}</span>
-              <span className="animate-pulse text-white text-3xl">_</span>
-              <span className="text-red-500">&frasl;&gt;</span>
+            <div className="">
+              <Image
+                src="/images/placeholder_man.jpg"
+                alt=""
+                width={1000}
+                height={1000}
+                className="w-96 rounded-lg"
+              />
             </div>
           </div>
-          <div className="">
-            <Image
-              src="/images/placeholder_man.jpg"
-              alt=""
-              width={1000}
-              height={1000}
-              className="w-96 rounded-lg"
-            />
+          <div className="absolute bottom-0 z-10 mb-7 pe-20 w-[1280px] text-white flex justify-center text-5xl animate-bounce">
+            <Link href="#About" scroll={true}>
+              <div className="text-red-600">
+                <BsChevronDown />
+              </div>
+            </Link>
           </div>
-        </div>
-        <div className="absolute z-10 bottom-0 mb-10 w-[1280px] text-white flex justify-center text-6xl animate-bounce">
-          <Link href="#About" scroll = {true}><div className="text-red-500"><BsChevronDown /></div></Link>
-          
-          
         </div>
       </Container>
     </section>
