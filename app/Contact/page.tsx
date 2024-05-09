@@ -11,10 +11,10 @@ import Link from "next/link";
 
 export default function page() {
   return (
-    <section className=" bg-black h-screen" id="About">
+    <section className=" h-full">
       <Container>
-        <div className="flex flex-col items-center pt-32 justify-center text-white gap-6">
-          <div className="flex items-center gap-4 ">
+        <div className="flex flex-col items-center py-32 justify-center text-white gap-6">
+          <div className="flex items-center gap-6 ">
             <ContactCard
               title={"Email"}
               body={"gracenoble72@gmail.com"}
@@ -29,7 +29,7 @@ export default function page() {
               link={"https://www.linkedin.com/in/asiimwe-noble-5849a6255/"}
             />
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <ContactCard
               title={"X (Formerly Twitter)"}
               body={"@graceno75417321"}
@@ -51,7 +51,7 @@ export default function page() {
               link={"https://discord.gg/tY28YV49"}
             />
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <ContactCard
               title={"Whatsapp"}
               body={"+256774784599"}

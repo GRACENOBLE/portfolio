@@ -49,13 +49,15 @@ export default function Hero() {
     { value: <HeroImage /> },
     { value: <HeroImage /> },
     { value: <HeroImage /> },
+    { value: <HeroImage /> },
+    { value: <HeroImage /> },
   ];
 
   return (
     <section className=" h-screen relative isolate object-contain">
-      <div className="flex flex-col h-screen overflow-hidden">
-        <div className="flex">{image.map(({ value }) => value)}</div>
-        <div className="flex">{image.map(({ value }) => value)}</div>
+      <div className="flex flex-col h-screen object-contain overflow-hidden">
+        <div className="flex h-full w-full">{image.map(({ value }) => value)}</div>
+        <div className="flex h-full w-full">{image.map(({ value }) => value)}</div>
       </div>
 
       <Container>
@@ -93,7 +95,7 @@ export default function Hero() {
               />
             </div>
           </div>
-          <div className="absolute bottom-0 z-10 mb-7 pe-20 w-[1280px] text-white flex justify-center text-5xl animate-bounce">
+          <div className="absolute bottom-0 z-10 mb-7 pe-5 w-[1280px] text-white flex justify-center text-5xl animate-bounce">
             <Link href="#About" scroll={true}>
               <div className="text-red-600">
                 <BsChevronDown />
