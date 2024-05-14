@@ -109,7 +109,7 @@ export function Python_ico() {
       alt=""
       height={1000}
       width={1000}
-      src="/images/Python.png"
+      src="/images/python.png"
       className="w-14"
     />
   );
