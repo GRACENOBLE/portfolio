@@ -16,7 +16,7 @@ export default function ContactCard({
 }: ContactCardProps) {
   return (
     <Link href={link}>
-      <div className="w-72 h-48 rounded-lg border border-white flex flex-col justify-between hover:bg-gray-900 hover:w-96 transition-all ease-in-out hover:h-72">
+      <div className="w-72 lg:w-64 h-48 lg:h-36 rounded-lg border border-white flex flex-col justify-between hover:bg-gray-900 hover:w-96 lg:hover:w-80 transition-all ease-in-out hover:h-72 lg:hover:h-56">
         <div className="flex  w-full justify-end pe-4 pt-4 text-2xl">
           {icon}
         </div>

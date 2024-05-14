@@ -13,7 +13,7 @@ export default function page() {
   return (
     <section className=" h-full">
       <Container>
-        <div className="flex flex-col items-center py-32 justify-center text-white gap-6">
+        <div className="flex flex-col items-center py-32 lg:py-20 justify-center text-white gap-6">
           <div className="flex items-center gap-6 ">
             <ContactCard
               title={"Email"}
