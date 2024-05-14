@@ -7,7 +7,7 @@ import { FiGithub, FiLinkedin, FiInstagram } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-
+import { FiMenu } from "react-icons/fi";
 
 
 const socialLinks: { Icon: any; link: string }[] = [
@@ -53,8 +53,8 @@ export default function Header() {
       }`}
     >
       <Container>
-        <div className={`flex w-[1280px] justify-between items-center `}>
-          <div className="text-white text-2xl flex gap-8">
+        <div className={`flex md:w-[1280px] justify-between items-center `}>
+          <div className="text-white text-2xl gap-8 hidden md:flex">
             {socialLinks.map(({ Icon, link }) => (
               <Link href={link} className="hover:text-red-600">
                 {Icon}
@@ -62,14 +62,20 @@ export default function Header() {
             ))}
           </div>
           <Link href="/">
-            <div className={`ps-4 ${isScrolled ? "text-3xl transition-all ease-in-out" : "text-5xl transition-all ease-in-out"}`}>
+            <div
+              className={`ps-4 ${
+                isScrolled
+                  ? "text-3xl transition-all ease-in-out"
+                  : "text-5xl transition-all ease-in-out"
+              }`}
+            >
               <span className="text-red-600 font-black">&lt;</span>{" "}
               <span className="text-white ">DN</span>
               <span className="text-red-600 font-black"> &frasl;&gt;</span>
             </div>
           </Link>
 
-          <div className="text-white flex gap-8 pe-2 ">
+          <div className="text-white hidden md:flex gap-8 pe-2 ">
             {quickLinks.map(({ Title, link }) => (
               <Link
                 href={link}
@@ -83,6 +89,9 @@ export default function Header() {
               </Link>
             ))}
           </div>
+
+          <div className="block md:hidden absolute float-end text-3xl end-4"><FiMenu /></div>
+
         </div>
       </Container>
     </header>

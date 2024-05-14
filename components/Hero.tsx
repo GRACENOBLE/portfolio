@@ -61,24 +61,24 @@ export default function Hero() {
       </div>
 
       <Container>
-        <div className="absolute top-0 h-screen flex flex-col justify-center">
+        <div className="absolute top-32 md:top-0 h-[750px] md:h-screen flex flex-col justify-start md:justify-center w-screen md:w-[1280px]">
         
-          <div className="z-10 flex w-[1280px]  items-center justify-between">
-            <div>
-              <div className="font-extrabold text-6xl pb-6">
+          <div className="z-10 flex flex-col-reverse md:flex-row md:w-[1280px]  items-center justify-between ">
+            <div className="w-full ps-10">
+              <div className="font-extrabold text-2xl md:text-6xl pb-6 ">
                 <span className="text-red-600 font-black">&lt;</span>{" "}
                 <span className="text-white">{word}</span>
                 <span className="animate-pulse text-white text-3xl">_</span>
                 <span className="text-red-600 font-black">&frasl;&gt;</span>
               </div>
 
-              <div className="font-extrabold text-6xl pb-6">
+              <div className="font-extrabold text-2xl md:text-6xl pb-6">
                 <span className="text-red-600 font-black">&lt;</span>{" "}
                 <span className="text-white">{word2}</span>
                 <span className="animate-pulse text-white text-3xl">_</span>
                 <span className="text-red-600 font-black">&frasl;&gt;</span>
               </div>
-              <div className="font-extrabold text-6xl">
+              <div className="font-extrabold text-2xl md:text-6xl">
                 <span className="text-red-600 font-black">&lt;</span>{" "}
                 <span className="text-white">{word3}</span>
                 <span className="animate-pulse text-white text-3xl">_</span>
@@ -91,11 +91,11 @@ export default function Hero() {
                 alt=""
                 width={1000}
                 height={1000}
-                className="w-96 rounded-lg"
+                className="mb-20 md:mb-0 w-96 rounded-lg border"
               />
             </div>
           </div>
-          <div className="absolute bottom-0 z-10 mb-7 pe-5 w-[1280px] text-white flex justify-center text-5xl animate-bounce">
+          <div className="absolute bottom-0 z-10 md:mb-7 pe-5 w-screen md:w-[1280px] text-white flex justify-center text-5xl animate-bounce">
             <Link href="#About" scroll={true}>
               <div className="text-red-600">
                 <BsChevronDown />
