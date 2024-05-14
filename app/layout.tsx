@@ -6,8 +6,6 @@ import { Tomorrow } from "next/font/google";
 
 const tomorrow = Tomorrow({ subsets: ["latin"], weight: "400" });
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "Dev.Noble",
   description: "I am a full stack  App and Web developer",
