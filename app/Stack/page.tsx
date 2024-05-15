@@ -99,9 +99,9 @@ export default function page() {
       <Container>
         <div className="flex items-center  justify-center py-40 text-white overflow-auto">
           <div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 ps-4">
               <h2>Languages</h2>
-              <div className="flex flex-wrap gap-4">
+              <div className=" flex-wrap gap-4 grid md:flex grid-cols-2 ps-4">
                 {languages.map(({ index, icon, label }) => (
                   <StackCard Icon={icon} Label={label} Index={index} />
                 ))}
@@ -109,9 +109,9 @@ export default function page() {
             </div>
             <br />
             <br />
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 ps-4">
               <h2>Frameworks, libraries and technologies</h2>
-              <div className="flex flex-wrap gap-4">
+              <div className="grid md:flex grid-cols-2 flex-wrap gap-4 ps-4">
                 {technologies.map(({ index, icon, label }) => (
                   <StackCard Icon={icon} Label={label} Index={index} />
                 ))}
