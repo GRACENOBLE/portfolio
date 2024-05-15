@@ -8,6 +8,8 @@ import Link from "next/link";
 import HeroImage from "./HeroImage";
 
 export default function Hero() {
+  const [opened, setOpened] = useState(false)
+
   var text = "Hello there !";
   const [word, setWord] = useState("");
 
@@ -54,7 +56,7 @@ export default function Hero() {
   ];
 
   return (
-    <section className=" h-screen relative isolate object-contain">
+    <section className=" h-screen relative isolate object-contain border border-black">
       <div className="flex flex-col h-screen object-contain overflow-hidden">
         <div className="flex h-full w-full">{image.map(({ value }) => value)}</div>
         <div className="flex h-full w-full">{image.map(({ value }) => value)}</div>
@@ -91,7 +93,8 @@ export default function Hero() {
                 alt=""
                 width={1000}
                 height={1000}
-                className="mb-20 md:mb-0 w-96 rounded-lg border"
+                className="mb-20 md:mb-0 w-96 rounded-lg"
+                unoptimized
               />
             </div>
           </div>

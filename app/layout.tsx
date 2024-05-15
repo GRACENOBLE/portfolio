@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       
-      <body className={tomorrow.className}><Header/>{children}</body>
+      <body className={`bg-black ${tomorrow.className}`}><Header/>{children}</body>
     </html>
   );
 }
