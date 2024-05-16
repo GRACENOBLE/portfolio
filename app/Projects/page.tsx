@@ -76,7 +76,7 @@ export default function page() {
         {/* <LiaCogSolid className="animate-spin text-red-500 text-7xl" />
         <p>Section under construction</p> */}
         <Container>
-          <div className="grid grid-cols-2 grid-rows-[24] gap-4 pt-20 ">
+          <div className="flex md:grid grid-cols-2 grid-rows-[24] gap-4 pt-20 flex-col ps-4">
             <div className="col-span-1 row-span-1 h-28 flex items-center">
               <h1 className="text-4xl">Take a look at some of my projects:</h1>
             </div>

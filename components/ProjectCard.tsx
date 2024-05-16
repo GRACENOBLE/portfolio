@@ -10,7 +10,7 @@ export function ProjectCard({Title, Description, Picture}:{Title: string, Descri
     const handleMouseEnter = () => setIsHovered(true);
     const handleMouseLeave = () => setIsHovered(false);
   return (
-    <div className="row-span-3 border h-96 rounded-lg overflow-hidden">
+    <div className="row-span-3 border h-96 w-96 md:w-full rounded-lg overflow-hidden">
       <div>
         <Image
           src={Picture}
@@ -21,14 +21,14 @@ export function ProjectCard({Title, Description, Picture}:{Title: string, Descri
         />
       </div>
       <div
-        className="absolute h-96 w-[610px] rounded-lg -translate-y-[385px] flex flex-col justify-end p-6 hover:backdrop-blur-sm border hover:bg-black/50"
+        className="absolute h-96 md:w-[603px] rounded-lg -translate-y-[385px] flex flex-col justify-end ps-6 pb-10 md:pb-6 pe-6 md:pe-0 hover:backdrop-blur-sm hover:bg-black/50 bg-black/50 md:bg-transparent"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <div className="text-3xl">{Title}</div>
+        <div className="text-3xl  translate-y-6 md:translate-y-0">{Title}</div>
         <div
           className={`${
-            isHovered ? "transition-all ease-in-out" : "hidden translate-y-10"
+            isHovered ? "transition-all ease-in-out" : "md:hidden translate-y-10"
           }`}
         >
           {Description}

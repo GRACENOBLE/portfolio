@@ -102,7 +102,7 @@ export default function Header() {
                 <FiMenu />
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="flex flex-col gap-6 w-52 px-4 py-10 me-2">
+            <DropdownMenuContent className="flex flex-col gap-6 w-52 px-4 py-10 me-2 bg-black/50">
               {quickLinks.map(({ Title, link }) => (
                 <Link
                   href={link}
@@ -110,9 +110,17 @@ export default function Header() {
                     "text-red-600": pathname === link,
                   })}
                 >
-                  
-                  <div className="border rounded-lg py-3 ps-4"><span className={pathname === link ? "" : "hidden"}>/*</span>{Title}<span className={pathname === link ? "" : "hidden"}>*/</span></div>
-                  
+                  <div className="border rounded-lg py-3 ps-4 bg-white">
+                    <div className="text-lg bold w-full border">
+                      <span className={pathname === link ? "" : "hidden"}>
+                        /*
+                      </span>
+                      {Title}
+                      <span className={pathname === link ? "" : "hidden"}>
+                        */
+                      </span>
+                    </div>
+                  </div>
                 </Link>
               ))}
             </DropdownMenuContent>
