@@ -186,3 +186,15 @@ export function SQL_ico() {
     />
   );
 }
+
+export function Figma_ico() {
+  return (
+    <Image
+      alt=""
+      height={1000}
+      width={1000}
+      src="/images/Figma.png"
+      className="w-14"
+    />
+  );
+}

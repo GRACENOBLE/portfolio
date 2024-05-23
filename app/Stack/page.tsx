@@ -1,6 +1,6 @@
 import Container from "@/components/Container";
 import StackCard from "@/components/StackCard";
-import { AndroidStudio_ico, Azure_ico,CSS_ico,Firebase_ico,Git_ico,Github_ico,HTML_ico,JavaScript_ico,Java_ico,Kotlin_ico,Next_ico,Python_ico,React_ico, SQL_ico, Tailwind_ico, TypeScript_ico } from "@/components/Icons";
+import { AndroidStudio_ico, Azure_ico,CSS_ico,Figma_ico,Firebase_ico,Git_ico,Github_ico,HTML_ico,JavaScript_ico,Java_ico,Kotlin_ico,Next_ico,Python_ico,React_ico, SQL_ico, Tailwind_ico, TypeScript_ico } from "@/components/Icons";
 
 import Image from "next/image";
 import React from "react";
@@ -88,8 +88,13 @@ const technologies: { index: number; icon: any; label: string }[] = [
   },
   {
     index: 0,
-    icon: <Azure_ico/>,
+    icon: <Azure_ico />,
     label: "Microsoft Azure",
+  },
+  {
+    index: 0,
+    icon: <Figma_ico/>,
+    label: "Figma",
   },
 ];
 
