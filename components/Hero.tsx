@@ -89,7 +89,7 @@ export default function Hero() {
             </div>
             <div className="">
               <Image
-                src="/images/placeholder_man.jpg"
+                src="/images/pic.png"
                 alt=""
                 width={1000}
                 height={1000}
