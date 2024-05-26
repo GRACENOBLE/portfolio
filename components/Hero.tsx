@@ -66,7 +66,7 @@ export default function Hero() {
         <div className="absolute top-32 md:top-0 h-[750px] md:h-screen flex flex-col justify-start md:justify-center w-screen md:w-[1280px]">
         
           <div className="z-10 flex flex-col-reverse md:flex-row md:w-[1280px]  items-center justify-between ">
-            <div className="w-full ps-10">
+            <div className="w-full ps-10 md:ps-0">
               <div className="font-extrabold text-2xl md:text-6xl pb-6 ">
                 <span className="text-red-600 font-black">&lt;</span>{" "}
                 <span className="text-white">{word}</span>
@@ -87,13 +87,13 @@ export default function Hero() {
                 <span className="text-red-600 font-black">&frasl;&gt;</span>
               </div>
             </div>
-            <div className="">
+            <div className="p-4">
               <Image
                 src="/images/pic.png"
                 alt=""
                 width={1000}
                 height={1000}
-                className="mb-20 md:mb-0 w-96 rounded-lg"
+                className="mb-20 md:mb-0 w-full rounded-lg"
                 unoptimized
               />
             </div>
