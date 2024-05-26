@@ -2,7 +2,7 @@ import Container from "@/components/Container";
 import { ProjectCard } from "@/components/ProjectCard";
 import Link from "next/link";
 import React from "react";
-import { LiaCogSolid } from "react-icons/lia";
+
 
 const projects: {
   Index: number;

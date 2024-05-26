@@ -110,8 +110,8 @@ export default function Header() {
                     "text-red-600": pathname === link,
                   })}
                 >
-                  <div className="border rounded-lg py-3 ps-4 bg-white">
-                    <div className="text-lg bold w-full border">
+                  <div className="rounded-lg py-3 ps-4 bg-white">
+                    <div className="text-lg font-bold w-full">
                       <span className={pathname === link ? "" : "hidden"}>
                         /*
                       </span>
