@@ -63,10 +63,10 @@ export default function Hero() {
       </div>
 
       <Container>
-        <div className="absolute top-32 md:top-0 h-[750px] md:h-screen flex flex-col justify-start md:justify-center w-screen md:w-[1280px]">
+        <div className="absolute top-0 md:top-0 h-screen md:h-screen flex flex-col justify-start md:justify-center w-screen md:w-[1280px]">
         
           <div className="z-10 flex flex-col-reverse md:flex-row md:w-[1280px]  items-center justify-between ">
-            <div className="w-full ps-10 md:ps-0">
+            <div className="w-full ps-4 md:ps-0 pt-4">
               <div className="font-extrabold text-2xl md:text-6xl pb-6 ">
                 <span className="text-red-600 font-black">&lt;</span>{" "}
                 <span className="text-white">{word}</span>
@@ -87,18 +87,18 @@ export default function Hero() {
                 <span className="text-red-600 font-black">&frasl;&gt;</span>
               </div>
             </div>
-            <div className="p-4">
+            <div className="p-4 mt-14 md:mt-0">
               <Image
                 src="/images/pic.png"
                 alt=""
                 width={1000}
                 height={1000}
-                className="mb-20 md:mb-0 w-full rounded-lg"
+                className="w-full rounded-lg"
                 unoptimized
               />
             </div>
           </div>
-          <div className="absolute bottom-0 z-10 md:mb-7 pe-5 w-screen md:w-[1280px] text-white flex justify-center text-5xl animate-bounce">
+          <div className="hidden md:flex absolute bottom-0 z-10 md:mb-7 pe-5 w-screen md:w-[1280px] text-white justify-center text-5xl animate-bounce">
             <Link href="#About" scroll={true}>
               <div className="text-red-600">
                 <BsChevronDown />
