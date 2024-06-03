@@ -18,7 +18,7 @@ const projects: {
     description:
       "A Farming tool for smart agricultural decision making built with Next Js, TypeScript, Tailwind CSS, Redux, Context API, and Open Weather API",
     image: "/images/KisoIndex.png",
-    link: "https://kisofresh-index.vercel.app/",
+    link: "https://kisofresh-36cc.vercel.app/",
     dark: true,
   },
   {
