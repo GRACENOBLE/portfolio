@@ -5,7 +5,7 @@ import Link from "next/link";
 const Logo = ({
   size,
   variant,
-  color,
+  color = "black",
 }: {
   size?: "sm" | "md" | "lg";
   variant?: "logo" | "logomark" | "wordmark";
@@ -16,11 +16,9 @@ const Logo = ({
       {!(variant == "wordmark") && (
         <Image
           src={
-            color === "white"
-              ? "/images/logo-white.svg"
-              : color === "black"
-              ? "/images/logo-black.svg"
-              : "/images/logo-yellow.svg"
+            color === "black"
+              ? "/images/logo/logo-black.svg"
+              : "/images/logo/logo-white.svg"
           }
           alt={""}
           width={500}
@@ -33,7 +31,9 @@ const Logo = ({
         />
       )}
       {!(variant == "logo") && (
-        <span className="text-3xl font-semibold font-body">Better</span>
+        <span className="text-3xl font-semibold font-body text-white">
+          Grace Noble
+        </span>
       )}
     </Link>
   );
