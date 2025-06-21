@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 const HeroSection = () => {
   return (
-    <section className=" bg-black pt-32 border-b">
+    <section className="pt-32">
       <Container className="py-36 text-center text-white flex flex-col items-center">
         <h1 className=" text-7xl font-semibold">I BRING SOFTWARE TO LIFE</h1>
         <p className="py-10 max-w-3xl text-xl text-muted/60">

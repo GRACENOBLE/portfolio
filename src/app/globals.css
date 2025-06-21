@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-noble-background: #edf4f2;
+  --color-noble-background: #000000;
   --color-noble-green: #31473a;
   --color-foreground: var(--foreground);
   --font-body: var(--font-outfit);
