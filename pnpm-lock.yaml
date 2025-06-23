@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@babylonjs/core':
+        specifier: 5.0.0-alpha.65
+        version: 5.0.0-alpha.65
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.8)(react@19.1.0)
@@ -29,6 +32,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
+      react-dot-globe:
+        specifier: ^1.0.0
+        version: 1.0.0(@babylonjs/core@5.0.0-alpha.65)(react@19.1.0)
       react-icons:
         specifier: ^5.5.0
         version: 5.5.0(react@19.1.0)
@@ -70,6 +76,10 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
+
+  '@babylonjs/core@5.0.0-alpha.65':
+    resolution: {integrity: sha512-L4b5cLVYVqR+TuSMZK5tt79JXIndUq/RtMKgMFgNZbIweoBxY7C9Xf+DaoWrpDpXeb4ReaHLQJeeJczyzJQV6g==}
+    engines: {node: '>=12.x'}
 
   '@emnapi/runtime@1.4.3':
     resolution: {integrity: sha512-pBPWdu6MLKROBX05wSNKcNb++m5Er+KQ9QkB+WVM+pW2Kx9hoSrVTnu3BdkI5eBLZoKu/J6mW/B6i6bJB2ytXQ==}
@@ -598,6 +608,13 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
+  react-dot-globe@1.0.0:
+    resolution: {integrity: sha512-gW1VZWAkuZBfo1XoHOhvdtYM3ilLUVhe+ecmtN41N+0ur3ggu3TngOthr+F07d5QyznPV46B3lvckFPd3fH0iw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@babylonjs/core': ^5.0.0-alpha.65
+      react: ^16.0.0
+
   react-icons@5.5.0:
     resolution: {integrity: sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==}
     peerDependencies:
@@ -699,6 +716,10 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.8
       '@jridgewell/trace-mapping': 0.3.25
+
+  '@babylonjs/core@5.0.0-alpha.65':
+    dependencies:
+      tslib: 2.8.1
 
   '@emnapi/runtime@1.4.3':
     dependencies:
@@ -1122,6 +1143,11 @@ snapshots:
     dependencies:
       react: 19.1.0
       scheduler: 0.26.0
+
+  react-dot-globe@1.0.0(@babylonjs/core@5.0.0-alpha.65)(react@19.1.0):
+    dependencies:
+      '@babylonjs/core': 5.0.0-alpha.65
+      react: 19.1.0
 
   react-icons@5.5.0(react@19.1.0):
     dependencies:

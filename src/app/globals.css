@@ -122,3 +122,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+.dotGlobe {
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
