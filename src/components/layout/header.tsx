@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 
 const Header = () => {
   return (
-    <div className="border-b border-px border-muted/20 fixed top-0 w-full bg-black/40 backdrop-blur-md">
+    <div className="border-b border-px border-muted/20 fixed z-20 top-0 w-full bg-black/40 backdrop-blur-md">
       <Container className=" py-4 flex justify-between">
         <Logo variant="wordmark" color="white" />
         <SocialNav />

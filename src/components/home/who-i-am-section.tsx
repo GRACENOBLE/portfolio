@@ -12,7 +12,7 @@ const WhoIAmSection = () => {
             A little more about Grace Noble
           </p>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center pe-20">
           <div className="max-w-lg flex flex-col gap-8">
             <p>
               I started out 3 years ago and have spent time hoaning my skill set
