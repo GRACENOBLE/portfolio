@@ -29,9 +29,7 @@ export default function RootLayout({
       <body
         className={`${workSans.variable} ${outfit.variable} antialiased bg-noble-background font-body text-white`}
       >
-        <Header />
         <main className="">{children}</main>
-        <Footer />
       </body>
     </html>
   );
