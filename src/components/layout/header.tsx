@@ -1,3 +1,5 @@
+"use client"
+import React, { useEffect, useState } from "react";
 import Container from "../common/container";
 import Logo from "../logo";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
@@ -5,10 +7,24 @@ import { IoMail } from "react-icons/io5";
 import { Button } from "../ui/button";
 
 const Header = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 0);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <div className="border-b border-px border-muted/20 fixed z-20 top-0 w-full bg-black/40 backdrop-blur-md">
-      <Container className=" py-4 flex justify-between">
-        <Logo variant="wordmark" color="white" />
+    <div
+      className={`fixed z-20 border-b border-b-muted/20 top-0 w-full transition-all ${
+        scrolled
+          ? " border-px border-b-muted/20 bg-black/40 backdrop-blur-md"
+          : "bg-transparent border-none backdrop-blur-0"
+      }`}
+    >
+      <Container className="py-2 flex justify-between">
+        <Logo variant="logo" color="white" size="sm" />
         <SocialNav />
       </Container>
     </div>

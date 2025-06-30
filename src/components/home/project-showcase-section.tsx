@@ -8,7 +8,7 @@ const ProjectShowcaseSection = () => {
     <Container className="py-20">
       <div className="flex items-baseline gap-4 justify-center mb-10">
         <h2 className="text-4xl font-semibold">Project showcase</h2>
-        <p className="text-xl text-muted/60">See what I have been up to</p>
+        <p className="text-xl text-muted/60">See the projects i've worked on</p>
       </div>
       <Box sx={{ width: "100%", minHeight: 829 }}>
         {/*
@@ -19,6 +19,15 @@ const ProjectShowcaseSection = () => {
             {
               imageUrl: "/images/projects/better.png",
               projectTitle: "Better",
+              projectLink: "",
+            },{
+              imageUrl: "/images/projects/next-blog.png",
+              projectTitle: "Next Blog",
+              projectLink: "",
+            },
+            {
+              imageUrl: "/images/projects/shadow-polls.png",
+              projectTitle: "Shadow Polls",
               projectLink: "",
             },
             {
@@ -31,11 +40,7 @@ const ProjectShowcaseSection = () => {
               projectTitle: "Yongeza Capital",
               projectLink: "",
             },
-            {
-              imageUrl: "/images/projects/next-blog.png",
-              projectTitle: "Next Blog",
-              projectLink: "",
-            },
+            
             {
               imageUrl: "/images/projects/kiso-index.png",
               projectTitle: "Kiso Index",

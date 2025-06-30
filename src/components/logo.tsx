@@ -31,7 +31,7 @@ const Logo = ({
         />
       )}
       {!(variant == "logo") && (
-        <span className="text-3xl font-semibold font-body text-white">
+        <span className="text-2xl font-semibold font-body text-white">
           Grace Noble
         </span>
       )}
