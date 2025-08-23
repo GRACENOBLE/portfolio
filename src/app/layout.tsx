@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Outfit, Work_Sans } from "next/font/google";
+import { Outfit, Funnel_Display,Oxanium, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
-const workSans = Work_Sans({
-  variable: "--font-work-sans",
+const dmMono = DM_Mono({
+  variable: "--font-noble-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const funnelDisplay = Funnel_Display({
+  variable: "--font-noble-display",
   subsets: ["latin"],
 });
 
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${workSans.variable} ${outfit.variable} antialiased bg-noble-background font-body text-white`}
+        className={`${funnelDisplay.variable} ${dmMono.variable} antialiased bg-noble-background font-body text-white`}
       >
         <main className="">{children}</main>
       </body>

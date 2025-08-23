@@ -7,8 +7,8 @@ const page = () => {
   return (
     <>
       <HeroSection />
-      <SkillSetSection />
       <WhoIAmSection />
+      <SkillSetSection />
       <ProjectShowcaseSection />
     </>
   );

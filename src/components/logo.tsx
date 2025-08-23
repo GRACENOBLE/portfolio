@@ -5,19 +5,19 @@ import Link from "next/link";
 const Logo = ({
   size,
   variant,
-  color = "black",
+  color = "dark",
 }: {
   size?: "sm" | "md" | "lg";
   variant?: "logo" | "logomark" | "wordmark";
-  color?: "white" | "black" | "yellow";
+  color?: "white" | "dark" | "yellow";
 }) => {
   return (
     <Link href={"/"} aria-label="go home" className="flex items-center gap-2">
       {!(variant == "wordmark") && (
         <Image
           src={
-            color === "black"
-              ? "/images/logo/logo-black.svg"
+            color === "dark"
+              ? "/images/logo/logo-dark.png"
               : "/images/logo/logo-white.svg"
           }
           alt={""}
