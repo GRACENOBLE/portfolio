@@ -4,7 +4,7 @@ import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="text-noble-dark">
+    <div className="bg-black selection:bg-accent selection:text-white">
       <Header />
       {children} <Footer />
     </div>

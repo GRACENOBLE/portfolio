@@ -1,18 +1,16 @@
-import Image from "next/image";
 import Container from "../common/container";
+import H2 from "../common/heading-two";
 import DotGlobe from "../dot-globe";
 
-const WhoIAmSection = () => {
+const AboutMe = () => {
   return (
-    <section className="py-20 bg-white/30">
-      <Container>
-        <div className="flex justify-between items-center ">
+    <section className="h-screen">
+      <Container className="h-full">
+        <div className="flex justify-between items-center h-full ">
           <div className=" flex flex-col gap-6 w-full">
             <div className=" w-fit mx-auto">
-              <h2 className="text-5xl pb-6 font-semibold font-title">
-                Who I am
-              </h2>
-              <div className="flex flex-col gap-6 font-medium text-noble-dark/70 max-w-md">
+              <H2 className="">About me</H2>
+              <div className="flex flex-col gap-6 font-medium text-white/70 max-w-sm">
                 <p>
                   I started out 3 years ago and have spent time hoaning my skill
                   set by tackling real-world problems with companies,
@@ -29,7 +27,7 @@ const WhoIAmSection = () => {
               </div>
             </div>
           </div>
-          <div className="h-full w-full aspect-square">
+          <div className="w-full aspect-square max-w-1/2 hover:cursor-grab active:cursor-grabbing">
             <DotGlobe />
           </div>
         </div>
@@ -38,4 +36,4 @@ const WhoIAmSection = () => {
   );
 };
 
-export default WhoIAmSection;
+export default AboutMe;

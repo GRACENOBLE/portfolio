@@ -1,15 +1,18 @@
+import AboutMe from "@/components/home/about-me-section";
 import HeroSection from "@/components/home/hero-section";
+import LoadingSection from "@/components/home/loading-section";
 import ProjectShowcaseSection from "@/components/home/project-showcase-section";
 import SkillSetSection from "@/components/home/skill-set-section";
-import WhoIAmSection from "@/components/home/who-i-am-section";
 
 const page = () => {
   return (
     <>
       <HeroSection />
-      <WhoIAmSection />
+      <AboutMe />
       <SkillSetSection />
-      <ProjectShowcaseSection />
+      <LoadingSection />
+      {/* <WhoIAmSection />
+      <ProjectShowcaseSection /> */}
     </>
   );
 };
