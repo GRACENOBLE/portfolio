@@ -106,30 +106,34 @@ const skills = [
 
 const SkillSetSection = () => {
   return (
-    <section className="py-16">
-      <Container size="sm">
-        <H2 className="text-center"> My skill set</H2>
+    <section className="snap-start min-h-screen flex items-center" id="skill-set">
+      <Container size="sm" className="h-full">
+        <div className="bg-white/10 backdrop-blur-lg p-8 rounded-3xl">
+          <H2 className="text-center"> My skill set</H2>
 
-        <Accordion
-          type="single"
-          collapsible
-          className="w-full"
-          defaultValue="item-0"
-        >
-          {skills.map(({ skill, description, technologies }, idx) => (
-            <AccordionItem className="" key={skill} value={`item-${idx}`}>
-              <AccordionTrigger>{skill}</AccordionTrigger>
-              <AccordionContent className="flex flex-col gap-4 text-balance">
-                <p>{description}</p>
-                <ul className="list-disc list-inside ml-4">
-                  {technologies.map((tech) => (
-                    <li key={tech}>{tech}</li>
-                  ))}
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full"
+            defaultValue="item-0"
+          >
+            {skills.map(({ skill, description, technologies }, idx) => (
+              <AccordionItem className="" key={skill} value={`item-${idx}`}>
+                <AccordionTrigger className="hover:cursor-pointer">
+                  {skill}
+                </AccordionTrigger>
+                <AccordionContent className="flex flex-col gap-4 text-balance text-white/60 px-4">
+                  <p>{description}</p>
+                  <ul className="list-disc list-inside ">
+                    {technologies.map((tech) => (
+                      <li key={tech}>{tech}</li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </Container>
     </section>
   );

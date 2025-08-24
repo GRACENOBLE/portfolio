@@ -1,10 +1,11 @@
+"use client";
 import Container from "../common/container";
 import H2 from "../common/heading-two";
 import DotGlobe from "../dot-globe";
 
 const AboutMe = () => {
   return (
-    <section className="h-screen">
+    <section className="snap-start h-screen" id="about-me">
       <Container className="h-full">
         <div className="flex justify-between items-center h-full ">
           <div className=" flex flex-col gap-6 w-full">

@@ -36,10 +36,10 @@ const Header = () => {
             <span className="text-xl">Grace Noble</span>
           </div>
           <nav className=" font-title font-medium flex gap-8">
-            <Link href={""}>About me</Link>
-            <Link href={""}>My skill set</Link>
-            <Link href={""}>Services</Link>
-            <Link href={""}>Projects</Link>
+            <Link href={"#about-me"}>About me</Link>
+            <Link href={"#skill-set"}>My skill set</Link>
+            <Link href={"#services"}>Services</Link>
+            <Link href={"#project-showcase"}>Projects</Link>
           </nav>
           <div>
             <Button

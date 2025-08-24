@@ -1,3 +1,4 @@
+"use client"
 import { cn } from "@/lib/utils";
 import Container from "../common/container";
 import { Button } from "../ui/button";
@@ -6,7 +7,7 @@ import Beams from "../backgrounds/beams";
 
 const HeroSection = () => {
   return (
-    <section className=" h-screen flex flex-col items-center justify-center text-center relative isolate text-white">
+    <section className="snap-start h-screen flex flex-col items-center justify-center text-center relative isolate text-white">
       {/* <HexagonBackground className="absolute inset-0 flex items-center justify-center rounded-xl opacity-50" /> */}
       <div
         style={{ width: "100%", height: "100%", position: "absolute" }}

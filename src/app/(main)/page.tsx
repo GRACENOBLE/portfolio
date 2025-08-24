@@ -1,20 +1,29 @@
 import AboutMe from "@/components/home/about-me-section";
 import HeroSection from "@/components/home/hero-section";
-import LoadingSection from "@/components/home/loading-section";
 import ProjectShowcaseSection from "@/components/home/project-showcase-section";
 import SkillSetSection from "@/components/home/skill-set-section";
 
-const page = () => {
+export default function ScrollSnapSections() {
   return (
     <>
       <HeroSection />
       <AboutMe />
       <SkillSetSection />
-      <LoadingSection />
-      {/* <WhoIAmSection />
-      <ProjectShowcaseSection /> */}
+      <ProjectShowcaseSection />
     </>
   );
-};
+}
 
-export default page;
+// const page = () => {
+//   return (
+//     <main className="h-screen overflow-y-scroll scroll-auto snap-always">
+//
+//       <AboutMe />
+//       <SkillSetSection />
+//       <ProjectShowcaseSection />
+//       {/* <LoadingSection /> */}
+//     </main>
+//   );
+// };
+
+// export default page;
