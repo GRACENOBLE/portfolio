@@ -65,9 +65,15 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      embla-carousel-autoplay:
+        specifier: ^8.6.0
+        version: 8.6.0(embla-carousel@8.6.0)
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.1.0)
+      import:
+        specifier: ^0.0.6
+        version: 0.0.6
       lucide-react:
         specifier: ^0.518.0
         version: 0.518.0(react@19.1.0)
@@ -3203,6 +3209,11 @@ packages:
   electron-to-chromium@1.5.177:
     resolution: {integrity: sha512-7EH2G59nLsEMj97fpDuvVcYi6lwTcM1xuWw3PssD8xzboAW7zj7iB3COEEEATUfjLHrs5uKBLQT03V/8URx06g==}
 
+  embla-carousel-autoplay@8.6.0:
+    resolution: {integrity: sha512-OBu5G3nwaSXkZCo1A6LTaFMZ8EpkYbwIaH+bPqdBnDGQ2fh4+NbzjXjs2SktoPNKCtflfVMc75njaDHOYXcrsA==}
+    peerDependencies:
+      embla-carousel: 8.6.0
+
   embla-carousel-react@8.6.0:
     resolution: {integrity: sha512-0/PjqU7geVmo6F734pmPqpyHqiM99olvyecY7zdweCw+6tKEXnrE90pBiBbMMU8s5tICemzpQ3hi5EpxzGW+JA==}
     peerDependencies:
@@ -3683,6 +3694,11 @@ packages:
   import-fresh@3.3.1:
     resolution: {integrity: sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==}
     engines: {node: '>=6'}
+
+  import@0.0.6:
+    resolution: {integrity: sha512-QPhTdjy9J4wUzmWSG7APkSgMFuPGPw+iJTYUblcfc2AfpqaatbwgCldK1HoLYx+v/+lWvab63GWZtNkcnj9JcQ==}
+    engines: {node: '>=0.10.0'}
+    hasBin: true
 
   imurmurhash@0.1.4:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
@@ -4398,6 +4414,9 @@ packages:
   open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
+
+  optimist@0.3.7:
+    resolution: {integrity: sha512-TCx0dXQzVtSCg2OgY/bO9hjM9cV4XYx09TVK+s3+FhkjT6LovsLe+pPMzpWf+6yXK/hUizs2gUoTw3jHM0VaTQ==}
 
   ora@5.4.1:
     resolution: {integrity: sha512-5b6Y85tPxZZ7QytO+BQzysW31HJku27cRIlkbAXaNx+BdcVi+LlRFmVXzeF6a7JCwJpyw5c4b+YSVImQIrBpuQ==}
@@ -5635,6 +5654,10 @@ packages:
   widest-line@3.1.0:
     resolution: {integrity: sha512-NsmoXalsWVDMGupxZ5R08ka9flZjjiLvHVAWYOKtiKM8ujtZWr9cRffak+uSE48+Ob8ObalXpwyeUiyDD6QFgg==}
     engines: {node: '>=8'}
+
+  wordwrap@0.0.3:
+    resolution: {integrity: sha512-1tMA907+V4QmxV7dbRvb4/8MaRALK6q9Abid3ndMYnbyo8piisCmeONVqVSXqQA3KaP4SLt5b7ud6E2sqP8TFw==}
+    engines: {node: '>=0.4.0'}
 
   wordwrap@1.0.0:
     resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
@@ -9243,6 +9266,10 @@ snapshots:
 
   electron-to-chromium@1.5.177: {}
 
+  embla-carousel-autoplay@8.6.0(embla-carousel@8.6.0):
+    dependencies:
+      embla-carousel: 8.6.0
+
   embla-carousel-react@8.6.0(react@19.1.0):
     dependencies:
       embla-carousel: 8.6.0
@@ -9748,6 +9775,10 @@ snapshots:
     dependencies:
       parent-module: 1.0.1
       resolve-from: 4.0.0
+
+  import@0.0.6:
+    dependencies:
+      optimist: 0.3.7
 
   imurmurhash@0.1.4: {}
 
@@ -10407,6 +10438,10 @@ snapshots:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+
+  optimist@0.3.7:
+    dependencies:
+      wordwrap: 0.0.3
 
   ora@5.4.1:
     dependencies:
@@ -11788,6 +11823,8 @@ snapshots:
   widest-line@3.1.0:
     dependencies:
       string-width: 4.2.3
+
+  wordwrap@0.0.3: {}
 
   wordwrap@1.0.0: {}
 

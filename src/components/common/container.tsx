@@ -7,7 +7,7 @@ const Container = ({
 }: {
   children: React.ReactNode;
   className?: string;
-  size?: "sm" | "lg" | "xl";
+  size?: "sm" | "lg" | "xl" |"free";
 }) => {
   return (
     <div
@@ -16,6 +16,7 @@ const Container = ({
         size === "sm" && "max-w-[1040px]",
         size === "lg" && "max-w-[1080px]",
         size === "xl" && "max-w-[1280px]",
+        size === "free" && "max-w-full",
         className
       )}
     >

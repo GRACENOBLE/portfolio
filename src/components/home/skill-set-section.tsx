@@ -106,7 +106,7 @@ const skills = [
 
 const SkillSetSection = () => {
   return (
-    <section className="snap-start min-h-screen flex items-center" id="skill-set">
+    <section className="snap-start py-20 flex items-center" id="skill-set">
       <Container size="sm" className="h-full">
         <div className="bg-white/10 backdrop-blur-lg p-8 rounded-3xl">
           <H2 className="text-center"> My skill set</H2>
