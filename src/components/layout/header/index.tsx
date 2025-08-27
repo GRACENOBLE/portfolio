@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Container from "../common/container";
-import { Button } from "../ui/button";
+import Container from "../../common/container";
+import { Button } from "../../ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { toast } from "sonner";
+import MobileNavigation from "./mobile-nav";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -25,7 +26,7 @@ const Header = () => {
             // scrolled ? " " : " text-background backdrop-blur-0"
           )}
         >
-          <div className="flex items-center gap-[9] font-title">
+          <Link href={"/"} className="flex items-center gap-[9] font-title">
             <Image
               src={"/images/logo/icon.png"}
               alt={""}
@@ -34,14 +35,14 @@ const Header = () => {
               className="h-8 object-contain w-fit"
             />
             <span className="text-xl">Grace Noble</span>
-          </div>
-          <nav className=" font-title font-medium flex gap-8">
+          </Link>
+          <nav className=" font-title font-medium gap-8 hidden lg:flex">
             <Link href={"#about-me"}>About me</Link>
-            <Link href={"#skill-set"}>My skill set</Link>
+            <Link href={"#skill-set"}>Skill set</Link>
             <Link href={"#services"}>Services</Link>
             <Link href={"#project-showcase"}>Projects</Link>
           </nav>
-          <div>
+          <div className="hidden lg:flex">
             <Button
               onClick={() => toast("This will be available soon")}
               className="rounded-full"
@@ -50,6 +51,7 @@ const Header = () => {
               Let's talk
             </Button>
           </div>
+          <MobileNavigation />
         </div>
       </Container>
     </div>

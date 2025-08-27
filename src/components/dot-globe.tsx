@@ -8,7 +8,7 @@ const DotGlobe = () => {
     {
       name: "Kampala",
       coordinates: [0.39732215474344723, 32.63954793590649],
-      color: "#FF7A30",
+      color: "#E62727",
       height: 0.35,
       diameter: 0.12,
     },
@@ -29,12 +29,13 @@ const DotGlobe = () => {
     <ReactDotGlobe
       className="dotGlobe" // CSS class of the canvas
       backgroundColor="" // Background color of the canvas
-      cameraPosition={[-6, 10, -10]} // Refer to the docs: https://doc.babylonjs.com/typedoc/classes/babylon.camera#position
+      cameraPosition={[1500
+        , 10, -20]} // Refer to the docs: https://doc.babylonjs.com/typedoc/classes/babylon.camera#position
       cameraMinZoom={16}
       cameraMaxZoom={16}
       cameraZoomSpeed={100}
       globeRotationAxis={[0, 1, 0]}
-      globeRotationSpeed={0} // Rotation speed. 0 for no rotation
+      globeRotationSpeed={0.001} // Rotation speed. 0 for no rotation
       dotDiameter={0.05} // Diameter of the dots
       dotHeight={0.01} // Height of the dots
       dotSegments={8} // Segments of the dots

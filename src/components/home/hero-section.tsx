@@ -7,7 +7,7 @@ import Beams from "../backgrounds/beams";
 
 const HeroSection = () => {
   return (
-    <section className="snap-start h-screen flex flex-col items-center justify-center text-center relative isolate text-white">
+    <section className="h-screen flex flex-col items-center justify-center text-center relative isolate text-white">
       {/* <HexagonBackground className="absolute inset-0 flex items-center justify-center rounded-xl opacity-50" /> */}
       <div
         style={{ width: "100%", height: "100%", position: "absolute" }}
@@ -24,10 +24,10 @@ const HeroSection = () => {
           rotation={30}
         />
       </div>
-      <h1 className="text-6xl font-semibold font-title pb-6 max-w-3xl  ">
+      <h1 className="text-5xl md:text-6xl font-semibold font-title pb-6 max-w-3xl  ">
         A software <br /> artist and scientist.
       </h1>
-      <p className="text-lg font-medium max-w-2xl mb-8">
+      <p className="text-lg font-medium max-w-2xl mb-8 mx-2">
         I build software that <span>looks good</span>,{" "}
         <span>functions great</span> and <span>scales perfectly</span>.
       </p>

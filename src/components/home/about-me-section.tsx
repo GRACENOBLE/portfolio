@@ -5,7 +5,7 @@ import DotGlobe from "../dot-globe";
 
 const AboutMe = () => {
   return (
-    <section className="snap-start h-screen" id="about-me">
+    <section className="snap-start py-20 md:py-28" id="about-me">
       <Container className="h-full">
         <div className="flex justify-between items-center h-full ">
           <div className=" flex flex-col gap-6 w-full">
@@ -28,7 +28,7 @@ const AboutMe = () => {
               </div>
             </div>
           </div>
-          <div className="w-full aspect-square max-w-1/2 hover:cursor-grab active:cursor-grabbing">
+          <div className="hidden lg:block w-full aspect-square max-w-1/2 hover:cursor-grab active:cursor-grabbing">
             <DotGlobe />
           </div>
         </div>

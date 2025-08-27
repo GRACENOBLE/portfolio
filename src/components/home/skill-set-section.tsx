@@ -58,65 +58,16 @@ const skills = [
       "CI/CD",
     ],
   },
-  {
-    skill: "Security & Performance",
-    description:
-      "Implements best practices and conducts profiling, caching, logging for high-throughput apps.",
-    technologies: ["SSL/TLS", "OWASP", "Input Validation", "Rate-limiting"],
-  },
-  {
-    skill: "Testing & Quality Assurance",
-    description:
-      "Writes tests and enforces linting, code coverage, TDD in agile workflows.",
-    technologies: [
-      "Jest",
-      "Mocha",
-      "PyTest",
-      "Linting",
-      "Code Coverage",
-      "TDD",
-    ],
-  },
-  {
-    skill: "Scalable Architecture",
-    description:
-      "Designs microservices, event-driven systems, load-balanced services, and CDN support.",
-    technologies: ["Microservices", "Event-driven", "Kafka", "RabbitMQ", "CDN"],
-  },
-  {
-    skill: "Version Control & Collaboration",
-    description:
-      "Uses Git, branching strategies, code reviews, and collaborates in agile teams.",
-    technologies: ["Git", "GitFlow", "Code Reviews", "Agile"],
-  },
-  {
-    skill: "Soft Skills",
-    description:
-      "Mentors juniors, writes documentation, and liaises with stakeholders.",
-    technologies: [
-      "Problem-solving",
-      "Communication",
-      "Project Planning",
-      "Mentoring",
-      "Documentation",
-      "Stakeholder Liaison",
-    ],
-  },
 ];
 
 const SkillSetSection = () => {
   return (
-    <section className="snap-start py-20 flex items-center" id="skill-set">
-      <Container size="sm" className="h-full">
-        <div className="bg-white/10 backdrop-blur-lg p-8 rounded-3xl">
-          <H2 className="text-center"> My skill set</H2>
+    <section className=" pb-20 md:pb-28 flex items-center" id="skill-set">
+      <Container size="sm" className="">
+        <div className="bg-muted backdrop-blur-lg py-12 px-8 md:px-20 rounded-2xl">
+          <H2 className="text-center"> My technical proficiency</H2>
 
-          <Accordion
-            type="single"
-            collapsible
-            className="w-full"
-            defaultValue="item-0"
-          >
+          <Accordion type="single" collapsible className="w-full">
             {skills.map(({ skill, description, technologies }, idx) => (
               <AccordionItem className="" key={skill} value={`item-${idx}`}>
                 <AccordionTrigger className="hover:cursor-pointer">
