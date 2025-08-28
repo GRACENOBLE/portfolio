@@ -18,7 +18,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={`fixed z-20 top-2 w-full`}>
+    <div className={`fixed z-40 top-2 w-full`}>
       <Container size="xl" className="py-2 flex justify-between ">
         <div
           className={cn(

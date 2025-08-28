@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { cn } from "@/lib/utils";
 import Container from "../common/container";
 import { Button } from "../ui/button";

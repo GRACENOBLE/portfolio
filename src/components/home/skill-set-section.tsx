@@ -64,7 +64,7 @@ const SkillSetSection = () => {
   return (
     <section className=" pb-20 md:pb-28 flex items-center" id="skill-set">
       <Container size="sm" className="">
-        <div className="bg-muted backdrop-blur-lg py-12 px-8 md:px-20 rounded-2xl">
+        <div className="bg-muted backdrop-blur-lg py-16 px-8 md:px-20 rounded-3xl">
           <H2 className="text-center"> My technical proficiency</H2>
 
           <Accordion type="single" collapsible className="w-full">
