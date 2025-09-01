@@ -31,7 +31,7 @@ export default function ContactEmailTemplate({
           <Section style={headerSection}>
             <Heading style={title}>New Contact Form Message</Heading>
             <Text style={subtitle}>
-              You have received a new message from your portfolio website
+              You have received a new message from asiimwenoble.com
             </Text>
           </Section>
 

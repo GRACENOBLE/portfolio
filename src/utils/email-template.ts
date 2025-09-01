@@ -4,7 +4,11 @@ interface EmailTemplateProps {
   message: string;
 }
 
-export function createEmailHTML({ name, email, message }: EmailTemplateProps): string {
+export function createEmailHTML({
+  name,
+  email,
+  message,
+}: EmailTemplateProps): string {
   return `
 <!DOCTYPE html>
 <html lang="en">

@@ -30,6 +30,7 @@ FROM_EMAIL=noreply@yourdomain.com
 ```
 
 **Important Notes:**
+
 - Replace `your-email@example.com` with your actual email address
 - Replace `yourdomain.com` with your actual domain
 - For testing, you can use the default Resend domain: `onboarding@resend.dev`
@@ -84,10 +85,12 @@ For production use, you should verify your domain with Resend:
 ### Common Issues
 
 1. **"Email service not configured" error**
+
    - Check that `RESEND_API_KEY` is set in your `.env.local` file
    - Restart your development server after adding environment variables
 
 2. **Emails not being received**
+
    - Check your spam folder
    - Verify your email address in `CONTACT_EMAIL`
    - Check Resend dashboard for delivery status
@@ -100,10 +103,12 @@ For production use, you should verify your domain with Resend:
 ### Development vs Production
 
 **Development:**
+
 - Use `onboarding@resend.dev` as your `FROM_EMAIL`
 - Emails may be limited but will work for testing
 
 **Production:**
+
 - Set up and verify your own domain
 - Use your domain for `FROM_EMAIL`
 - Monitor email delivery in Resend dashboard
@@ -118,6 +123,7 @@ For production use, you should verify your domain with Resend:
 ### Styling
 
 The email templates use inline styles that match your portfolio's dark theme:
+
 - Background: `#0a0a0a`
 - Container: `#111111`
 - Text: `#ffffff` with various opacity levels
@@ -142,6 +148,7 @@ To add more form fields:
 ## Cost Considerations
 
 Resend offers:
+
 - **Free tier**: 3,000 emails/month
 - **Pro tier**: Starting at $20/month for 50,000 emails
 - No setup fees or hidden costs

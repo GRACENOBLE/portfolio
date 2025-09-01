@@ -72,7 +72,7 @@ const ContactMe = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -90,7 +90,7 @@ const ContactMe = () => {
 
       // Reset form after successful submission
       form.reset();
-      
+
       // Show success toast
       toast.success("Message sent successfully!", {
         description: "Thank you for reaching out. I'll get back to you soon.",
@@ -98,10 +98,11 @@ const ContactMe = () => {
       });
     } catch (error) {
       console.error("Failed to send message:", error);
-      
+
       // Show error toast
       toast.error("Failed to send message", {
-        description: error instanceof Error ? error.message : "Please try again later.",
+        description:
+          error instanceof Error ? error.message : "Please try again later.",
         duration: 5000,
       });
     } finally {

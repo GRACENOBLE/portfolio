@@ -5,7 +5,8 @@ import { createEmailHTML } from "@/utils/email-template";
 const demoData = {
   name: "John Doe",
   email: "john.doe@example.com",
-  message: "Hello! I'm interested in discussing a potential project with you. I love your portfolio and would like to explore how we could work together on something amazing.\n\nLooking forward to hearing from you!",
+  message:
+    "Hello! I'm interested in discussing a potential project with you. I love your portfolio and would like to explore how we could work together on something amazing.\n\nLooking forward to hearing from you!",
 };
 
 export default function EmailPreviewPage() {
@@ -14,12 +15,16 @@ export default function EmailPreviewPage() {
   return (
     <div className="min-h-screen bg-noble-background text-white p-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-center">Email Template Preview</h1>
-        
+        <h1 className="text-4xl font-bold mb-8 text-center">
+          Email Template Preview
+        </h1>
+
         <div className="grid md:grid-cols-2 gap-8">
           {/* React Email Preview */}
           <div>
-            <h2 className="text-2xl font-semibold mb-4">React Email Template</h2>
+            <h2 className="text-2xl font-semibold mb-4">
+              React Email Template
+            </h2>
             <div className="border border-white/20 rounded-lg overflow-hidden">
               <ContactEmailTemplate {...demoData} />
             </div>
@@ -27,7 +32,9 @@ export default function EmailPreviewPage() {
 
           {/* HTML Fallback Preview */}
           <div>
-            <h2 className="text-2xl font-semibold mb-4">HTML Fallback Template</h2>
+            <h2 className="text-2xl font-semibold mb-4">
+              HTML Fallback Template
+            </h2>
             <div className="border border-white/20 rounded-lg overflow-hidden">
               <iframe
                 srcDoc={htmlTemplate}
@@ -47,8 +54,9 @@ export default function EmailPreviewPage() {
 
         <div className="mt-8 text-center">
           <p className="text-white/70">
-            This preview shows how your contact form emails will look.
-            The React Email template is used by default, with HTML fallback for compatibility.
+            This preview shows how your contact form emails will look. The React
+            Email template is used by default, with HTML fallback for
+            compatibility.
           </p>
         </div>
       </div>

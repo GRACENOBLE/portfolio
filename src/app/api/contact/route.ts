@@ -31,7 +31,9 @@ export async function POST(request: NextRequest) {
 
     // Prepare email data
     const emailData = {
-      from: process.env.FROM_EMAIL || "Portfolio Contact <noreply@asiimwenoble.com>",
+      from:
+        process.env.FROM_EMAIL ||
+        "Portfolio Contact <noreply@asiimwenoble.com>",
       to: [process.env.CONTACT_EMAIL || "gracenoble72@gmail.com"],
       subject: `New Contact Form Message from ${name}`,
       replyTo: email,
@@ -68,7 +70,7 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error("API error:", error);
-    
+
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: "Invalid form data", details: error.errors },
