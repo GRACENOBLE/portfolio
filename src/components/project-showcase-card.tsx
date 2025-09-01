@@ -16,7 +16,7 @@ const ProjectShowcaseCard = ({
   slug?: string;
 }) => {
   const cardContent = (
-    <div className="isolate relative overflow-hidden rounded-xl aspect-9/12 group bg-muted hover:cursor-pointer active:cursor-grabbing group  ">
+    <div className="isolate relative overflow-hidden rounded-xl md:aspect-9/12 group bg-muted hover:cursor-pointer active:cursor-grabbing group  ">
       <div className="transition-all ease-in-out duration-300 p-2 rounded-lg overflow-hidden">
         <Image
           src={image}
