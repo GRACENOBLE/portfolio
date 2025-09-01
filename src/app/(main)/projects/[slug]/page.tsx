@@ -14,9 +14,9 @@ import { Project } from "@/types/project";
 import { portableTextComponents } from "@/components/portable-text-components";
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // Generate static params for all projects
@@ -35,17 +35,17 @@ export async function generateStaticParams() {
 
 // Generate metadata for each project page
 export async function generateMetadata({ params }: ProjectPageProps) {
-  const { slug } = params;
-
+  const { slug } = await params;
+  
   try {
     const project: Project = await client.fetch(GetProjectBySlugData, { slug });
-
+    
     if (!project) {
       return {
         title: "Project Not Found",
       };
     }
-
+    
     return {
       title: `${project.name} - Project Details`,
       description: project.description,
@@ -63,9 +63,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 }
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {
-  const { slug } = params;
-
-  let project: Project | null = null;
+  const { slug } = await params;  let project: Project | null = null;
   let error: string | null = null;
 
   try {
