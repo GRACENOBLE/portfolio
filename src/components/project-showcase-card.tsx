@@ -23,14 +23,14 @@ const ProjectShowcaseCard = ({
           alt={title}
           width={500}
           height={500}
-          className="group-hover: unselectable object-cover h-full w-full transition-all ease-in-out duration-300 rounded-lg aspect-6/5"
+          className="group-hover: unselectable object-cover h-full w-full transition-all ease-in-out duration-300 opacity-80 rounded-lg aspect-6/5"
           draggable="false"
         />
       </div>
       <div className="flex p-8 py-6 flex-col justify-end transition-all ease-in-out duration-300 unselectable bg-gradient-to-t">
         <div>
-          <H3 className="pb-2 text-lg">{title}</H3>
-          <p className="text-sm font-light text-white">{description}</p>
+          <H3 className="pb-2 text-base font-medium">{title}</H3>
+          <p className="text-sm text-white/60">{description}</p>
         </div>
         {/* <div className="flex gap-2">
           <span className="bg-white text-black px-4 py-1 rounded-full">

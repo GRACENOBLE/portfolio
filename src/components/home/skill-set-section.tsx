@@ -26,7 +26,7 @@ const SkillSetSection = ({ skillSetData }: SkillSetSectionProps) => {
       <Container size="sm" className="">
         <H2 className="text-center pb-8"> My technical proficiency</H2>
         <div className="border border-white/20 rounded-[20px] p-2">
-          <div className="bg-muted backdrop-blur-lg py-16 px-8 md:px-20 rounded-xl">
+          <div className="bg-muted backdrop-blur-lg py-8 md:py-16 px-8 md:px-20 rounded-xl">
             <Accordion type="single" collapsible className="w-full">
               {skillSetData.skills.map(
                 ({ title, skill, description, technologies }, idx) => (

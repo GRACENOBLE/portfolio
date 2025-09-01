@@ -34,7 +34,7 @@ const ProjectShowcaseSection = ({
             <H2 className=" pb-0">Featured projects</H2>
             <Link
               href={"/all-projects"}
-              className={cn("flex items-center h-fit gap-2 group")}
+              className={cn("hidden md:flex items-center h-fit gap-2 group")}
             >
               <span>See all</span>
               <MoveRight
@@ -88,6 +88,30 @@ const ProjectShowcaseSection = ({
               </CarouselContent>
             </div>
           </Carousel>
+          <div className="flex flex-col gap-8 md:hidden">
+            {projectShowcaseData.map(
+              (
+                project: {
+                  _id: string;
+                  image: { url: string };
+                  name: string;
+                  description: string;
+                  slug?: { current: string };
+                  link?: string;
+                },
+                idx: Key | null | undefined
+              ) => (
+                <ProjectShowcaseCard
+                  key={idx}
+                  image={project.image.url}
+                  title={project.name}
+                  description={project.description}
+                  link={project.link || ""}
+                  slug={project.slug?.current}
+                />
+              )
+            )}
+          </div>
           <div className="flex justify-center pt-10"></div>
         </Container>
       </section>

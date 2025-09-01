@@ -6,7 +6,7 @@ const AboutMe = ({ aboutMeData }: { aboutMeData: any }) => {
   return (
     <section className="snap-start py-20 md:py-40" id="about-me">
       <Container size="sm" className="h-full">
-        <div className="flex items-center h-full gap-20">
+        <div className="flex flex-col md:flex-row items-center h-full gap-20">
           {" "}
           <div className="aspect-square max-h-96 p-2 border border-white/20 rounded-[20px]">
             {/* <World data={kampalaPoint} globeConfig={globeConfig} /> */}

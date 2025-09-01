@@ -34,23 +34,50 @@ import { RiInstagramFill } from "react-icons/ri";
 import { AnimatedTooltip } from "../animated-tooltip";
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
+  name: z
+    .string()
+    .min(2, {
+      message: "Name must be at least 2 characters.",
+    })
+    .max(50, {
+      message: "Name must not be longer than 50 characters.",
+    }),
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  message: z
+    .string()
+    .min(10, {
+      message: "Message must be at least 10 characters.",
+    })
+    .max(500, {
+      message: "Message must not be longer than 500 characters.",
+    }),
 });
 
 const ContactMe = () => {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
-    // @ts-ignore
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      name: "",
+      email: "",
+      message: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    // Handle form submission
+    console.log("Form submitted with values:", values);
+
+    // You can implement email sending logic here
+    // For example, using a service like EmailJS, Resend, or a custom API endpoint
+
+    // Reset form after successful submission
+    form.reset();
+
+    // Show success message (you could add a toast notification here)
+    alert("Thank you for your message! I'll get back to you soon.");
   }
 
   const people = [
@@ -101,87 +128,99 @@ const ContactMe = () => {
   return (
     <section id="contact-me" className="pb-20">
       <H2 className="text-center">Let's talk</H2>
-      <Container
-        size="sm"
-        className="flex flex-col lg:flex-row border rounded-[24px] px-2 py-2 border-white/20 w-fit"
-      >
-        <div className="lg:w-full">
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-8 bg-muted px-6 md:px-8 py-8 rounded-2xl lg:w-xl mx-auto"
-            >
-              <H3 className="mb-2 text-center">Send me an email</H3>
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Noble"
-                        {...field}
-                        className="bg-white/20 placeholder:text-white/60 border-white/20 text-white"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Noble"
-                        {...field}
-                        className="bg-white/20 placeholder:text-white/60 border-white/20 text-white"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Message</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        className="h-40 bg-white/20 placeholder:text-white/60 border-white/20 text-white"
-                        placeholder="Noble"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit">Submit</Button>
-            </form>
-          </Form>
-        </div>
-        <div className="w-full p-8 flex flex-col justify-center">
-          <H3 className="text-center">Or</H3>
-          <p className="flex flex-col gap-6 font-medium text-white/70 pb-4 text-center">
-            Find me on any of these
-          </p>
-          <div className="flex flex-row items-center justify-center mb-10 mt-10 w-full">
-            <AnimatedTooltip items={people} />
+      <Container size="sm">
+        <div className="flex flex-col lg:flex-row border rounded-[24px] px-2 py-2 border-white/20 w-fit">
+          <div className="lg:w-full">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8 bg-muted px-6 md:px-8 py-8 rounded-2xl lg:w-xl mx-auto"
+              >
+                <H3 className="mb-2 text-center">Send me an email</H3>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex justify-between">
+                        <FormLabel>Name</FormLabel>
+                        <FormMessage />
+                      </div>
+                      <FormControl>
+                        <Input
+                          placeholder="Your full name"
+                          {...field}
+                          className="bg-white/20 placeholder:text-white/60 border-white/20 text-white"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex justify-between">
+                        <FormLabel>Email</FormLabel>
+                        <FormMessage />
+                      </div>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="your.email@example.com"
+                          {...field}
+                          className="bg-white/20 placeholder:text-white/60 border-white/20 text-white"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="flex justify-between">
+                        <FormLabel>Message</FormLabel>
+                        <FormMessage />
+                      </div>
+                      <FormControl>
+                        <Textarea
+                          className="h-40 bg-white/20 placeholder:text-white/60 border-white/20 text-white"
+                          placeholder="Tell me about your project or say hello..."
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={form.formState.isSubmitting}
+                >
+                  {form.formState.isSubmitting ? "Sending..." : "Send Message"}
+                </Button>
+              </form>
+            </Form>
           </div>
-          <p className="text-center max-w-lg mx-auto">
-            <span className="italic">
-              "Software is like entropy: it is difficult to grasp, weighs
-              nothing, and always tends to increase."
-            </span>
-            — Norman Augustine
-          </p>
+          <div className="w-full p-8 flex flex-col justify-center">
+            <H3 className="text-center">Or</H3>
+            <p className="flex flex-col gap-6 font-medium text-white/60  text-center">
+              Find me on any of these
+            </p>
+            <div className="flex flex-row items-center justify-center mb-10 mt-8 w-full">
+              <AnimatedTooltip items={people} />
+            </div>
+            <p className="text-center text-white/60 max-w-lg mx-auto mt-8">
+              <span className="italic">
+                "Software is like entropy: it is difficult to grasp, weighs
+                nothing, and always tends to increase."
+              </span>
+              — Norman Augustine
+            </p>
+          </div>
         </div>
       </Container>
     </section>
