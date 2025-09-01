@@ -4,16 +4,33 @@ import HeroSection from "@/components/home/hero-section";
 import ProjectShowcaseSection from "@/components/home/project-showcase-section";
 import ServicesSection from "@/components/home/services-section";
 import SkillSetSection from "@/components/home/skill-set-section";
+import HashScrollHandler from "@/components/hash-scroll-handler";
+import { client } from "@/sanity/lib/client";
+import { GetHomePageData } from "@/lib/queries/get-homepage-data";
 
-export default function ScrollSnapSections() {
+export default async function page() {
+  let homePageData = null;
+  let error = null;
+
+  try {
+    // Use regular client instead of sanityFetch to isolate the issue
+    homePageData = await client.fetch(GetHomePageData);
+    console.log("Successfully fetched homepage data:", homePageData);
+  } catch (err) {
+    error = err;
+    console.error("Error fetching homepage data:", err);
+  }
+
   return (
     <div className="">
-      <HeroSection />
-      <AboutMe />
-      <SkillSetSection />
-      <ServicesSection />
-      <ProjectShowcaseSection />
-      <ContactMe />
+      <HashScrollHandler />
+      <HeroSection heroData={homePageData.heroSection} />
+      <AboutMe aboutMeData={homePageData.aboutMeSection} />
+      <SkillSetSection skillSetData={homePageData.skills} />
+      <ServicesSection services={homePageData.services} />
+      <ProjectShowcaseSection
+        projectShowcaseData={homePageData.featuredProjects}
+      />
     </div>
   );
 }

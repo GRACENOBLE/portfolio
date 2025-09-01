@@ -17,8 +17,13 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/button";
 import { MoveRight } from "lucide-react";
+import { Key } from "react";
 
-const ProjectShowcaseSection = () => {
+const ProjectShowcaseSection = ({
+  projectShowcaseData,
+}: {
+  projectShowcaseData: any;
+}) => {
   return (
     <>
       <section id="project-showcase" className="pb-20 flex items-center">
@@ -30,7 +35,7 @@ const ProjectShowcaseSection = () => {
             }}
             plugins={[
               Autoplay({
-                delay: 2550,
+                delay: 5000,
               }),
             ]}
             className="hidden md:block"
@@ -56,23 +61,32 @@ const ProjectShowcaseSection = () => {
               <CarouselNext className="right-8 z-10 translate-y-1/2" />
             </div>
             <CarouselContent className="">
-              {Array.from({ length: 7 }).map((_, idx) => (
-                <CarouselItem className="basis-1/3 lg:basis-1/4" key={idx}>
-                  <ProjectShowcaseCard />
-                </CarouselItem>
-              ))}
+              {projectShowcaseData.map(
+                (
+                  project: {
+                    _id: string;
+                    image: { url: string };
+                    name: string;
+                    description: string;
+                    slug?: { current: string };
+                    link?: string;
+                  },
+                  idx: Key | null | undefined
+                ) => (
+                  <CarouselItem className="basis-1/3 lg:basis-1/4" key={idx}>
+                    <ProjectShowcaseCard
+                      image={project.image.url}
+                      title={project.name}
+                      description={project.description}
+                      link={project.link || ""}
+                      slug={project.slug?.current}
+                    />
+                  </CarouselItem>
+                )
+              )}
             </CarouselContent>
           </Carousel>
           <div className="flex justify-center pt-10"></div>
-
-          <div className="md:hidden">
-            <H2 className="mb-12 text-center">Featured projects</H2>
-            <div className="flex flex-col gap-8">
-              {Array.from({ length: 7 }).map((_, idx) => (
-                <ProjectShowcaseCard />
-              ))}
-            </div>
-          </div>
         </Container>
       </section>
     </>

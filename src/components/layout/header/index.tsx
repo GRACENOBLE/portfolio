@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Container from "../../common/container";
-import { Button } from "../../ui/button";
+import { Button, buttonVariants } from "../../ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { toast } from "sonner";
 import MobileNavigation from "./mobile-nav";
+import { handleAnchorClick } from "@/lib/scroll-utils";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -37,19 +38,42 @@ const Header = () => {
             <span className="text-xl">Grace Noble</span>
           </Link>
           <nav className=" font-title font-medium gap-8 hidden lg:flex">
-            <Link href={"#about-me"}>About me</Link>
-            <Link href={"#skill-set"}>Skill set</Link>
-            <Link href={"#services"}>Services</Link>
-            <Link href={"#project-showcase"}>Projects</Link>
+            <Link
+              href={"/#about-me"}
+              onClick={(e) => handleAnchorClick(e, "/#about-me", 0)}
+            >
+              About me
+            </Link>
+            <Link
+              href={"/#skill-set"}
+              onClick={(e) => handleAnchorClick(e, "/#skill-set", 120)}
+            >
+              Skill set
+            </Link>
+            <Link
+              href={"/#services"}
+              onClick={(e) => handleAnchorClick(e, "/#services", 120)}
+            >
+              Services
+            </Link>
+            <Link
+              href={"/#project-showcase"}
+              onClick={(e) => handleAnchorClick(e, "/#project-showcase", 120)}
+            >
+              Projects
+            </Link>
           </nav>
           <div className="hidden lg:flex">
-            <Button
-              onClick={() => toast("This will be available soon")}
-              className="rounded-full"
-              size={"lg"}
+            <Link
+              href={"#contact-me"}
+              // onClick={(e) => handleAnchorClick(e, "#contact-me", 120)}
+              className={cn(
+                buttonVariants({ variant: "default", size: "lg" }),
+                "rounded-full"
+              )}
             >
               Let's talk
-            </Button>
+            </Link>
           </div>
           <MobileNavigation />
         </div>

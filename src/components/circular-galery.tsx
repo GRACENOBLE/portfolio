@@ -9,7 +9,11 @@ import {
 } from "ogl";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 
 type GL = Renderer["gl"];
 
@@ -700,7 +704,6 @@ class App {
   }
 }
 
-
 interface CircularGalleryProps {
   items?: { image: string; text: string; link?: string }[];
   bend?: number;
@@ -722,25 +725,26 @@ export default function CircularGallery({
 }: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   // Overlay for clickable cards and tooltips
-  const galleryItems = (items && items.length
-    ? items.map(item => ({ ...item, link: item.link || '#' }))
-    : [
-        {
-          image: `https://picsum.photos/seed/1/800/600?grayscale`,
-          text: "Bridge",
-          link: "https://example.com/bridge",
-        },
-        {
-          image: `https://picsum.photos/seed/2/800/600?grayscale`,
-          text: "Desk Setup",
-          link: "https://example.com/desk",
-        },
-        {
-          image: `https://picsum.photos/seed/12/800/600?grayscale`,
-          text: "Palm Trees",
-          link: "https://example.com/palmtrees",
-        },
-      ]);
+  const galleryItems =
+    items && items.length
+      ? items.map((item) => ({ ...item, link: item.link || "#" }))
+      : [
+          {
+            image: `https://picsum.photos/seed/1/800/600?grayscale`,
+            text: "Bridge",
+            link: "https://example.com/bridge",
+          },
+          {
+            image: `https://picsum.photos/seed/2/800/600?grayscale`,
+            text: "Desk Setup",
+            link: "https://example.com/desk",
+          },
+          {
+            image: `https://picsum.photos/seed/12/800/600?grayscale`,
+            text: "Palm Trees",
+            link: "https://example.com/palmtrees",
+          },
+        ];
   useEffect(() => {
     if (!containerRef.current) return;
     const app = new App(containerRef.current, {
@@ -755,7 +759,15 @@ export default function CircularGallery({
     return () => {
       app.destroy();
     };
-  }, [galleryItems, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
+  }, [
+    galleryItems,
+    bend,
+    textColor,
+    borderRadius,
+    font,
+    scrollSpeed,
+    scrollEase,
+  ]);
   return (
     <div className="w-full h-full overflow-hidden relative">
       <div ref={containerRef} className="w-full h-full" />

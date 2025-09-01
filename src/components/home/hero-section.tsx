@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { HexagonBackground } from "../backgrounds/hexagon";
 import Beams from "../backgrounds/beams";
 
-const HeroSection = () => {
+const HeroSection = ({ heroData }: { heroData: any }) => {
   return (
     <section className="h-screen flex flex-col items-center justify-center text-center relative isolate text-white">
       {/* <HexagonBackground className="absolute inset-0 flex items-center justify-center rounded-xl opacity-50" /> */}

@@ -6,52 +6,13 @@ import { AnimatePresence, motion } from "motion/react";
 
 import { useState } from "react";
 
-const ServicesSection = () => {
-  const projects = [
-    {
-      title: "Web development",
-      description:
-        "A technology company that builds economic infrastructure for the internet.",
-      link: "https://stripe.com",
-    },
-    {
-      title: "App development",
-      description:
-        "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-      link: "https://netflix.com",
-    },
-    {
-      title: "Database design",
-      description:
-        "A multinational technology company that specializes in Internet-related services and products.",
-      link: "https://google.com",
-    },
-    {
-      title: "Cloud computing",
-      description:
-        "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
-      link: "https://meta.com",
-    },
-    {
-      title: "Systems integration",
-      description:
-        "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
-      link: "https://amazon.com",
-    },
-    {
-      title: "Maintainance and support",
-      description:
-        "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
-      link: "https://microsoft.com",
-    },
-  ];
-
+const ServicesSection = ({ services }: { services: any }) => {
   return (
     <section id="services" className="pb-20 md:pb-28 flex items-center">
       <Container size="sm">
-        <H2 className="text-center">What I can do for you</H2>
+        <H2 className="text-center">{services.title}</H2>
         <HoverEffect
-          items={projects}
+          items={services.services}
           className="border rounded-[24px] border-white/20"
         />
       </Container>
@@ -127,8 +88,10 @@ export const HoverEffect = ({
           </AnimatePresence>
 
           <Card className="bg-[#333333]">
-            <CardTitle>{item.title}</CardTitle>
-            <CardDescription>{item.description}</CardDescription>
+            <CardTitle className=" mb-0">{item.title}</CardTitle>
+            <CardDescription className="mt-6">
+              {item.description}
+            </CardDescription>
           </Card>
         </a>
       ))}

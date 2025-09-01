@@ -1,18 +1,49 @@
 import Container from "@/components/common/container";
 import H2 from "@/components/common/heading-two";
 import ProjectShowcaseCard from "@/components/project-showcase-card";
+import { client } from "@/sanity/lib/client";
+import { GetAllProjectsData } from "@/lib/queries/get-all-projects";
+import { Project } from "@/types/project";
 
-const page = () => {
+const page = async () => {
+  let projects: Project[] = [];
+  let error: string | null = null;
+
+  try {
+    projects = await client.fetch(GetAllProjectsData);
+    console.log("Successfully fetched projects:", projects);
+  } catch (err) {
+    error = err instanceof Error ? err.message : String(err);
+    console.error("Error fetching projects:", err);
+  }
+
   return (
     <div className="bg-black min-h-screen pt-20">
-      <section className="py-20">
-        <Container>
+      <section className="pt-20 pb-32">
+        <Container size="lg">
           <H2>All projects</H2>
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              <strong>Error fetching projects:</strong> {error}
+            </div>
+          )}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Array.from({ length: 9 }).map(() => (
-              <ProjectShowcaseCard />
+            {projects.map((project: Project) => (
+              <ProjectShowcaseCard
+                key={project._id}
+                image={project.image?.url || "/images/projects/placeholder.png"}
+                title={project.name}
+                description={project.description}
+                link={project.link || "#"}
+                slug={project.slug?.current}
+              />
             ))}
           </div>
+          {projects.length === 0 && !error && (
+            <p className="text-white/60 text-center py-8">
+              No projects found. Create some projects in your Sanity Studio!
+            </p>
+          )}
         </Container>
       </section>
     </div>

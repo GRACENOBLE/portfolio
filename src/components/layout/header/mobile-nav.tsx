@@ -16,11 +16,27 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { handleAnchorClick } from "@/lib/scroll-utils";
+import { useState } from "react";
 
 const MobileNavigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    // Close the sheet
+    setIsOpen(false);
+    // Handle the anchor click with a small delay to allow sheet to close
+    setTimeout(() => {
+      handleAnchorClick(e, href, 120);
+    }, 100);
+  };
+
   return (
     <div className="h-fit lg:hidden">
-      <Sheet>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger className="grid place-items-center pb-0 mb-0 mr-2 border-none outline-none">
           <IoIosMenu className="text-3xl" />
         </SheetTrigger>
@@ -54,15 +70,14 @@ const MobileNavigation = () => {
                 { href: "#services", label: "Services" },
                 { href: "#project-showcase", label: "Projects" },
               ].map((item) => (
-                <SheetClose asChild>
-                  <Link
-                    className="bg-muted-foreground/40 py-4 text-center px-4 rounded-lg"
-                    key={item.href}
-                    href={item.href}
-                  >
-                    {item.label}
-                  </Link>
-                </SheetClose>
+                <Link
+                  key={item.href}
+                  className="bg-muted-foreground/40 py-4 text-center px-4 rounded-lg"
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                >
+                  {item.label}
+                </Link>
               ))}
             </div>
           </SheetHeader>

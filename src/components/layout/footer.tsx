@@ -1,7 +1,7 @@
+import ContactMe from "../home/contact-me";
+
 const Footer = () => {
-  return (
-    <div></div>
-  );
+  return <ContactMe />;
 };
 
 export default Footer;
