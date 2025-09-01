@@ -19,9 +19,18 @@ import H2 from "../common/heading-two";
 import { Textarea } from "../ui/textarea";
 import H3 from "../common/heading-three";
 import { BiLogoInstagramAlt } from "react-icons/bi";
-import { FaGithub, FaSquareXTwitter } from "react-icons/fa6";
+import {
+  FaDev,
+  FaGithub,
+  FaInstagram,
+  FaLinkedinIn,
+  FaSquareXTwitter,
+  FaXTwitter,
+} from "react-icons/fa6";
+import { SiRoadmapdotsh } from "react-icons/si";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FiLink } from "react-icons/fi";
+import { RiInstagramFill } from "react-icons/ri";
 import { AnimatedTooltip } from "../animated-tooltip";
 
 const formSchema = z.object({
@@ -47,45 +56,45 @@ const ContactMe = () => {
   const people = [
     {
       id: 1,
-      name: "John Doe",
-      designation: "Software Engineer",
-      image:
-        "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+      name: "Twitter",
+      designation: "@graceno75417321",
+      icon: <FaSquareXTwitter />,
+      link: "https://x.com/graceno75417321",
     },
     {
       id: 2,
-      name: "Robert Johnson",
-      designation: "Product Manager",
-      image:
-        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+      name: "Linkedin",
+      designation: "ASIIMWE (GRACE) NOBLE",
+      icon: <FaLinkedinIn />,
+      link: "https://www.linkedin.com/in/asiimwe-noble-5849a6255/",
     },
     {
       id: 3,
-      name: "Jane Smith",
-      designation: "Data Scientist",
-      image:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+      name: "Instagram",
+      designation: "@i_am_grace_noble",
+      icon: <RiInstagramFill />,
+      link: "https://www.instagram.com/i_am_grace_noble/",
     },
     {
       id: 4,
-      name: "Emily Davis",
-      designation: "UX Designer",
-      image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+      name: "Roadmap.sh",
+      designation: "grace noble",
+      icon: <SiRoadmapdotsh />,
+      link: "https://roadmap.sh/u/gracenoble",
     },
     {
       id: 5,
-      name: "Tyler Durden",
-      designation: "Soap Developer",
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
+      name: "Dev Community",
+      designation: "grace noble",
+      icon: <FaDev />,
+      link: "https://dev.to/grace_noble",
     },
     {
       id: 6,
-      name: "Dora",
-      designation: "The Explorer",
-      image:
-        "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3534&q=80",
+      name: "Github",
+      designation: "ASIIMWE GRACE NOBLE",
+      icon: <FaGithub />,
+      link: "https://github.com/GRACENOBLE",
     },
   ];
 

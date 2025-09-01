@@ -40,7 +40,7 @@ const ProjectShowcaseSection = () => {
             <div className="flex justify-between items-center max-w-[1040px] mx-auto px-4  mb-10">
               <H2 className=" pb-0">Featured projects</H2>
               <Link
-                href={""}
+                href={"/all-projects"}
                 className={cn("flex items-center h-fit gap-2 group")}
               >
                 <span>See all</span>
