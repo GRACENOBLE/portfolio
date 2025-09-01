@@ -32,6 +32,8 @@ import { IoLogoWhatsapp } from "react-icons/io";
 import { FiLink } from "react-icons/fi";
 import { RiInstagramFill } from "react-icons/ri";
 import { AnimatedTooltip } from "../animated-tooltip";
+import { toast } from "sonner";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z
@@ -56,6 +58,8 @@ const formSchema = z.object({
 });
 
 const ContactMe = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -66,18 +70,43 @@ const ContactMe = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Handle form submission
-    console.log("Form submitted with values:", values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
 
-    // You can implement email sending logic here
-    // For example, using a service like EmailJS, Resend, or a custom API endpoint
+      const data = await response.json();
 
-    // Reset form after successful submission
-    form.reset();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
 
-    // Show success message (you could add a toast notification here)
-    alert("Thank you for your message! I'll get back to you soon.");
+      // Reset form after successful submission
+      form.reset();
+      
+      // Show success toast
+      toast.success("Message sent successfully!", {
+        description: "Thank you for reaching out. I'll get back to you soon.",
+        duration: 5000,
+      });
+    } catch (error) {
+      console.error("Failed to send message:", error);
+      
+      // Show error toast
+      toast.error("Failed to send message", {
+        description: error instanceof Error ? error.message : "Please try again later.",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const people = [
@@ -198,9 +227,9 @@ const ContactMe = () => {
                 <Button
                   type="submit"
                   className="w-full"
-                  disabled={form.formState.isSubmitting}
+                  disabled={isSubmitting}
                 >
-                  {form.formState.isSubmitting ? "Sending..." : "Send Message"}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </Form>
