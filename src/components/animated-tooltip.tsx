@@ -90,7 +90,7 @@ export const AnimatedTooltip = ({
           <Link
             href={item.link}
             onMouseMove={handleMouseMove}
-            className="relative !m-0 h-14 w-14 rounded-full border-2 border-white object-cover object-top !p-0 transition duration-500 group-hover:z-30 group-hover:scale-105 grid place-items-center bg-black"
+            className="relative !m-0 h-14 w-14 rounded-full border-2 border-white/60 object-cover object-top !p-0 transition duration-500 group-hover:z-30 group-hover:scale-105 bg-muted grid place-items-center "
           >
             {item.icon}
           </Link>

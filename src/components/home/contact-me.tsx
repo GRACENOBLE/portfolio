@@ -119,7 +119,11 @@ const ContactMe = () => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Noble" {...field} />
+                      <Input
+                        placeholder="Noble"
+                        {...field}
+                        className="bg-white/20 placeholder:text-white/60 border-white/20 text-white"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -132,7 +136,11 @@ const ContactMe = () => {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="Noble" {...field} />
+                      <Input
+                        placeholder="Noble"
+                        {...field}
+                        className="bg-white/20 placeholder:text-white/60 border-white/20 text-white"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -146,7 +154,7 @@ const ContactMe = () => {
                     <FormLabel>Message</FormLabel>
                     <FormControl>
                       <Textarea
-                        className="h-40"
+                        className="h-40 bg-white/20 placeholder:text-white/60 border-white/20 text-white"
                         placeholder="Noble"
                         {...field}
                       />
@@ -165,28 +173,6 @@ const ContactMe = () => {
             Find me on any of these
           </p>
           <div className="flex flex-row items-center justify-center mb-10 mt-10 w-full">
-            {/* <Button size={"icon"}>
-              <BiLogoInstagramAlt />
-            </Button>
-            <Button size={"icon"}>
-              <FaSquareXTwitter />
-            </Button>
-            <Button size={"icon"}>
-              <IoLogoWhatsapp />
-            </Button>
-            <Button size={"icon"}>
-              <FaGithub />
-            </Button>
-            <Button size={"icon"}>
-              <FiLink />
-            </Button>
-            <Button size={"icon"}>
-              <BiLogoInstagramAlt />
-            </Button>
-            <Button size={"icon"}>
-              <BiLogoInstagramAlt />
-            </Button> */}
-
             <AnimatedTooltip items={people} />
           </div>
           <p className="text-center max-w-lg mx-auto">

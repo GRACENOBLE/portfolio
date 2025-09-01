@@ -20,11 +20,11 @@ const Header = () => {
 
   return (
     <div className={`fixed z-40 top-2 w-full`}>
-      <Container size="xl" className="py-2 flex justify-between ">
+      <Container size="lg" className="py-2 flex justify-between ">
         <div
           className={cn(
-            "border-[1px] border-white/20 p-3 ps-5 pe-[13] flex justify-between items-center rounded-full w-full transition-all duration-300 backdrop-blur-lg text-white"
-            // scrolled ? " " : " text-background backdrop-blur-0"
+            "border-[1px] border-white/20 p-3 ps-5 pe-[13] flex justify-between items-center rounded-full w-full transition-all duration-300 backdrop-blur-lg text-white",
+            scrolled ? "bg-muted " : " "
           )}
         >
           <Link href={"/"} className="flex items-center gap-[9] font-title">

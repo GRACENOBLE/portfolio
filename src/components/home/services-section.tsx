@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const ServicesSection = ({ services }: { services: any }) => {
   return (
-    <section id="services" className="pb-20 md:pb-28 flex items-center">
+    <section id="services" className="pb-20 md:pb-40 flex items-center">
       <Container size="sm">
         <H2 className="text-center">{services.title}</H2>
         <HoverEffect
@@ -30,7 +30,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
+        "rounded-2xl h-full w-full p-4 overflow-hidden bg-black border border-transparent dark:border-white/10 group-hover:border-slate-700 relative z-20",
         className
       )}
     >
@@ -87,9 +87,11 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
 
-          <Card className="bg-[#333333]">
-            <CardTitle className=" mb-0">{item.title}</CardTitle>
-            <CardDescription className="mt-6">
+          <Card className="bg-muted">
+            <CardTitle className=" mb-0 font-medium font-title">
+              {item.title}
+            </CardTitle>
+            <CardDescription className="mt-6 font-medium">
               {item.description}
             </CardDescription>
           </Card>

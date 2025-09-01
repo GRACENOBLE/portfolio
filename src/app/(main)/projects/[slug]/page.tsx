@@ -36,16 +36,16 @@ export async function generateStaticParams() {
 // Generate metadata for each project page
 export async function generateMetadata({ params }: ProjectPageProps) {
   const { slug } = await params;
-  
+
   try {
     const project: Project = await client.fetch(GetProjectBySlugData, { slug });
-    
+
     if (!project) {
       return {
         title: "Project Not Found",
       };
     }
-    
+
     return {
       title: `${project.name} - Project Details`,
       description: project.description,
@@ -63,7 +63,8 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 }
 
 const ProjectPage = async ({ params }: ProjectPageProps) => {
-  const { slug } = await params;  let project: Project | null = null;
+  const { slug } = await params;
+  let project: Project | null = null;
   let error: string | null = null;
 
   try {

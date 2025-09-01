@@ -14,16 +14,16 @@ const nextConfig: NextConfig = {
     // Ignore source map files that cause webpack issues
     config.module.rules.push({
       test: /\.js\.map$/,
-      use: 'null-loader'
+      use: "null-loader",
     });
-    
+
     // Add fallback for node modules
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
       path: false,
     };
-    
+
     return config;
   },
 };
