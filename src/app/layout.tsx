@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Funnel_Display, Oxanium, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/next";
 
 const dmMono = DM_Mono({
   variable: "--font-noble-mono",
@@ -16,7 +17,7 @@ const funnelDisplay = Funnel_Display({
 
 export const metadata: Metadata = {
   title: "Grace Noble",
-  description: "A guy who builds software",
+  description: "A software artist and scientist ",
 };
 
 export default function RootLayout({
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${funnelDisplay.variable} ${dmMono.variable} antialiased bg-noble-background font-body text-white`}
       >
         <main className="">{children}</main>
+        <Analytics />
         <Toaster />
       </body>
     </html>

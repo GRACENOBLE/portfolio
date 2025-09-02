@@ -31,6 +31,7 @@
     "@sanity/vision": "^3.95.0",
     "@tabler/icons-react": "^3.34.0",
     "@types/three": "^0.179.0",
+    "@vercel/analytics": "^1.5.0",
     "Masonry": "link:@mui/lab/Masonry",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
