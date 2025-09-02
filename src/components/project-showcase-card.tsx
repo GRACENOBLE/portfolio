@@ -27,9 +27,9 @@ const ProjectShowcaseCard = ({
           draggable="false"
         />
       </div>
-      <div className="flex p-8 py-6 flex-col justify-end transition-all ease-in-out duration-300 unselectable bg-gradient-to-t">
+      <div className="flex px-8  pt-4 md:pt-8 pb-8 flex-col justify-end transition-all ease-in-out duration-300 unselectable bg-gradient-to-t">
         <div>
-          <H3 className="pb-2 text-base font-medium">{title}</H3>
+          <H3 className="pb-4 text-base font-medium">{title}</H3>
           <p className="text-sm text-white/60">{description}</p>
         </div>
         {/* <div className="flex gap-2">

@@ -22,9 +22,9 @@ type SkillSetSectionProps = {
 
 const SkillSetSection = ({ skillSetData }: SkillSetSectionProps) => {
   return (
-    <section className=" pb-20 md:pb-40 flex items-center" id="skill-set">
+    <section className="pb-28 md:pb-40 flex items-center" id="skill-set">
       <Container size="sm" className="">
-        <H2 className="text-center pb-8"> My technical proficiency</H2>
+        <H2 className="text-center pb-12"> My technical proficiency</H2>
         <div className="border border-white/20 rounded-[20px] p-2">
           <div className="bg-muted backdrop-blur-lg py-8 md:py-16 px-8 md:px-20 rounded-xl">
             <Accordion type="single" collapsible className="w-full">

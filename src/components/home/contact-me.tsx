@@ -92,7 +92,7 @@ const ContactMe = () => {
       form.reset();
 
       // Show success toast
-      toast.success("Message sent successfully!", {
+      toast("Message sent successfully!", {
         description: "Thank you for reaching out. I'll get back to you soon.",
         duration: 5000,
       });
@@ -157,7 +157,7 @@ const ContactMe = () => {
 
   return (
     <section id="contact-me" className="pb-20">
-      <H2 className="text-center">Let's talk</H2>
+      <H2 className="text-center pb-12">Let's talk</H2>
       <Container size="sm">
         <div className="flex flex-col lg:flex-row border rounded-[24px] px-2 py-2 border-white/20 w-fit">
           <div className="lg:w-full">
@@ -180,7 +180,7 @@ const ContactMe = () => {
                         <Input
                           placeholder="Your full name"
                           {...field}
-                          className="bg-white/20 placeholder:text-white/60 border-white/20 text-white"
+                          className="bg-white/20 placeholder:text-white/60 placeholder:text-sm border-white/20 text-white"
                         />
                       </FormControl>
                     </FormItem>
@@ -200,7 +200,7 @@ const ContactMe = () => {
                           type="email"
                           placeholder="your.email@example.com"
                           {...field}
-                          className="bg-white/20 placeholder:text-white/60 border-white/20 text-white"
+                          className="bg-white/20 placeholder:text-white/60 placeholder:text-sm border-white/20 text-white"
                         />
                       </FormControl>
                     </FormItem>
@@ -217,7 +217,7 @@ const ContactMe = () => {
                       </div>
                       <FormControl>
                         <Textarea
-                          className="h-40 bg-white/20 placeholder:text-white/60 border-white/20 text-white"
+                          className="h-40 bg-white/20 placeholder:text-white/60 placeholder:text-sm border-white/20 text-white"
                           placeholder="Tell me about your project or say hello..."
                           {...field}
                         />
@@ -227,7 +227,7 @@ const ContactMe = () => {
                 />
                 <Button
                   type="submit"
-                  className="w-full"
+                  className="w-full max-w-40"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}

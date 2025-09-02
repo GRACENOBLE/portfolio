@@ -8,7 +8,7 @@ const H2 = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h2 className={cn("font-title text-4xl font-semibold pb-6", className)}>
+    <h2 className={cn("font-title text-4xl font-semibold pb-8", className)}>
       {children}
     </h2>
   );

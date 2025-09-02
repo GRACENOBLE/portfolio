@@ -1,8 +1,5 @@
 "use client";
 import Container from "../common/container";
-import ShowcaseCard from "../showcase-card";
-import Box from "@mui/material/Box";
-import Masonry from "@mui/lab/Masonry";
 import Autoplay from "embla-carousel-autoplay";
 import H2 from "../common/heading-two";
 import {
@@ -15,7 +12,6 @@ import {
 import ProjectShowcaseCard from "../project-showcase-card";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "../ui/button";
 import { MoveRight } from "lucide-react";
 import { Key } from "react";
 
@@ -30,8 +26,8 @@ const ProjectShowcaseSection = ({
         <Container size="sm" className="relative">
           {/* <div className="absolute left-0 top-10 z-1 h-full bg-linear-to-r from-black via-black/80  to-transparent w-40" />
             <div className="absolute right-0 top-20 z-1 h-full bg-linear-to-l from-black via-black/80  to-transparent w-40 " /> */}
-          <div className="flex justify-between items-end max-w-[1040px] mx-auto px-4  mb-10">
-            <H2 className=" pb-0">Featured projects</H2>
+          <div className="flex justify-between items-end max-w-[1040px] mx-auto px-4  mb-12">
+            <H2 className="pb-0">Featured projects</H2>
             <Link
               href={"/all-projects"}
               className={cn("hidden md:flex items-center h-fit gap-2 group")}
@@ -88,7 +84,7 @@ const ProjectShowcaseSection = ({
               </CarouselContent>
             </div>
           </Carousel>
-          <div className="flex flex-col gap-8 md:hidden">
+          <div className="flex flex-col gap-12 md:hidden">
             {projectShowcaseData.map(
               (
                 project: {

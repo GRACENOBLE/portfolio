@@ -8,9 +8,9 @@ import { useState } from "react";
 
 const ServicesSection = ({ services }: { services: any }) => {
   return (
-    <section id="services" className="pb-20 md:pb-40 flex items-center">
+    <section id="services" className="pb-28 md:pb-40 flex items-center">
       <Container size="sm">
-        <H2 className="text-center">{services.title}</H2>
+        <H2 className="text-center pb-12">{services.title}</H2>
         <HoverEffect
           items={services.services}
           className="border rounded-[24px] border-white/20"
