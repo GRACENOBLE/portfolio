@@ -7,7 +7,7 @@ import { PortableText } from "@portabletext/react";
 import Container from "@/components/common/container";
 import H2 from "@/components/common/heading-two";
 import { Button } from "@/components/ui/button";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/live";
 import { GetProjectBySlugData } from "@/lib/queries/get-project-by-slug";
 import { GetAllProjectsData } from "@/lib/queries/get-all-projects";
 import { Project } from "@/types/project";
@@ -22,7 +22,8 @@ interface ProjectPageProps {
 // Generate static params for all projects
 export async function generateStaticParams() {
   try {
-    const projects: Project[] = await client.fetch(GetAllProjectsData);
+    const result = await sanityFetch({ query: GetAllProjectsData });
+    const projects: Project[] = result.data;
 
     return projects.map((project) => ({
       slug: project.slug.current,
@@ -38,7 +39,11 @@ export async function generateMetadata({ params }: ProjectPageProps) {
   const { slug } = await params;
 
   try {
-    const project: Project = await client.fetch(GetProjectBySlugData, { slug });
+    const result = await sanityFetch({
+      query: GetProjectBySlugData,
+      params: { slug },
+    });
+    const project: Project = result.data;
 
     if (!project) {
       return {
@@ -68,7 +73,11 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
   let error: string | null = null;
 
   try {
-    project = await client.fetch(GetProjectBySlugData, { slug });
+    const result = await sanityFetch({
+      query: GetProjectBySlugData,
+      params: { slug },
+    });
+    project = result.data;
 
     if (!project) {
       notFound();

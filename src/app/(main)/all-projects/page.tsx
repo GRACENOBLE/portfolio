@@ -1,7 +1,7 @@
 import Container from "@/components/common/container";
 import H2 from "@/components/common/heading-two";
 import ProjectShowcaseCard from "@/components/project-showcase-card";
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/live";
 import { GetAllProjectsData } from "@/lib/queries/get-all-projects";
 import { Project } from "@/types/project";
 
@@ -10,7 +10,8 @@ const page = async () => {
   let error: string | null = null;
 
   try {
-    projects = await client.fetch(GetAllProjectsData);
+    const result = await sanityFetch({ query: GetAllProjectsData });
+    projects = result.data;
     console.log("Successfully fetched projects:", projects);
   } catch (err) {
     error = err instanceof Error ? err.message : String(err);

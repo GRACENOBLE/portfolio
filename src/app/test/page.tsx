@@ -1,13 +1,19 @@
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/live";
 
 export default async function TestPage() {
   try {
     // Simple test - just get all homePage documents
-    const allHomePages = await client.fetch(`*[_type == "homePage"]`);
+    const allHomePagesResult = await sanityFetch({
+      query: `*[_type == "homePage"]`,
+    });
+    const allHomePages = allHomePagesResult.data;
     console.log("All homePage documents:", allHomePages);
 
     // Test the specific document
-    const homePage = await client.fetch(`*[_type == "homePage"][0]`);
+    const homePageResult = await sanityFetch({
+      query: `*[_type == "homePage"][0]`,
+    });
+    const homePage = homePageResult.data;
     console.log("First homePage document:", homePage);
 
     return (

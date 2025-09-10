@@ -5,8 +5,8 @@ import ProjectShowcaseSection from "@/components/home/project-showcase-section";
 import ServicesSection from "@/components/home/services-section";
 import SkillSetSection from "@/components/home/skill-set-section";
 import HashScrollHandler from "@/components/hash-scroll-handler";
-import { client } from "@/sanity/lib/client";
 import { GetHomePageData } from "@/lib/queries/get-homepage-data";
+import { sanityFetch } from "@/sanity/lib/live";
 
 export default async function page() {
   let homePageData = null;
@@ -14,7 +14,9 @@ export default async function page() {
 
   try {
     // Use regular client instead of sanityFetch to isolate the issue
-    homePageData = await client.fetch(GetHomePageData);
+    homePageData = await sanityFetch({ query: GetHomePageData }).then(
+      (res) => res.data
+    );
     console.log("Successfully fetched homepage data:", homePageData);
   } catch (err) {
     error = err;

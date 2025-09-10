@@ -24,7 +24,7 @@ const HeroSection = ({ heroData }: { heroData: any }) => {
           rotation={30}
         />
       </div>
-      <h1 className="text-5xl md:text-6xl font-semibold font-title pb-8 max-w-3xl  ">
+      <h1 className="text-5xl md:text-6xl font-semibold font-title pb-8 max-w-3xl">
         A software <br /> artist and scientist
       </h1>
       <p className="text-lg font-medium max-w-2xl mb-12 mx-2">
