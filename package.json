@@ -15,6 +15,7 @@
     "@hookform/resolvers": "^3.10.0",
     "@mui/lab": "7.0.0-beta.14",
     "@mui/material": "^7.1.2",
+    "@next/third-parties": "^15.5.3",
     "@portabletext/react": "^4.0.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-dialog": "^1.1.15",

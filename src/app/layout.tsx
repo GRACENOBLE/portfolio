@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Outfit, Funnel_Display, Oxanium, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
-import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 
 const dmMono = DM_Mono({
   variable: "--font-noble-mono",
@@ -16,8 +17,8 @@ const funnelDisplay = Funnel_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Grace Noble",
-  description: "A software artist and scientist ",
+  title: "Grace Noble - Software developer",
+  description: "A software artist and scientist",
 };
 
 export default function RootLayout({
@@ -25,13 +26,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+    const gaID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || "";
   return (
     <html lang="en">
       <body
         className={`${funnelDisplay.variable} ${dmMono.variable} antialiased bg-noble-background font-body text-white`}
       >
         <main className="">{children}</main>
-        <Analytics />
+        <GoogleAnalytics gaId={gaID} />
         <Toaster />
       </body>
     </html>
