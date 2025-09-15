@@ -16,7 +16,7 @@ type SitemapItem = {
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://www.asiimwenoble.com"; // Your actual domain
+  const baseUrl = "https://asiimwenoble.com"; // Your actual domain
 
   // Static routes with strategic SEO priorities
   const staticRoutes: SitemapItem[] = [

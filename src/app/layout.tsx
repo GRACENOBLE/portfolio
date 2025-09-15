@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "I build software that looks good, functions great and scales perfectly.",
   alternates: {
-    canonical: "https://www.asiimwenoble.com",
+    canonical: "https://asiimwenoble.com/",
   },
 };
 
