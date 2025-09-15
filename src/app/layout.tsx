@@ -4,7 +4,6 @@ import "./globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-
 const dmMono = DM_Mono({
   variable: "--font-noble-mono",
   subsets: ["latin"],
@@ -17,8 +16,12 @@ const funnelDisplay = Funnel_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Grace Noble - Software developer",
-  description: "A software artist and scientist",
+  title: "Asiimwe Grace Noble - Software developer",
+  description:
+    "I build software that looks good, functions great and scales perfectly.",
+  alternates: {
+    canonical: "https://www.asiimwenoble.com",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +29,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-    const gaID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || "";
+  const gaID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || "";
   return (
     <html lang="en">
       <body
