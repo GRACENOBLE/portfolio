@@ -52,12 +52,32 @@ export async function generateMetadata({ params }: ProjectPageProps) {
     }
 
     return {
-      title: `${project.name} - Project Details`,
+      title: `${project.name} - Project Details | Asiimwe Grace Noble`,
       description: project.description,
+      alternates: {
+        canonical: `https://asiimwenoble.com/projects/${slug}`,
+      },
       openGraph: {
         title: project.name,
         description: project.description,
-        images: project.image?.url ? [{ url: project.image.url }] : [],
+        url: `https://asiimwenoble.com/projects/${slug}`,
+        type: "website",
+        images: project.image?.url
+          ? [
+              {
+                url: project.image.url,
+                width: 1200,
+                height: 630,
+                alt: project.name,
+              },
+            ]
+          : [],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: project.name,
+        description: project.description,
+        images: project.image?.url ? [project.image.url] : [],
       },
     };
   } catch (error) {

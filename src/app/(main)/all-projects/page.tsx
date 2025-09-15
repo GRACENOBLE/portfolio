@@ -11,7 +11,20 @@ export const metadata: Metadata = {
   description:
     "View my comprehensive portfolio of projects. Discover work in front-end development, back-end development, and more.",
   alternates: {
-    canonical: "https:asiimwenoble.com/all-projects",
+    canonical: "https://asiimwenoble.com/all-projects",
+  },
+  openGraph: {
+    title: "My project showcase - Asiimwe Grace Noble",
+    description:
+      "View my comprehensive portfolio of projects. Discover work in front-end development, back-end development, and more.",
+    url: "https://asiimwenoble.com/all-projects",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "My project showcase - Asiimwe Grace Noble",
+    description:
+      "View my comprehensive portfolio of projects. Discover work in front-end development, back-end development, and more.",
   },
 };
 
