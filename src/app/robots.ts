@@ -84,35 +84,25 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "LinkedInBot",
         allow: "/",
-        disallow: [
-          "/studio/",
-          "/api/",
-          "/test/",
-          "/email-preview/",
-        ],
+        disallow: ["/studio/", "/api/", "/test/", "/email-preview/"],
       },
 
       // Twitter/X bot - for social sharing
       {
         userAgent: "Twitterbot",
         allow: "/",
-        disallow: [
-          "/studio/",
-          "/api/",
-          "/test/",
-          "/email-preview/",
-        ],
+        disallow: ["/studio/", "/api/", "/test/", "/email-preview/"],
       },
 
       // Block aggressive SEO crawlers that might hurt performance
       {
         userAgent: [
-          "SemrushBot", 
-          "AhrefsBot", 
-          "MJ12bot", 
+          "SemrushBot",
+          "AhrefsBot",
+          "MJ12bot",
           "DotBot",
           "SiteAuditBot",
-          "ScreamingFrogSEOSpider"
+          "ScreamingFrogSEOSpider",
         ],
         disallow: "/",
         crawlDelay: 10, // Slow them down significantly
