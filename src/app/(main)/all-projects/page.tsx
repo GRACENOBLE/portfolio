@@ -4,6 +4,16 @@ import ProjectShowcaseCard from "@/components/project-showcase-card";
 import { sanityFetch } from "@/sanity/lib/live";
 import { GetAllProjectsData } from "@/lib/queries/get-all-projects";
 import { Project } from "@/types/project";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My project showcase - Asiimwe Grace Noble",
+  description:
+    "View my comprehensive portfolio of projects. Discover work in front-end development, back-end development, and more.",
+  alternates: {
+    canonical: "https:asiimwenoble.com/all-projects",
+  },
+};
 
 const page = async () => {
   let projects: Project[] = [];
