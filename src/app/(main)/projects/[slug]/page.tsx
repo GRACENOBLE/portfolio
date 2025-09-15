@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
 
     return {
       title: `${project.name} - Project Details | Asiimwe Grace Noble`,
-      description: project.description,
+      description: `Project ${project.name}, ${project.description} by Asiimwe Grace Noble`,
       alternates: {
         canonical: `https://asiimwenoble.com/projects/${slug}`,
       },
