@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 const page = async () => {
   let projects: Project[] = [];
   let error: string | null = null;
+  console.log(projects);
 
   try {
     const result = await sanityFetch({ query: GetAllProjectsData });
