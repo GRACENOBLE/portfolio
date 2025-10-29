@@ -16,7 +16,7 @@ const funnelDisplay = Funnel_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Asiimwe Grace Noble - Software developer",
+  title: "Asiimwe Grace Noble",
   description:
     "I build software that looks good, functions great and scales perfectly.",
   alternates: {

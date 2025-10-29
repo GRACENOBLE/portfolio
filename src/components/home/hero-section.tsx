@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const HeroSection = ({ heroData }: { heroData: any }) => {
   return (
-    <section className="h-[100vh] flex flex-col items-center justify-center text-center relative isolate text-white">
+    <section className="h-[100vh] flex flex-col items-center justify-center text-center relative isolate text-white bg-muted">
       {/* <HexagonBackground className="absolute inset-0 flex items-center justify-center rounded-xl opacity-50" /> */}
       <div
         style={{ width: "100%", height: "100%", position: "absolute" }}
