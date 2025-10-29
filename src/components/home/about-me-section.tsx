@@ -15,7 +15,7 @@ const AboutMe = ({ aboutMeData }: { aboutMeData: any }) => {
               alt={""}
               width={500}
               height={500}
-              className="w-full h-full aspect-square rounded-xl object-cover grayscale hover:grayscale-0 transition-all duration-500 bg-muted"
+              className="w-full h-full aspect-square rounded-xl object-cover transition-all duration-500 bg-muted"
             />
           </div>
           <div className=" flex flex-col gap-6 w-full px-2 md:px-0">

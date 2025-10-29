@@ -31,7 +31,11 @@ export default function RootLayout({
 }>) {
   const gaID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || "";
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className="scroll-smooth"
+      style={{ scrollBehavior: "smooth" }}
+    >
       <body
         className={`${funnelDisplay.variable} ${dmMono.variable} antialiased bg-noble-background font-body text-white`}
       >

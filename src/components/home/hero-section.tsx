@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const HeroSection = ({ heroData }: { heroData: any }) => {
   return (
-    <section className="h-[100vh] flex flex-col items-center justify-center text-center relative isolate text-white bg-muted">
+    <section className="h-[100vh] flex flex-col items-center justify-center text-center relative isolate text-white">
       {/* <HexagonBackground className="absolute inset-0 flex items-center justify-center rounded-xl opacity-50" /> */}
       <div
         style={{ width: "100%", height: "100%", position: "absolute" }}
@@ -23,6 +23,7 @@ const HeroSection = ({ heroData }: { heroData: any }) => {
           noiseIntensity={1.75}
           scale={0.2}
           rotation={30}
+          
         />
       </div>
       <h1 className="text-5xl md:text-6xl font-semibold font-title pb-8 max-w-3xl">

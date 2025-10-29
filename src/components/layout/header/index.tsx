@@ -82,18 +82,4 @@ const Header = () => {
   );
 };
 
-// const SocialNav = () => (
-//   <nav className="flex gap-1.5">
-//     <Button size={"icon"} variant={"outline"} className="text-white">
-//       <FaGithub />
-//     </Button>
-//     <Button size={"icon"} variant={"outline"} className="text-white">
-//       <FaLinkedinIn />
-//     </Button>
-//     <Button size={"icon"} variant={"outline"} className="text-white">
-//       <IoMail />
-//     </Button>
-//   </nav>
-// );
-
 export default Header;

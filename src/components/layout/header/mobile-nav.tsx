@@ -10,12 +10,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosMenu } from "react-icons/io";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { handleAnchorClick } from "@/lib/scroll-utils";
 import { useState } from "react";
 
