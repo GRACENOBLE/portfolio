@@ -17,7 +17,7 @@ export default async function page() {
     homePageData = await sanityFetch({ query: GetHomePageData }).then(
       (res) => res.data
     );
-    console.log("Successfully fetched homepage data:", homePageData);
+    // console.log("Successfully fetched homepage data:", homePageData);
   } catch (err) {
     error = err;
     console.error("Error fetching homepage data:", err);

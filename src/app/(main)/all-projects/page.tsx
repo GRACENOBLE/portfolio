@@ -31,12 +31,12 @@ export const metadata: Metadata = {
 const page = async () => {
   let projects: Project[] = [];
   let error: string | null = null;
-  console.log(projects);
+  // console.log(projects);
 
   try {
     const result = await sanityFetch({ query: GetAllProjectsData });
     projects = result.data;
-    console.log("Successfully fetched projects:", projects);
+    // console.log("Successfully fetched projects:", projects);
   } catch (err) {
     error = err instanceof Error ? err.message : String(err);
     console.error("Error fetching projects:", err);
