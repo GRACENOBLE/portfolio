@@ -22,9 +22,11 @@ const AboutMe = ({ aboutMeData }: { aboutMeData: any }) => {
             <div className=" w-fit mx-auto">
               <H2 className="">{aboutMeData.title}</H2>
               <div className="flex flex-col gap-6 font-medium text-white/70 max-w-md">
-                {aboutMeData.description.map((paragraph: string) => (
-                  <p>{paragraph}</p>
-                ))}
+                {aboutMeData.description.map(
+                  (paragraph: string, key: number) => (
+                    <p key={key}>{paragraph}</p>
+                  )
+                )}
               </div>
             </div>
           </div>
