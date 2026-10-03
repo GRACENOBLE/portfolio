@@ -7,9 +7,11 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import MobileNavigation from "./mobile-nav";
 import { handleAnchorClick } from "@/lib/scroll-utils";
+import { useLenis } from "lenis/react";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 0);
@@ -39,19 +41,19 @@ const Header = () => {
           <nav className=" font-title font-medium gap-8 hidden lg:flex">
             <Link
               href={"/#about-me"}
-              onClick={(e) => handleAnchorClick(e, "/#about-me", 0)}
+              onClick={(e) => handleAnchorClick(e, "/#about-me", 0, lenis)}
             >
               About
             </Link>
             <Link
               href={"/#building"}
-              onClick={(e) => handleAnchorClick(e, "/#building", 120)}
+              onClick={(e) => handleAnchorClick(e, "/#building", 120, lenis)}
             >
               Building
             </Link>
             <Link
               href={"/#journey"}
-              onClick={(e) => handleAnchorClick(e, "/#journey", 120)}
+              onClick={(e) => handleAnchorClick(e, "/#journey", 120, lenis)}
             >
               Journey
             </Link>

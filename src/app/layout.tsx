@@ -3,6 +3,7 @@ import { Outfit, Funnel_Display, Oxanium, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const dmMono = DM_Mono({
   variable: "--font-noble-mono",
@@ -31,15 +32,13 @@ export default function RootLayout({
 }>) {
   const gaID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || "";
   return (
-    <html
-      lang="en"
-      className="scroll-smooth"
-      style={{ scrollBehavior: "smooth" }}
-    >
+    <html lang="en">
       <body
         className={`${funnelDisplay.variable} ${dmMono.variable} antialiased bg-noble-background font-body text-white`}
       >
-        <main className="">{children}</main>
+        <SmoothScroll>
+          <main className="">{children}</main>
+        </SmoothScroll>
         <GoogleAnalytics gaId={gaID} />
         <Toaster />
       </body>
