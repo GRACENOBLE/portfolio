@@ -4,7 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-accent: #FF7A30;
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-noble-dark: #27374D;
   --color-noble-green: #31473a;
   --color-foreground: var(--foreground);
@@ -27,6 +30,7 @@
   --color-border: var(--border);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -44,72 +48,71 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Blueprint palette. Everything is drawn in one ink on one paper, and the
+   rest of the scheme (lines, hatching, shadcn tokens) is mixed from
+   those two so both themes stay in step. */
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: #333333;
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --paper: #f4f4f4;
+  --ink: #141414;
+  --muted: #e9e9e9;
+  --hatch: color-mix(in srgb, var(--ink) 8%, transparent);
+  --noise-opacity: 0.05;
+  --noise-blend: multiply;
+
+  --radius: 0;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: color-mix(in srgb, var(--ink) 6%, transparent);
+  --secondary-foreground: var(--ink);
+  --muted-foreground: color-mix(in srgb, var(--ink) 60%, transparent);
+  --accent: color-mix(in srgb, var(--ink) 6%, transparent);
+  --accent-foreground: var(--ink);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --line: color-mix(in srgb, var(--ink) 18%, transparent);
+  --line-strong: color-mix(in srgb, var(--ink) 45%, transparent);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--line-strong);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--line-strong);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: #333333;
-  --muted-foreground: oklch(0.708 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --paper: #000000;
+  --ink: #ededed;
+  --muted: #111111;
+  --hatch: color-mix(in srgb, var(--ink) 10%, transparent);
+  --noise-opacity: 0.07;
+  --noise-blend: screen;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --line: color-mix(in srgb, var(--ink) 20%, transparent);
+  --line-strong: color-mix(in srgb, var(--ink) 50%, transparent);
+}
+
+/* Section hatching, as used to mark cut or featured areas on a plan */
+@utility bp-hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--hatch) 0 1px,
+    transparent 1px 11px
+  );
 }
 
 @layer base {
@@ -119,6 +122,22 @@
   body {
     @apply bg-background text-foreground;
   }
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+}
+
+/* Paper grain over the whole page, kept faint so it reads as texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  opacity: var(--noise-opacity);
+  mix-blend-mode: var(--noise-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .dotGlobe {
