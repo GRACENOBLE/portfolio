@@ -5,10 +5,20 @@ import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="bg-black selection:bg-white selection:text-black">
+    <div className="relative bg-paper text-ink">
+      {/* Page guides: two construction lines down the edges of the content */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 mx-auto max-w-[1040px] px-4"
+      >
+        <div className="h-full border-x border-line" />
+      </div>
       <SanityLive />
       <Header />
-      {children} <Footer />
+      <div className="relative">
+        {children}
+        <Footer />
+      </div>
     </div>
   );
 };

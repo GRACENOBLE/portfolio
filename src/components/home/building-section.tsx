@@ -1,15 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import Container from "../common/container";
-import H2 from "../common/heading-two";
-import H3 from "../common/heading-three";
 import { alsoLeading, monarc, MONARC_URL } from "@/data/profile";
-
-const Eyebrow = ({ children }: { children: React.ReactNode }) => (
-  <span className="text-xs uppercase tracking-[0.2em] text-white/50">
-    {children}
-  </span>
-);
+import { CornerMarks, Section, Tab } from "../blueprint";
 
 type Project = {
   name: string;
@@ -18,73 +10,93 @@ type Project = {
   description: string;
 };
 
+// Cells draw their own right and bottom rules and the grid draws the left
+// one, so neighbouring cells share a single hairline
+const cellGrid =
+  "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-l border-line";
+const cell = "border-r border-b border-line bg-paper flex flex-col";
+
 const ProjectCard = ({ project }: { project: Project }) => (
-  <div className="group bg-muted rounded-2xl p-2 flex flex-col">
-    <div className="relative aspect-[16/10] rounded-xl overflow-hidden">
-      <Image
-        src={project.image}
-        alt=""
-        fill
-        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-        className="object-cover group-hover:scale-[1.03] transition-transform ease-in-out duration-500"
-      />
+  <div className={`group ${cell}`}>
+    <Tab>{project.sector}</Tab>
+    <div className="p-3">
+      <div className="relative aspect-[16/10] overflow-hidden">
+        <Image
+          src={project.image}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          className="object-cover group-hover:scale-[1.03] transition-transform ease-in-out duration-500"
+        />
+      </div>
     </div>
-    <div className="px-6 pt-6 pb-6 flex flex-col gap-3">
-      <Eyebrow>{project.sector}</Eyebrow>
+    <div className="px-5 pb-6 pt-2">
       <h4 className="sr-only">{project.name}</h4>
-      <p className="text-sm text-white/60 leading-relaxed">
+      <p className="text-sm text-ink/65 leading-relaxed">
         {project.description}
       </p>
     </div>
   </div>
 );
 
+// Hatched header panel that opens each organisation's block
+const Masthead = ({
+  role,
+  children,
+}: {
+  role: string;
+  children: React.ReactNode;
+}) => (
+  <div className="border border-line bg-paper bp-hatch">
+    <Tab className="bg-paper">{role}</Tab>
+    <div className="px-6 py-10 md:px-12 md:py-14 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+      {children}
+    </div>
+  </div>
+);
+
 const BuildingSection = () => {
   return (
-    <section id="building" className="pb-28 md:pb-40">
-      <Container size="sm">
-        <H2 className="text-center pb-12">What I&apos;m building</H2>
-        {/* <p className="text-center text-white/60 max-w-xl mx-auto pb-12">
-          Monarc is where most of my energy goes: a company that builds
-          specialised systems for the industries where friction costs the
-          most.
-        </p> */}
-
-        <div className="border border-white/20 rounded-[24px] p-2 flex flex-col gap-2">
-          <div className="bg-muted rounded-2xl px-8 py-10 md:px-12 md:py-14 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-            <div className="flex flex-col gap-4 max-w-lg">
-              <Eyebrow>{monarc.role}</Eyebrow>
-              <H3 className="pb-0 text-3xl md:text-4xl">{monarc.name}</H3>
-              <p className="font-title text-lg text-white/80">
-                {monarc.tagline}
-              </p>
-            </div>
-            <a
-              href={MONARC_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 group w-fit shrink-0"
-            >
-              <span>Visit Monarc</span>
-              <ArrowUpRight
-                size={20}
-                strokeWidth={1.5}
-                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform ease-in-out duration-300"
-              />
-            </a>
+    <Section id="building" title={<>What I&apos;m building</>}>
+      <div className="relative">
+        <CornerMarks />
+        <Masthead role={monarc.role}>
+          <div className="flex flex-col gap-4 max-w-lg">
+            <h3 className="font-title text-3xl md:text-4xl font-semibold">
+              {monarc.name}
+            </h3>
+            <p className="font-title text-lg text-ink/75">{monarc.tagline}</p>
           </div>
+          <a
+            href={MONARC_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 group w-fit shrink-0 border border-ink bg-paper px-4 h-11 text-xs uppercase tracking-[0.18em] hover:bg-ink hover:text-paper transition-colors"
+          >
+            <span>Visit Monarc</span>
+            <ArrowUpRight
+              size={16}
+              strokeWidth={1.5}
+              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform ease-in-out duration-300"
+            />
+          </a>
+        </Masthead>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-            {monarc.ventures.map((venture) => (
-              <ProjectCard key={venture.name} project={venture} />
-            ))}
-            <div className="bg-muted rounded-2xl p-8 flex flex-col gap-3">
-              <Eyebrow>Monarc Lab</Eyebrow>
+        <div className={cellGrid}>
+          {monarc.ventures.map((venture) => (
+            <ProjectCard key={venture.name} project={venture} />
+          ))}
+          <div className={cell}>
+            <Tab>Monarc Lab</Tab>
+            <div className="px-5 py-6 flex flex-col gap-4">
               <h4 className="font-title text-xl font-semibold">Research</h4>
-              <ul className="flex flex-col gap-3 text-sm text-white/60">
+              <ul className="flex flex-col text-sm text-ink/70 border-t border-line">
                 {monarc.lab.research.map((item) => (
-                  <li key={item.name} className="flex items-center gap-3">
-                    <div className="relative size-10 shrink-0 rounded-lg overflow-hidden">
+                  <li
+                    key={item.name}
+                    className="flex items-center gap-3 border-b border-line py-3"
+                  >
+                    <div className="relative size-10 shrink-0 overflow-hidden">
                       <Image
                         src={item.image}
                         alt=""
@@ -94,51 +106,56 @@ const BuildingSection = () => {
                       />
                     </div>
                     <span className="flex-1">{item.name}</span>
-                    <span className="text-white/40 shrink-0">{item.area}</span>
+                    <span className="text-[10px] uppercase tracking-[0.15em] text-ink/50 shrink-0">
+                      {item.area}
+                    </span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-
-          <div className="bg-muted rounded-2xl px-8 py-10 md:px-12 flex flex-col gap-4">
-            <Eyebrow>From the lab</Eyebrow>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
-              {monarc.lab.papers.map((paper) => (
-                <li key={paper.title} className="flex items-center gap-4">
-                  <div className="relative size-16 shrink-0 rounded-xl overflow-hidden">
-                    <Image
-                      src={paper.image}
-                      alt=""
-                      fill
-                      sizes="64px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <span className="font-title text-white/80">
-                    {paper.title}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
-        <div className="mt-6 border border-white/20 rounded-[24px] p-2 flex flex-col gap-2">
-          <div className="bg-muted rounded-2xl px-8 py-10 md:px-12 flex flex-col gap-4">
-            <Eyebrow>{alsoLeading.role}</Eyebrow>
-            <H3 className="pb-0">{alsoLeading.name}</H3>
-            <p className="text-white/60 max-w-2xl">{alsoLeading.description}</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-            {alsoLeading.projects.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+        <div className="border-x border-b border-line bg-paper">
+          <Tab>From the lab</Tab>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 px-6 py-8 md:px-12">
+            {monarc.lab.papers.map((paper) => (
+              <li key={paper.title} className="flex items-center gap-4">
+                <div className="relative size-16 shrink-0 overflow-hidden border border-line">
+                  <Image
+                    src={paper.image}
+                    alt=""
+                    fill
+                    sizes="64px"
+                    className="object-cover"
+                  />
+                </div>
+                <span className="font-title text-ink/85">{paper.title}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
-      </Container>
-    </section>
+      </div>
+
+      <div className="relative mt-16">
+        <CornerMarks />
+        <Masthead role={alsoLeading.role}>
+          <div className="flex flex-col gap-4">
+            <h3 className="font-title text-3xl font-semibold">
+              {alsoLeading.name}
+            </h3>
+            <p className="text-ink/70 max-w-2xl bg-paper/70">
+              {alsoLeading.description}
+            </p>
+          </div>
+        </Masthead>
+        <div className={cellGrid}>
+          {alsoLeading.projects.map((project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
+        </div>
+      </div>
+    </Section>
   );
 };
 

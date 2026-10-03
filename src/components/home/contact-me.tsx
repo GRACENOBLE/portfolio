@@ -1,7 +1,6 @@
 "use client";
 
 import { z } from "zod";
-import Container from "../common/container";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -14,9 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import H2 from "../common/heading-two";
 import { Textarea } from "../ui/textarea";
-import H3 from "../common/heading-three";
 import {
   FaDev,
   FaGithub,
@@ -29,6 +26,7 @@ import { AnimatedTooltip } from "../animated-tooltip";
 import { toast } from "sonner";
 import { useState } from "react";
 import { MONARC_EMAIL } from "@/data/profile";
+import { CornerMarks, Section, Tab } from "../blueprint";
 
 const formSchema = z.object({
   name: z
@@ -151,113 +149,111 @@ const ContactMe = () => {
   ];
 
   return (
-    <section id="connect" className="pb-20">
-      <H2 className="text-center pb-12">Let&apos;s connect</H2>
-      <Container size="sm">
-        <div className="flex flex-col lg:flex-row border rounded-[24px] px-2 py-2 border-white/20 w-fit">
-          <div className="lg:w-full">
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-8 bg-muted px-6 md:px-8 py-8 rounded-2xl lg:w-xl mx-auto"
+    <Section id="connect" title={<>Let&apos;s connect</>}>
+      <div className="relative grid grid-cols-1 lg:grid-cols-[3fr_2fr] border border-line bg-paper">
+        <CornerMarks />
+        <div className="lg:border-r border-line">
+          <Tab>Message</Tab>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-7 px-6 md:px-10 py-10"
+            >
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex justify-between">
+                      <FormLabel>Name</FormLabel>
+                      <FormMessage />
+                    </div>
+                    <FormControl>
+                      <Input
+                        placeholder="Your full name"
+                        {...field}
+                        className="h-11 placeholder:text-sm"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex justify-between">
+                      <FormLabel>Email</FormLabel>
+                      <FormMessage />
+                    </div>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="your.email@example.com"
+                        {...field}
+                        className="h-11 placeholder:text-sm"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex justify-between">
+                      <FormLabel>Message</FormLabel>
+                      <FormMessage />
+                    </div>
+                    <FormControl>
+                      <Textarea
+                        className="h-40 placeholder:text-sm"
+                        placeholder="What are you working on?"
+                        {...field}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <Button
+                type="submit"
+                className="w-full sm:w-auto"
+                disabled={isSubmitting}
               >
-                <H3 className="mb-2 text-center">Send me a message</H3>
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className="flex justify-between">
-                        <FormLabel>Name</FormLabel>
-                        <FormMessage />
-                      </div>
-                      <FormControl>
-                        <Input
-                          placeholder="Your full name"
-                          {...field}
-                          className="bg-white/20 placeholder:text-white/60 placeholder:text-sm border-white/20 text-white"
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className="flex justify-between">
-                        <FormLabel>Email</FormLabel>
-                        <FormMessage />
-                      </div>
-                      <FormControl>
-                        <Input
-                          type="email"
-                          placeholder="your.email@example.com"
-                          {...field}
-                          className="bg-white/20 placeholder:text-white/60 placeholder:text-sm border-white/20 text-white"
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className="flex justify-between">
-                        <FormLabel>Message</FormLabel>
-                        <FormMessage />
-                      </div>
-                      <FormControl>
-                        <Textarea
-                          className="h-40 bg-white/20 placeholder:text-white/60 placeholder:text-sm border-white/20 text-white"
-                          placeholder="What are you working on?"
-                          {...field}
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-                <Button
-                  type="submit"
-                  className="w-full max-w-40"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            </Form>
-          </div>
-          <div className="w-full p-8 flex flex-col justify-center">
-            <H3 className="text-center">Or</H3>
-            <p className="flex flex-col gap-6 font-medium text-white/60  text-center">
-              Find me on any of these
-            </p>
-            <div className="flex flex-row items-center justify-center mb-10 mt-8 w-full">
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </Button>
+            </form>
+          </Form>
+        </div>
+        <div className="flex flex-col border-t lg:border-t-0 border-line">
+          <Tab>Elsewhere</Tab>
+          <div className="flex-1 px-6 md:px-10 py-10 flex flex-col justify-center gap-10">
+            <p className="text-ink/65">Or find me on any of these</p>
+            <div className="flex flex-row flex-wrap items-center gap-2">
               <AnimatedTooltip items={people} />
             </div>
-            <p className="text-center text-white/60 text-sm">
+            <p className="text-ink/65 text-sm">
               Monarc enquiries:{" "}
               <a
                 href={`mailto:${MONARC_EMAIL}`}
-                className="text-white underline underline-offset-4"
+                className="text-ink underline underline-offset-4"
               >
                 {MONARC_EMAIL}
               </a>
             </p>
-            <p className="text-center text-white/60 max-w-lg mx-auto mt-8">
+            <p className="text-ink/55 text-sm border-l-2 border-line-strong pl-4">
               <span className="italic">
                 "Software is like entropy: it is difficult to grasp, weighs
                 nothing, and always tends to increase."
-              </span>
+              </span>{" "}
               — Norman Augustine
             </p>
           </div>
         </div>
-      </Container>
-    </section>
+      </div>
+    </Section>
   );
 };
 
