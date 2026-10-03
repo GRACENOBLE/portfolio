@@ -59,10 +59,10 @@ const MobileNavigation = () => {
             </SheetDescription>
             <div className="flex flex-col gap-4 mt-6">
               {[
-                { href: "#about-me", label: "About me" },
-                { href: "#skill-set", label: "Skill set" },
-                { href: "#services", label: "Services" },
-                { href: "#project-showcase", label: "Projects" },
+                { href: "#about-me", label: "About" },
+                { href: "#building", label: "Building" },
+                { href: "#journey", label: "Journey" },
+                { href: "#connect", label: "Connect" },
               ].map((item) => (
                 <Link
                   key={item.href}

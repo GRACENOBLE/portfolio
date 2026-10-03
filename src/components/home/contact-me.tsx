@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,22 +17,18 @@ import { Input } from "@/components/ui/input";
 import H2 from "../common/heading-two";
 import { Textarea } from "../ui/textarea";
 import H3 from "../common/heading-three";
-import { BiLogoInstagramAlt } from "react-icons/bi";
 import {
   FaDev,
   FaGithub,
-  FaInstagram,
   FaLinkedinIn,
   FaSquareXTwitter,
-  FaXTwitter,
 } from "react-icons/fa6";
 import { SiRoadmapdotsh } from "react-icons/si";
-import { IoLogoWhatsapp } from "react-icons/io";
-import { FiLink } from "react-icons/fi";
 import { RiInstagramFill } from "react-icons/ri";
 import { AnimatedTooltip } from "../animated-tooltip";
 import { toast } from "sonner";
 import { useState } from "react";
+import { MONARC_EMAIL } from "@/data/profile";
 
 const formSchema = z.object({
   name: z
@@ -121,9 +116,9 @@ const ContactMe = () => {
     {
       id: 2,
       name: "Linkedin",
-      designation: "ASIIMWE (GRACE) NOBLE",
+      designation: "Grace Noble",
       icon: <FaLinkedinIn />,
-      link: "https://www.linkedin.com/in/asiimwe-noble-5849a6255/",
+      link: "https://www.linkedin.com/in/mr-grace-noble",
     },
     {
       id: 3,
@@ -156,8 +151,8 @@ const ContactMe = () => {
   ];
 
   return (
-    <section id="contact-me" className="pb-20">
-      <H2 className="text-center pb-12">Let's talk</H2>
+    <section id="connect" className="pb-20">
+      <H2 className="text-center pb-12">Let&apos;s connect</H2>
       <Container size="sm">
         <div className="flex flex-col lg:flex-row border rounded-[24px] px-2 py-2 border-white/20 w-fit">
           <div className="lg:w-full">
@@ -166,7 +161,7 @@ const ContactMe = () => {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-8 bg-muted px-6 md:px-8 py-8 rounded-2xl lg:w-xl mx-auto"
               >
-                <H3 className="mb-2 text-center">Send me an email</H3>
+                <H3 className="mb-2 text-center">Send me a message</H3>
                 <FormField
                   control={form.control}
                   name="name"
@@ -218,7 +213,7 @@ const ContactMe = () => {
                       <FormControl>
                         <Textarea
                           className="h-40 bg-white/20 placeholder:text-white/60 placeholder:text-sm border-white/20 text-white"
-                          placeholder="Tell me about your project or say hello..."
+                          placeholder="What are you working on?"
                           {...field}
                         />
                       </FormControl>
@@ -243,6 +238,15 @@ const ContactMe = () => {
             <div className="flex flex-row items-center justify-center mb-10 mt-8 w-full">
               <AnimatedTooltip items={people} />
             </div>
+            <p className="text-center text-white/60 text-sm">
+              Monarc enquiries:{" "}
+              <a
+                href={`mailto:${MONARC_EMAIL}`}
+                className="text-white underline underline-offset-4"
+              >
+                {MONARC_EMAIL}
+              </a>
+            </p>
             <p className="text-center text-white/60 max-w-lg mx-auto mt-8">
               <span className="italic">
                 "Software is like entropy: it is difficult to grasp, weighs

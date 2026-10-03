@@ -16,9 +16,9 @@ const funnelDisplay = Funnel_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Asiimwe Grace Noble",
+  title: "Grace Noble — Founder, Monarc Engineering",
   description:
-    "I build software that looks good, functions great and scales perfectly.",
+    "Entrepreneur and engineering manager building software that solves the physical-world inefficiencies holding economies back.",
   alternates: {
     canonical: "https://asiimwenoble.com/",
   },

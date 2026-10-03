@@ -1,11 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Container from "../../common/container";
-import { Button, buttonVariants } from "../../ui/button";
+import { buttonVariants } from "../../ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { toast } from "sonner";
 import MobileNavigation from "./mobile-nav";
 import { handleAnchorClick } from "@/lib/scroll-utils";
 
@@ -42,37 +41,30 @@ const Header = () => {
               href={"/#about-me"}
               onClick={(e) => handleAnchorClick(e, "/#about-me", 0)}
             >
-              About me
+              About
             </Link>
             <Link
-              href={"/#skill-set"}
-              onClick={(e) => handleAnchorClick(e, "/#skill-set", 120)}
+              href={"/#building"}
+              onClick={(e) => handleAnchorClick(e, "/#building", 120)}
             >
-              Skill set
+              Building
             </Link>
             <Link
-              href={"/#services"}
-              onClick={(e) => handleAnchorClick(e, "/#services", 120)}
+              href={"/#journey"}
+              onClick={(e) => handleAnchorClick(e, "/#journey", 120)}
             >
-              Services
-            </Link>
-            <Link
-              href={"/#project-showcase"}
-              onClick={(e) => handleAnchorClick(e, "/#project-showcase", 120)}
-            >
-              Projects
+              Journey
             </Link>
           </nav>
           <div className="hidden lg:flex">
             <Link
-              href={"#contact-me"}
-              // onClick={(e) => handleAnchorClick(e, "#contact-me", 120)}
+              href={"/#connect"}
               className={cn(
                 buttonVariants({ variant: "default", size: "lg" }),
                 "rounded-full"
               )}
             >
-              Let's talk
+              Connect
             </Link>
           </div>
           <MobileNavigation />
