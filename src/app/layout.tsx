@@ -3,6 +3,7 @@ import { Outfit, Funnel_Display, Oxanium, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const dmMono = DM_Mono({
   variable: "--font-noble-mono",
@@ -16,9 +17,9 @@ const funnelDisplay = Funnel_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Asiimwe Grace Noble",
+  title: "Grace Noble — Founder, Monarc Engineering",
   description:
-    "I build software that looks good, functions great and scales perfectly.",
+    "Entrepreneur and engineering manager building software that solves the physical-world inefficiencies holding economies back.",
   alternates: {
     canonical: "https://asiimwenoble.com/",
   },
@@ -31,15 +32,13 @@ export default function RootLayout({
 }>) {
   const gaID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || "";
   return (
-    <html
-      lang="en"
-      className="scroll-smooth"
-      style={{ scrollBehavior: "smooth" }}
-    >
+    <html lang="en">
       <body
         className={`${funnelDisplay.variable} ${dmMono.variable} antialiased bg-noble-background font-body text-white`}
       >
-        <main className="">{children}</main>
+        <SmoothScroll>
+          <main className="">{children}</main>
+        </SmoothScroll>
         <GoogleAnalytics gaId={gaID} />
         <Toaster />
       </body>

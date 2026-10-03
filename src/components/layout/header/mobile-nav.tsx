@@ -10,22 +10,30 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosMenu } from "react-icons/io";
-import { handleAnchorClick } from "@/lib/scroll-utils";
-import { useState } from "react";
+import { handleMobileAnchorClick } from "@/lib/scroll-utils";
+import { useLenis } from "lenis/react";
+import { useEffect, useState } from "react";
 
 const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const lenis = useLenis();
 
+  // Lenis drives the wheel itself, so the sheet's scroll lock alone won't
+  // stop the page moving underneath it
+  useEffect(() => {
+    if (isOpen) lenis?.stop();
+    else lenis?.start();
+    return () => {
+      lenis?.start();
+    };
+  }, [isOpen, lenis]);
+
+  // Closes the sheet, then scrolls once it has started animating out
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    // Close the sheet
-    setIsOpen(false);
-    // Handle the anchor click with a small delay to allow sheet to close
-    setTimeout(() => {
-      handleAnchorClick(e, href, 120);
-    }, 100);
+    handleMobileAnchorClick(e, href, 120, () => setIsOpen(false), lenis);
   };
 
   return (
@@ -59,10 +67,10 @@ const MobileNavigation = () => {
             </SheetDescription>
             <div className="flex flex-col gap-4 mt-6">
               {[
-                { href: "#about-me", label: "About me" },
-                { href: "#skill-set", label: "Skill set" },
-                { href: "#services", label: "Services" },
-                { href: "#project-showcase", label: "Projects" },
+                { href: "#about-me", label: "About" },
+                { href: "#building", label: "Building" },
+                { href: "#journey", label: "Journey" },
+                { href: "#connect", label: "Connect" },
               ].map((item) => (
                 <Link
                   key={item.href}

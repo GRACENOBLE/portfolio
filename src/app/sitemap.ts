@@ -36,33 +36,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
 
-    // Contact page - important for business inquiries
-    {
-      url: `${baseUrl}#contact-me`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-
-    // About section - important for personal branding
     {
       url: `${baseUrl}#about-me`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
-
-    // Services section - showcase capabilities
     {
-      url: `${baseUrl}#services`,
+      url: `${baseUrl}#building`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8,
     },
-
-    // Skills section - technical expertise
     {
-      url: `${baseUrl}#skills`,
+      url: `${baseUrl}#connect`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,

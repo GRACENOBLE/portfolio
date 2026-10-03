@@ -1,6 +1,18 @@
-export const scrollToSection = (sectionId: string, offset: number = 200) => {
+import type Lenis from "lenis";
+
+// Pass the Lenis instance (from useLenis) so the jump uses its easing instead
+// of fighting it with a native smooth scroll.
+export const scrollToSection = (
+  sectionId: string,
+  offset: number = 200,
+  lenis?: Lenis
+) => {
   const element = document.getElementById(sectionId);
   if (element) {
+    if (lenis) {
+      lenis.scrollTo(element, { offset: -offset });
+      return;
+    }
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -12,13 +24,13 @@ export const scrollToSection = (sectionId: string, offset: number = 200) => {
 };
 
 // Handle scrolling to hash on page load
-export const handleHashOnLoad = (offset: number = 200) => {
+export const handleHashOnLoad = (offset: number = 200, lenis?: Lenis) => {
   const hash = window.location.hash;
   if (hash) {
     // Small delay to ensure page is fully rendered
     setTimeout(() => {
       const sectionId = hash.substring(1);
-      scrollToSection(sectionId, offset);
+      scrollToSection(sectionId, offset, lenis);
     }, 500);
   }
 };
@@ -26,7 +38,8 @@ export const handleHashOnLoad = (offset: number = 200) => {
 export const handleAnchorClick = (
   e: React.MouseEvent<HTMLAnchorElement>,
   href: string,
-  offset: number = 200
+  offset: number = 200,
+  lenis?: Lenis
 ) => {
   // Check if it's an anchor link (starts with #)
   if (href.startsWith("#") || href.includes("#")) {
@@ -50,7 +63,7 @@ export const handleAnchorClick = (
       : href.substring(1);
 
     if (sectionId) {
-      scrollToSection(sectionId, offset);
+      scrollToSection(sectionId, offset, lenis);
     }
   }
 };
@@ -59,7 +72,8 @@ export const handleMobileAnchorClick = (
   e: React.MouseEvent<HTMLAnchorElement>,
   href: string,
   offset: number = 200,
-  onClose?: () => void
+  onClose?: () => void,
+  lenis?: Lenis
 ) => {
   // Check if it's an anchor link (starts with #)
   if (href.startsWith("#") || href.includes("#")) {
@@ -88,7 +102,7 @@ export const handleMobileAnchorClick = (
     if (sectionId) {
       // Add a small delay to allow sheet to close before scrolling
       setTimeout(() => {
-        scrollToSection(sectionId, offset);
+        scrollToSection(sectionId, offset, lenis);
       }, 100);
     }
   }
