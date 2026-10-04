@@ -66,18 +66,30 @@ export const monarc = {
       {
         title: "How We Approach Building With AI",
         image: "/images/monarc/lab/alan-turing.webp",
+        url: "https://www.monarcengineering.com/lab/how-we-approach-building-with-ai",
+        description:
+          "A framework for evaluating, integrating and governing AI systems in production, from use-case assessment through deployment, cost modelling and failure design.",
       },
       {
         title: "Unicorn vs Elephant: Two Models for Building Enduring Companies",
         image: "/images/monarc/lab/elephant.webp",
+        url: "https://www.monarcengineering.com/lab/unicorn-vs-elephant-startups",
+        description:
+          "Growth-at-all-costs unicorn models versus durable, cash-efficient elephant companies, and the strategic and technical implications of each.",
       },
       {
         title: "The Economic Cost of Legacy Infrastructure",
         image: "/images/monarc/lab/legacy.webp",
+        url: "https://www.monarcengineering.com/lab/the-effect-of-legacy-systems-on-an-economy",
+        description:
+          "How outdated government and enterprise infrastructure creates compounding drag on productivity, and the engineering interventions that break the cycle.",
       },
       {
         title: "How to Choose the Right Tech Stack",
         image: "/images/monarc/lab/stack.webp",
+        url: "https://www.monarcengineering.com/lab/how-to-choose-the-right-tech-stack",
+        description:
+          "A decision framework accounting for talent availability, operational maturity, infrastructure constraints and long-term maintainability.",
       },
     ],
     research: [
@@ -85,21 +97,33 @@ export const monarc = {
         name: "Autonomous Driving System",
         area: "IoT",
         image: "/images/monarc/lab/self-driving.webp",
+        url: "https://www.monarcengineering.com/lab/autonomous-driving-system",
+        description:
+          "Research into sensor fusion, edge inference and regulatory pathways for autonomous vehicles built for African road infrastructure.",
       },
       {
         name: "Semiconductor & AI Compute Mega-Factory",
         area: "AI",
         image: "/images/monarc/lab/datacenters.webp",
+        url: "https://www.monarcengineering.com/lab/semiconductor-ai-compute-mega-factory",
+        description:
+          "Feasibility study and design specification for a continent-scale AI compute facility: power, cooling, supply chain and sovereignty.",
       },
       {
         name: "Immutable Document Registries",
         area: "Blockchain",
         image: "/images/monarc/lab/blockchain.webp",
+        url: "https://www.monarcengineering.com/lab/immutable-document-registries",
+        description:
+          "A blockchain-anchored system for land titles, academic credentials and legal contracts, with verifiable access and no central gatekeeper.",
       },
       {
         name: "Autonomous Delivery System",
         area: "Project",
         image: "/images/monarc/lab/autodelivery.webp",
+        url: "https://www.monarcengineering.com/lab/autonomous-delivery-system",
+        description:
+          "Last-mile autonomous delivery for East African cities using coordinated drone and ground-robot platforms.",
       },
     ],
   },
