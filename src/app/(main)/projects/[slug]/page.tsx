@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: ProjectPageProps) {
       query: GetProjectBySlugData,
       params: { slug },
     });
-    const project: Project = result.data;
+    const project = result.data as Project | null;
 
     if (!project) {
       return {
@@ -98,7 +98,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
       query: GetProjectBySlugData,
       params: { slug },
     });
-    project = result.data;
+    project = result.data as Project | null;
 
     if (!project) {
       notFound();

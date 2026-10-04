@@ -35,7 +35,7 @@ const page = async () => {
 
   try {
     const result = await sanityFetch({ query: GetAllProjectsData });
-    projects = result.data;
+    projects = result.data as Project[];
     // console.log("Successfully fetched projects:", projects);
   } catch (err) {
     error = err instanceof Error ? err.message : String(err);
