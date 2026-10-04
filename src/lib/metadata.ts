@@ -7,7 +7,7 @@ const shareImage = {
   url: "/opengraph-image.png",
   width: 1200,
   height: 630,
-  alt: "Grace Noble, Founder & CEO of Monarc Engineering and Engineering Manager at Amplified Access, Kampala, Uganda",
+  alt: "Portrait of Grace Noble beside the title Grace Noble, Founder & CEO of Monarc Engineering and Engineering Manager at Amplified Access, Kampala, Uganda",
 };
 
 // Next merges metadata shallowly, so a page that sets `openGraph` replaces the

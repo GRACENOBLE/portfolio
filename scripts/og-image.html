@@ -23,11 +23,16 @@
   .head .brand { display:flex; align-items:center; gap:14px; padding:0 24px; border-right:1px solid var(--line); font-family:'Funnel Display',sans-serif; font-size:26px; font-weight:600; }
   .logo { width:38px; height:38px; background:var(--ink); -webkit-mask:url(../public/images/logo/icon.png) center/contain no-repeat; }
   .head .ref { margin-left:auto; display:flex; align-items:center; padding:0 24px; border-left:1px solid var(--line); font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:#6b6b6b; }
-  .body { flex:1; position:relative; background-image:repeating-linear-gradient(-45deg, var(--hatch) 0 1px, transparent 1px 13px); }
+  .body { flex:1; display:flex; min-height:0; }
+  .fig { width:340px; border-right:1px solid var(--line); display:flex; flex-direction:column; background:var(--paper); }
+  .fig .tab { border-right:none; width:100%; }
+  .photo { flex:1; margin:14px; overflow:hidden; background:#e2e2e2; }
+  .photo img { width:100%; height:100%; object-fit:cover; object-position:45% 18%; transform:scale(1.15); transform-origin:45% 20%; display:block; }
+  .main { flex:1; position:relative; background-image:repeating-linear-gradient(-45deg, var(--hatch) 0 1px, transparent 1px 13px); }
   .tab { display:inline-flex; align-items:stretch; height:40px; background:var(--paper); border-bottom:1px solid var(--line); border-right:1px solid var(--line); }
   .tab span { display:flex; align-items:center; padding:0 22px; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:#6b6b6b; }
-  h1 { position:absolute; left:48px; top:78px; font-family:'Funnel Display',sans-serif; font-weight:600; font-size:104px; line-height:.95; letter-spacing:-.02em; }
-  .roles { position:absolute; left:48px; top:206px; border-left:3px solid var(--ink); padding:4px 0 4px 20px; background:rgba(244,244,244,.85); font-size:24px; line-height:1.55; color:#3d3d3d; }
+  h1 { position:absolute; left:44px; top:84px; font-family:'Funnel Display',sans-serif; font-weight:600; font-size:88px; line-height:.95; letter-spacing:-.02em; }
+  .roles { position:absolute; left:44px; top:196px; border-left:3px solid var(--ink); padding:4px 0 4px 20px; background:rgba(244,244,244,.85); font-size:22px; line-height:1.55; color:#3d3d3d; }
   .block { display:flex; border-top:1px solid var(--line); background:var(--paper); }
   .cell { flex:1; padding:14px 22px; border-left:1px solid var(--line); }
   .cell:first-child { border-left:none; }
@@ -48,9 +53,15 @@
       <div class="ref">asiimwenoble.com</div>
     </div>
     <div class="body">
-      <div class="tab"><span>Sheet 00 · General arrangement</span></div>
-      <h1>Grace Noble</h1>
-      <div class="roles">Founder &amp; CEO, Monarc Engineering<br>Engineering Manager, Amplified Access</div>
+      <div class="fig">
+        <div class="tab"><span>Fig. 01 · Portrait</span></div>
+        <div class="photo"><img src="../public/images/me.png" alt=""></div>
+      </div>
+      <div class="main">
+        <div class="tab"><span>Sheet 00 · General arrangement</span></div>
+        <h1>Grace Noble</h1>
+        <div class="roles">Founder &amp; CEO, Monarc Engineering<br>Engineering Manager, Amplified Access</div>
+      </div>
     </div>
     <div class="block">
       <div class="cell"><b>Drawn by</b><i>Grace Noble</i></div>
