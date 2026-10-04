@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
+import { render } from "@react-email/render";
 import { z } from "zod";
 import ContactEmailTemplate from "@/components/emails/contact-email-template";
 import { createEmailHTML } from "@/utils/email-template";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Mailjet's SMTP relay, as used across the Monarc projects
+const transporter = nodemailer.createTransport({
+  host: "in-v3.mailjet.com",
+  port: 587,
+  auth: {
+    user: process.env.MAILJET_SMTP_USER,
+    pass: process.env.MAILJET_SMTP_PASSWORD,
+  },
+});
 
 const contactSchema = z.object({
   name: z.string().min(2).max(50),
@@ -15,8 +24,12 @@ const contactSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     // Validate environment variables
-    if (!process.env.RESEND_API_KEY) {
-      console.error("RESEND_API_KEY is not configured");
+    const { MAILJET_SMTP_USER, MAILJET_SMTP_PASSWORD, EMAIL_FROM, EMAIL_TO } =
+      process.env;
+    if (!MAILJET_SMTP_USER || !MAILJET_SMTP_PASSWORD || !EMAIL_FROM || !EMAIL_TO) {
+      console.error(
+        "Email is not configured: set MAILJET_SMTP_USER, MAILJET_SMTP_PASSWORD, EMAIL_FROM and EMAIL_TO"
+      );
       return NextResponse.json(
         { error: "Email service not configured" },
         { status: 500 }
@@ -29,43 +42,30 @@ export async function POST(request: NextRequest) {
 
     const { name, email, message } = validatedData;
 
-    // Prepare email data
-    const emailData = {
-      from:
-        process.env.FROM_EMAIL ||
-        "Portfolio Contact <noreply@asiimwenoble.com>",
-      to: [process.env.CONTACT_EMAIL || "gracenoble72@gmail.com"],
-      subject: `New Contact Form Message from ${name}`,
-      replyTo: email,
-    };
-
-    // Try to send with React Email template first, fallback to HTML
-    let emailResult;
+    // Render the React Email template, falling back to the plain HTML one
+    let html: string;
+    let text: string | undefined;
     try {
-      emailResult = await resend.emails.send({
-        ...emailData,
-        react: ContactEmailTemplate({ name, email, message }),
-      });
-    } catch (reactEmailError) {
-      console.warn("React Email failed, using HTML fallback:", reactEmailError);
-      emailResult = await resend.emails.send({
-        ...emailData,
-        html: createEmailHTML({ name, email, message }),
-      });
+      const template = ContactEmailTemplate({ name, email, message });
+      html = await render(template);
+      text = await render(template, { plainText: true });
+    } catch (renderError) {
+      console.warn("React Email failed, using HTML fallback:", renderError);
+      html = createEmailHTML({ name, email, message });
     }
 
-    const { data, error } = emailResult;
-
-    if (error) {
-      console.error("Resend error:", error);
-      return NextResponse.json(
-        { error: "Failed to send email" },
-        { status: 500 }
-      );
-    }
+    const info = await transporter.sendMail({
+      from: EMAIL_FROM,
+      to: EMAIL_TO,
+      // Replying to the notification goes straight to the sender
+      replyTo: email,
+      subject: `New Contact Form Message from ${name}`,
+      html,
+      text,
+    });
 
     return NextResponse.json(
-      { message: "Email sent successfully", data },
+      { message: "Email sent successfully", data: { id: info.messageId } },
       { status: 200 }
     );
   } catch (error) {
@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to send email" },
       { status: 500 }
     );
   }
