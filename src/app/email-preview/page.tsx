@@ -1,4 +1,7 @@
-import ContactEmailTemplate from "@/components/emails/contact-email-template";
+import { render } from "@react-email/render";
+import ContactEmailTemplate, {
+  ConfirmationEmailTemplate,
+} from "@/components/emails/contact-email-template";
 import { createEmailHTML } from "@/utils/email-template";
 
 // Demo data for previewing emails
@@ -9,56 +12,56 @@ const demoData = {
     "Hello! I'm interested in discussing a potential project with you. I love your portfolio and would like to explore how we could work together on something amazing.\n\nLooking forward to hearing from you!",
 };
 
-export default function EmailPreviewPage() {
-  const htmlTemplate = createEmailHTML(demoData);
+// Every template is rendered to HTML and shown in an iframe, so the preview
+// matches what lands in an inbox rather than inheriting the site's styles
+export default async function EmailPreviewPage() {
+  const previews = [
+    {
+      title: "Notification to Grace",
+      react: await render(ContactEmailTemplate(demoData)),
+      fallback: createEmailHTML(demoData, "notification"),
+    },
+    {
+      title: "Receipt to the sender",
+      react: await render(ConfirmationEmailTemplate(demoData)),
+      fallback: createEmailHTML(demoData, "confirmation"),
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-noble-background text-white p-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-center">
-          Email Template Preview
+    <div className="min-h-screen bg-paper text-ink p-8">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="font-title text-4xl font-semibold mb-8">
+          Email template preview
         </h1>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* React Email Preview */}
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">
-              React Email Template
-            </h2>
-            <div className="border border-white/20 rounded-lg overflow-hidden">
-              <ContactEmailTemplate {...demoData} />
+        {previews.map(({ title, react, fallback }) => (
+          <section key={title} className="mb-12">
+            <h2 className="font-title text-2xl font-semibold mb-4">{title}</h2>
+            <div className="grid lg:grid-cols-2 gap-8">
+              {[
+                { label: "React Email template", html: react },
+                { label: "HTML fallback", html: fallback },
+              ].map(({ label, html }) => (
+                <div key={label}>
+                  <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink/60 mb-3">
+                    {label}
+                  </h3>
+                  <iframe
+                    srcDoc={html}
+                    className="w-full h-[900px] border border-line bg-white"
+                    title={`${title}: ${label}`}
+                  />
+                </div>
+              ))}
             </div>
-          </div>
+          </section>
+        ))}
 
-          {/* HTML Fallback Preview */}
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">
-              HTML Fallback Template
-            </h2>
-            <div className="border border-white/20 rounded-lg overflow-hidden">
-              <iframe
-                srcDoc={htmlTemplate}
-                className="w-full h-[600px]"
-                title="HTML Email Preview"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 p-6 bg-white/5 rounded-lg border border-white/10">
-          <h3 className="text-xl font-semibold mb-4">Demo Data Used:</h3>
-          <pre className="text-sm text-white/80 overflow-x-auto">
-            {JSON.stringify(demoData, null, 2)}
-          </pre>
-        </div>
-
-        <div className="mt-8 text-center">
-          <p className="text-white/70">
-            This preview shows how your contact form emails will look. The React
-            Email template is used by default, with HTML fallback for
-            compatibility.
-          </p>
-        </div>
+        <p className="text-sm text-ink/60">
+          The React Email templates are sent by default, with the HTML fallbacks
+          used if rendering fails.
+        </p>
       </div>
     </div>
   );

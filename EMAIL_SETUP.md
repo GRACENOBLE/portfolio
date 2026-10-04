@@ -1,8 +1,12 @@
 # Email setup
 
-The contact form posts to `/api/contact`, which sends the message to you through
-Mailjet's SMTP relay (`in-v3.mailjet.com:587`) using nodemailer. This is the same
-setup as the other Monarc projects.
+The contact form posts to `/api/contact`, which sends two emails through
+Mailjet's SMTP relay (`in-v3.mailjet.com:587`) using nodemailer, the same setup
+as the other Monarc projects:
+
+- a **notification** to `EMAIL_TO` with the sender's details and message
+- a **receipt** to the sender confirming it arrived, with a copy of what they
+  sent
 
 ## Environment variables
 
@@ -33,14 +37,21 @@ If any of them are missing, the route logs which ones and returns
 
 - The form validates name, email and message (with zod) on the client and again
   on the server.
-- The email body is rendered from the React Email template in
-  `src/components/emails/contact-email-template.tsx`, with a plain-text version
-  alongside it. If rendering fails, it falls back to the HTML template in
-  `src/utils/email-template.ts`.
-- `replyTo` is set to the sender, so replying to the notification goes straight
-  to them.
+- The email is styled like the site's blueprint sheets. The HTML body is
+  rendered from the React Email template in
+  `src/components/emails/contact-email-template.tsx`; if rendering fails, it
+  falls back to the matching HTML template in `src/utils/email-template.ts`,
+  which also builds the plain-text part. Shared colours and fonts live in
+  `src/components/emails/blueprint.ts`.
+- The hatched header uses `/images/email/hatch.png` from the live site, so it
+  appears once that image is deployed. Clients that block images show plain
+  paper instead.
+- Replying to the notification goes straight to the sender, and replying to the
+  receipt goes to `EMAIL_TO`.
+- Only the notification is required: if it fails the form reports an error,
+  while a failed receipt is logged and the form still succeeds.
 
-You can preview the template at `/email-preview` while running the dev server.
+You can preview both emails at `/email-preview` while running the dev server.
 
 ## Troubleshooting
 

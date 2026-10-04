@@ -4,167 +4,260 @@ import {
   Body,
   Container,
   Section,
+  Row,
+  Column,
   Text,
   Heading,
-  Hr,
+  Link,
   Preview,
 } from "@react-email/components";
+import {
+  color,
+  font,
+  FONTS_HREF,
+  HATCH_URL,
+  sheetContent,
+  type ContactSubmission,
+  type SheetCell,
+  type SheetContent,
+} from "./blueprint";
 
-interface ContactEmailTemplateProps {
-  name: string;
-  email: string;
-  message: string;
+// The notification Grace receives when someone uses the contact form
+export default function ContactEmailTemplate(props: ContactSubmission) {
+  return <BlueprintSheet content={sheetContent("notification", props)} />;
 }
 
-export default function ContactEmailTemplate({
-  name,
-  email,
-  message,
-}: ContactEmailTemplateProps) {
+// The receipt sent back to the sender, with a copy of their message
+export function ConfirmationEmailTemplate(props: ContactSubmission) {
+  return <BlueprintSheet content={sheetContent("confirmation", props)} />;
+}
+
+// Shared layout, drawn like a sheet from the site: ruled panels, label tabs
+// and a title block
+function BlueprintSheet({ content: c }: { content: SheetContent }) {
   return (
-    <Html>
-      <Head />
-      <Preview>New contact form message from {name}</Preview>
-      <Body style={main}>
-        <Container style={container}>
-          {/* Header Section */}
-          <Section style={headerSection}>
-            <Heading style={title}>New Contact Form Message</Heading>
-            <Text style={subtitle}>
-              You have received a new message from asiimwenoble.com
-            </Text>
+    <Html lang="en">
+      <Head>
+        <link href={FONTS_HREF} rel="stylesheet" />
+      </Head>
+      <Preview>{c.preview}</Preview>
+      <Body style={body}>
+        <Container style={sheet}>
+          {/* Header: wordmark and sheet reference */}
+          <Section style={ruleBottom}>
+            <Row>
+              <Column style={{ ...cell, ...ruleRight }}>
+                <Text style={wordmark}>Grace Noble</Text>
+              </Column>
+              <Column style={{ ...cell, textAlign: "right" }}>
+                <Text style={label}>Contact form</Text>
+              </Column>
+            </Row>
           </Section>
 
-          {/* Content Section */}
-          <Section style={contentSection}>
-            {/* Sender Info */}
-            <Section style={senderSection}>
-              <Heading style={sectionTitle}>Contact Information</Heading>
-              <Text style={infoText}>
-                <strong>Name:</strong> {name}
-              </Text>
-              <Text style={infoText}>
-                <strong>Email:</strong> {email}
-              </Text>
+          {/* Hatched masthead with the headline */}
+          <Section style={masthead}>
+            <Text style={tab}>{c.sheetLabel}</Text>
+            <Heading as="h1" style={headline}>
+              {c.headline}
+            </Heading>
+          </Section>
+
+          {c.intro && (
+            <Section style={ruleTop}>
+              <Text style={introText}>{c.intro}</Text>
             </Section>
+          )}
 
-            <Hr style={divider} />
+          {/* Title block: who, how and when */}
+          {[c.titleBlock.slice(0, 2), c.titleBlock.slice(2)].map((row, r) => (
+            <Section key={r} style={ruleTop}>
+              <Row>
+                {row.map((cellData, i) => (
+                  <TitleCell key={cellData.label} {...cellData} first={i === 0} />
+                ))}
+              </Row>
+            </Section>
+          ))}
 
-            {/* Message Section */}
-            <Section style={messageSection}>
-              <Heading style={sectionTitle}>Message</Heading>
-              <Text style={messageText}>{message}</Text>
+          {/* The message itself */}
+          <Section style={ruleTop}>
+            <Text style={tabRow}>{c.messageLabel}</Text>
+            <Text style={messageText}>{c.message}</Text>
+            <Section style={{ padding: "0 28px 32px" }}>
+              <Link href={c.button.href} style={button}>
+                {c.button.label}
+              </Link>
             </Section>
           </Section>
 
-          {/* Footer Section */}
-          <Hr style={divider} />
-          <Section style={footerSection}>
-            <Text style={footerText}>
-              This email was sent from your portfolio contact form.
-            </Text>
-            <Text style={footerText}>
-              Reply directly to this email to respond to {name}.
-            </Text>
+          {/* Footer title block */}
+          <Section style={ruleTop}>
+            <Row>
+              <Column style={{ ...cell, ...ruleRight }}>
+                <Text style={label}>Drawn by</Text>
+                <Text style={value}>Grace Noble</Text>
+              </Column>
+              <Column style={{ ...cell, ...ruleRight }}>
+                <Text style={label}>Practice</Text>
+                <Text style={value}>Monarc Engineering</Text>
+              </Column>
+              <Column style={cell}>
+                <Text style={label}>Location</Text>
+                <Text style={value}>Kampala, Uganda</Text>
+              </Column>
+            </Row>
           </Section>
         </Container>
+        <Text style={note}>{c.note}</Text>
       </Body>
     </Html>
   );
 }
 
-// Styles that match your dark theme portfolio
-const main = {
-  backgroundColor: "#0a0a0a",
-  fontFamily: "system-ui, -apple-system, sans-serif",
-  color: "#ffffff",
-};
+const TitleCell = ({
+  label: cellLabel,
+  value: cellValue,
+  href,
+  first,
+}: SheetCell & { first: boolean }) => (
+  <Column style={{ ...cell, width: "50%", ...(first ? ruleRight : {}) }}>
+    <Text style={label}>{cellLabel}</Text>
+    {href ? (
+      <Link href={href} style={{ ...value, textDecoration: "underline" }}>
+        {cellValue}
+      </Link>
+    ) : (
+      <Text style={value}>{cellValue}</Text>
+    )}
+  </Column>
+);
 
-const container = {
-  margin: "0 auto",
-  padding: "40px 20px",
-  maxWidth: "600px",
-  backgroundColor: "#111111",
-  borderRadius: "16px",
-  border: "1px solid rgba(255, 255, 255, 0.1)",
-};
+const line = `1px solid ${color.line}`;
 
-const headerSection = {
-  textAlign: "center" as const,
-  marginBottom: "32px",
-};
-
-const title = {
-  fontSize: "32px",
-  fontWeight: "700",
-  color: "#ffffff",
-  margin: "0 0 8px 0",
-  lineHeight: "1.2",
-};
-
-const subtitle = {
-  fontSize: "16px",
-  color: "rgba(255, 255, 255, 0.7)",
+const body = {
+  backgroundColor: color.page,
   margin: "0",
-  lineHeight: "1.4",
+  padding: "32px 12px",
+  fontFamily: font.mono,
+  color: color.ink,
 };
 
-const contentSection = {
-  backgroundColor: "rgba(255, 255, 255, 0.02)",
-  borderRadius: "12px",
-  padding: "24px",
-  border: "1px solid rgba(255, 255, 255, 0.05)",
+const sheet = {
+  maxWidth: "600px",
+  margin: "0 auto",
+  backgroundColor: color.paper,
+  border: `1px solid ${color.lineStrong}`,
 };
 
-const senderSection = {
-  marginBottom: "24px",
+const ruleTop = { borderTop: line };
+const ruleBottom = { borderBottom: line };
+const ruleRight = { borderRight: line };
+
+const cell = {
+  padding: "14px 20px",
+  verticalAlign: "top" as const,
 };
 
-const messageSection = {
-  marginTop: "24px",
+const label = {
+  margin: "0",
+  fontFamily: font.mono,
+  fontSize: "10px",
+  lineHeight: "16px",
+  letterSpacing: "0.2em",
+  textTransform: "uppercase" as const,
+  color: color.faint,
 };
 
-const sectionTitle = {
-  fontSize: "20px",
+const value = {
+  margin: "2px 0 0",
+  fontFamily: font.mono,
+  fontSize: "13px",
+  lineHeight: "20px",
+  color: color.ink,
+};
+
+const wordmark = {
+  margin: "0",
+  fontFamily: font.title,
+  fontSize: "18px",
   fontWeight: "600",
-  color: "#ffffff",
-  margin: "0 0 16px 0",
-  lineHeight: "1.3",
+  color: color.ink,
 };
 
-const infoText = {
-  fontSize: "16px",
-  color: "rgba(255, 255, 255, 0.9)",
-  margin: "8px 0",
-  lineHeight: "1.5",
+const masthead = {
+  backgroundColor: color.paper,
+  backgroundImage: `url(${HATCH_URL})`,
+  backgroundRepeat: "repeat",
+};
+
+const tab = {
+  ...label,
+  display: "inline-block",
+  margin: "0",
+  padding: "10px 20px",
+  backgroundColor: color.paper,
+  borderRight: line,
+  borderBottom: line,
+  color: color.muted,
+};
+
+const tabRow = {
+  ...label,
+  margin: "0",
+  padding: "10px 20px",
+  borderBottom: line,
+  color: color.muted,
+};
+
+const headline = {
+  margin: "0",
+  padding: "40px 28px 44px",
+  fontFamily: font.title,
+  fontSize: "32px",
+  lineHeight: "36px",
+  fontWeight: "600",
+  letterSpacing: "-0.01em",
+  color: color.ink,
+};
+
+const introText = {
+  margin: "0",
+  padding: "24px 28px",
+  fontFamily: font.mono,
+  fontSize: "14px",
+  lineHeight: "24px",
+  color: color.text,
 };
 
 const messageText = {
-  fontSize: "16px",
-  color: "rgba(255, 255, 255, 0.9)",
-  lineHeight: "1.6",
   margin: "0",
-  whiteSpace: "pre-wrap" as const,
-  backgroundColor: "rgba(255, 255, 255, 0.03)",
-  padding: "16px",
-  borderRadius: "8px",
-  border: "1px solid rgba(255, 255, 255, 0.08)",
-};
-
-const divider = {
-  border: "none",
-  borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-  margin: "24px 0",
-};
-
-const footerSection = {
-  textAlign: "center" as const,
-  marginTop: "24px",
-};
-
-const footerText = {
+  padding: "28px 28px 28px",
+  fontFamily: font.mono,
   fontSize: "14px",
-  color: "rgba(255, 255, 255, 0.5)",
-  margin: "4px 0",
-  lineHeight: "1.4",
+  lineHeight: "24px",
+  color: color.text,
+  whiteSpace: "pre-wrap" as const,
+};
+
+const button = {
+  display: "inline-block",
+  padding: "14px 24px",
+  backgroundColor: color.ink,
+  color: color.paper,
+  fontFamily: font.mono,
+  fontSize: "12px",
+  letterSpacing: "0.18em",
+  textTransform: "uppercase" as const,
+  textDecoration: "none",
+};
+
+const note = {
+  maxWidth: "600px",
+  margin: "16px auto 0",
+  fontFamily: font.mono,
+  fontSize: "11px",
+  lineHeight: "16px",
+  color: color.faint,
+  textAlign: "center" as const,
 };

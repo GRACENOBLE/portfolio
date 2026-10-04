@@ -2,8 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { render } from "@react-email/render";
 import { z } from "zod";
-import ContactEmailTemplate from "@/components/emails/contact-email-template";
-import { createEmailHTML } from "@/utils/email-template";
+import ContactEmailTemplate, {
+  ConfirmationEmailTemplate,
+} from "@/components/emails/contact-email-template";
+import { sheetContent, type EmailKind } from "@/components/emails/blueprint";
+import { createEmailHTML, createEmailText } from "@/utils/email-template";
 
 // Mailjet's SMTP relay, as used across the Monarc projects
 const transporter = nodemailer.createTransport({
@@ -42,27 +45,50 @@ export async function POST(request: NextRequest) {
 
     const { name, email, message } = validatedData;
 
-    // Render the React Email template, falling back to the plain HTML one
-    let html: string;
-    let text: string | undefined;
-    try {
-      const template = ContactEmailTemplate({ name, email, message });
-      html = await render(template);
-      text = await render(template, { plainText: true });
-    } catch (renderError) {
-      console.warn("React Email failed, using HTML fallback:", renderError);
-      html = createEmailHTML({ name, email, message });
-    }
+    const submission = { name, email, message, receivedAt: new Date() };
 
-    const info = await transporter.sendMail({
-      from: EMAIL_FROM,
-      to: EMAIL_TO,
-      // Replying to the notification goes straight to the sender
-      replyTo: email,
-      subject: `New Contact Form Message from ${name}`,
-      html,
-      text,
-    });
+    // Render a React Email template, falling back to the plain HTML version
+    const renderEmail = async (kind: EmailKind) => {
+      const Template =
+        kind === "notification" ? ContactEmailTemplate : ConfirmationEmailTemplate;
+      try {
+        return await render(Template(submission));
+      } catch (renderError) {
+        console.warn(`React Email failed (${kind}), using HTML fallback:`, renderError);
+        return createEmailHTML(submission, kind);
+      }
+    };
+
+    const [notification, confirmation] = await Promise.allSettled([
+      // To Grace. Replying goes straight to the sender
+      transporter.sendMail({
+        from: EMAIL_FROM,
+        to: EMAIL_TO,
+        replyTo: email,
+        subject: sheetContent("notification", submission).subject,
+        html: await renderEmail("notification"),
+        text: createEmailText(submission, "notification"),
+      }),
+      // Receipt to the sender with a copy of their message. Replying reaches
+      // Grace rather than the sending address
+      transporter.sendMail({
+        from: EMAIL_FROM,
+        to: email,
+        replyTo: EMAIL_TO,
+        subject: sheetContent("confirmation", submission).subject,
+        html: await renderEmail("confirmation"),
+        text: createEmailText(submission, "confirmation"),
+      }),
+    ]);
+
+    // The receipt is a courtesy, so only a failed notification fails the request
+    if (confirmation.status === "rejected") {
+      console.error("Confirmation email failed:", confirmation.reason);
+    }
+    if (notification.status === "rejected") {
+      throw notification.reason;
+    }
+    const info = notification.value;
 
     return NextResponse.json(
       { message: "Email sent successfully", data: { id: info.messageId } },
