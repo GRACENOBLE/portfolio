@@ -1,5 +1,5 @@
 import { type MetadataRoute } from "next";
-import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 
 type SitemapItem = {
   url: string;
@@ -55,27 +55,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
 
-    // Studio (Sanity CMS) - lower priority, mainly for admin
-    {
-      url: `${baseUrl}/studio`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.1,
-    },
   ];
 
   // Fetch dynamic routes from Sanity CMS
   try {
     // Individual project pages - these are key for SEO and showcasing work
-    const projectsResult = await sanityFetch({
-      query: `*[_type == "project"] {
-        "slug": slug.current,
-        _updatedAt,
-        featured
-      }`,
-    });
-
-    const projects = projectsResult.data;
+    // Plain client rather than sanityFetch, which needs a request to run
+    const projects = await client.fetch(`*[_type == "project"] {
+      "slug": slug.current,
+      _updatedAt,
+      featured
+    }`);
 
     const projectRoutes = projects.map(
       (project: { slug: string; _updatedAt: string; featured: boolean }) => ({

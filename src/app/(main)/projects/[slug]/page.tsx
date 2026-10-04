@@ -8,6 +8,7 @@ import Container from "@/components/common/container";
 import H2 from "@/components/common/heading-two";
 import { Button } from "@/components/ui/button";
 import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import { GetProjectBySlugData } from "@/lib/queries/get-project-by-slug";
 import { GetAllProjectsData } from "@/lib/queries/get-all-projects";
 import { Project } from "@/types/project";
@@ -19,11 +20,11 @@ interface ProjectPageProps {
   }>;
 }
 
-// Generate static params for all projects
+// Generate static params for all projects. This runs at build time with no
+// request, so it uses the plain client: sanityFetch needs draftMode().
 export async function generateStaticParams() {
   try {
-    const result = await sanityFetch({ query: GetAllProjectsData });
-    const projects: Project[] = result.data;
+    const projects: Project[] = await client.fetch(GetAllProjectsData);
 
     return projects.map((project) => ({
       slug: project.slug.current,
