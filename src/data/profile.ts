@@ -1,6 +1,7 @@
 // Content for the homepage. Edit here to update the site.
 
 export const MONARC_URL = "https://monarcengineering.com";
+export const MONARC_PORTFOLIO_URL = "https://www.monarcengineering.com/portfolio";
 export const MONARC_EMAIL = "info@monarcengineering.com";
 
 export const about = {
@@ -22,6 +23,7 @@ export const monarc = {
     {
       name: "Blaze",
       image: "/images/monarc/ventures/blaze.webp",
+      url: "https://blazedeliveries.com",
       sector: "Logistics",
       description:
         "Fleet management and route optimisation for delivery operations: automated dispatch, multi-stop routing, live driver tracking and proof of delivery.",
@@ -29,6 +31,7 @@ export const monarc = {
     {
       name: "Gigz",
       image: "/images/monarc/ventures/gigz.webp",
+      url: "https://thegigzapp.com",
       sector: "Human Resource",
       description:
         "HR management and recruitment in one platform. Source, hire and onboard staff, then manage records, leave and performance from a single system.",
@@ -36,6 +39,7 @@ export const monarc = {
     {
       name: "Zones",
       image: "/images/monarc/ventures/zones.webp",
+      url: MONARC_PORTFOLIO_URL,
       sector: "Real Estate",
       description:
         "Blockchain-backed land and property management with precision GIS mapping. Verifiable ownership, transacted without intermediaries.",
@@ -43,6 +47,7 @@ export const monarc = {
     {
       name: "Beta",
       image: "/images/monarc/ventures/beta.webp",
+      url: MONARC_PORTFOLIO_URL,
       sector: "Fintech",
       description:
         "A peer-to-peer prediction market where users create and trade positions on any real-world outcome.",
@@ -50,6 +55,7 @@ export const monarc = {
     {
       name: "Occurances",
       image: "/images/monarc/ventures/occurances.webp",
+      url: "https://occurances.com",
       sector: "Media",
       description:
         "Clean, distraction-free content across the topics that matter, delivered straight to your devices.",
@@ -101,6 +107,7 @@ export const monarc = {
 
 export const alsoLeading = {
   name: "Amplified Access",
+  url: "https://amplifiedaccess.org",
   role: "Engineering Manager",
   description:
     "Leading the engineering team on AI research into Natural Language Processing and how it can give communities more agency.",
@@ -108,6 +115,7 @@ export const alsoLeading = {
     {
       name: "Watchtower",
       image: "/images/amplified-access/watchtower.webp",
+      url: "https://thewatchtower.tech",
       sector: "Civic Tech",
       description:
         "Incident monitoring and reporting for civil society organisations: structured reports, real-time alerts, geolocated incident maps and AI-assisted analysis, in 10 languages.",
@@ -115,6 +123,7 @@ export const alsoLeading = {
     {
       name: "CommonMind",
       image: "/images/amplified-access/common-mind.webp",
+      url: "https://common-mind.amplifiedaccess.org",
       sector: "AI Research",
       description:
         "Open AI infrastructure for civic speech. Models, corpora, benchmarks and tools for understanding public discourse in languages beyond the mainstream.",
@@ -122,6 +131,7 @@ export const alsoLeading = {
     {
       name: "The Action Challenge",
       image: "/images/amplified-access/action-challenge.webp",
+      url: "https://action-challenge.amplifiedaccess.org",
       sector: "Community",
       description:
         "Turns ideas into practical community action. Spot something that could be better, plan a fix, act on it and share the story to inspire others.",

@@ -8,6 +8,7 @@ type Project = {
   image: string;
   sector: string;
   description: string;
+  url?: string;
 };
 
 // Cells draw their own right and bottom rules and the grid draws the left
@@ -16,27 +17,69 @@ const cellGrid =
   "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-l border-line";
 const cell = "border-r border-b border-line bg-paper flex flex-col";
 
-const ProjectCard = ({ project }: { project: Project }) => (
-  <div className={`group ${cell}`}>
-    <Tab>{project.sector}</Tab>
-    <div className="p-3">
-      <div className="relative aspect-[16/10] overflow-hidden">
-        <Image
-          src={project.image}
-          alt=""
-          fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover group-hover:scale-[1.03] transition-transform ease-in-out duration-500"
+const ProjectCard = ({ project }: { project: Project }) => {
+  const content = (
+    <>
+      <Tab>{project.sector}</Tab>
+      {project.url && (
+        <ArrowUpRight
+          aria-hidden="true"
+          size={16}
+          strokeWidth={1.5}
+          className="absolute top-2.5 right-3 text-ink/50 group-hover:text-ink group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
         />
+      )}
+      <div className="p-3">
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <Image
+            src={project.image}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover group-hover:scale-[1.03] transition-transform ease-in-out duration-500"
+          />
+        </div>
       </div>
-    </div>
-    <div className="px-5 pb-6 pt-2">
-      <h4 className="sr-only">{project.name}</h4>
-      <p className="text-sm text-ink/65 leading-relaxed">
-        {project.description}
-      </p>
-    </div>
-  </div>
+      <div className="px-5 pb-6 pt-2">
+        <h4 className="sr-only">{project.name}</h4>
+        <p className="text-sm text-ink/65 leading-relaxed">
+          {project.description}
+        </p>
+        {project.url && <span className="sr-only">(opens in a new tab)</span>}
+      </div>
+    </>
+  );
+
+  if (!project.url) {
+    return <div className={`group relative ${cell}`}>{content}</div>;
+  }
+
+  return (
+    <a
+      href={project.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group relative ${cell} hover:bg-ink/[0.03] transition-colors`}
+    >
+      {content}
+    </a>
+  );
+};
+
+const VisitLink = ({ href, label }: { href: string; label: string }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-2 group w-fit shrink-0 border border-ink bg-paper px-4 h-11 text-xs uppercase tracking-[0.18em] hover:bg-ink hover:text-paper transition-colors"
+  >
+    <span>{label}</span>
+    <ArrowUpRight
+      size={16}
+      strokeWidth={1.5}
+      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform ease-in-out duration-300"
+    />
+  </a>
 );
 
 // Hatched header panel that opens each organisation's block
@@ -67,19 +110,7 @@ const BuildingSection = () => {
             </h3>
             <p className="font-title text-lg text-ink/75">{monarc.tagline}</p>
           </div>
-          <a
-            href={MONARC_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 group w-fit shrink-0 border border-ink bg-paper px-4 h-11 text-xs uppercase tracking-[0.18em] hover:bg-ink hover:text-paper transition-colors"
-          >
-            <span>Visit Monarc</span>
-            <ArrowUpRight
-              size={16}
-              strokeWidth={1.5}
-              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform ease-in-out duration-300"
-            />
-          </a>
+          <VisitLink href={MONARC_URL} label="Visit Monarc" />
         </Masthead>
 
         <div className={cellGrid}>
@@ -148,6 +179,7 @@ const BuildingSection = () => {
               {alsoLeading.description}
             </p>
           </div>
+          <VisitLink href={alsoLeading.url} label="Visit Amplified Access" />
         </Masthead>
         <div className={cellGrid}>
           {alsoLeading.projects.map((project) => (
