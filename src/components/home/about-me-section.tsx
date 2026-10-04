@@ -31,7 +31,7 @@ const AboutMe = () => {
             <span className="h-3 w-px bg-line-strong" />
           </figcaption>
         </figure>
-        <div className="flex flex-col gap-6 text-ink/75 max-w-xl">
+        <div className="flex flex-col gap-6 text-ink/75 max-w-xl px-4 md:px-0">
           {about.paragraphs.map((paragraph, key) => (
             <p key={key}>{paragraph}</p>
           ))}
