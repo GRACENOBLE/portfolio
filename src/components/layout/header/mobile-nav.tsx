@@ -1,13 +1,12 @@
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import Image from "next/image";
+import { LogoMark } from "@/components/blueprint/logo-mark";
 import Link from "next/link";
 import { IoIosMenu } from "react-icons/io";
 import { handleMobileAnchorClick } from "@/lib/scroll-utils";
@@ -33,31 +32,28 @@ const MobileNavigation = () => {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    handleMobileAnchorClick(e, href, 120, () => setIsOpen(false), lenis);
+    handleMobileAnchorClick(e, href, 64, () => setIsOpen(false), lenis);
   };
 
   return (
-    <div className="h-fit lg:hidden">
+    <div className="flex lg:hidden">
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetTrigger className="grid place-items-center pb-0 mb-0 mr-2 border-none outline-none">
-          <IoIosMenu className="text-3xl" />
+        <SheetTrigger
+          aria-label="Open menu"
+          className="grid size-10 place-items-center border border-line outline-none cursor-pointer"
+        >
+          <IoIosMenu className="text-2xl" />
         </SheetTrigger>
-        <SheetContent className="bg-muted border-none outline-none">
+        <SheetContent className="bg-paper border-l border-line outline-none text-ink">
           <SheetHeader className="">
             <Link
               href={"/"}
-              className="flex items-center gap-[9] mt-3 font-title"
+              className="flex items-center gap-3 mt-3 font-title"
             >
-              <Image
-                src={"/images/logo/icon.png"}
-                alt={""}
-                width={300}
-                height={300}
-                className="h-8 object-contain w-fit"
-              />
+              <LogoMark className="size-8" />
               <span className="text-xl">Grace Noble</span>
             </Link>
-            <SheetTitle></SheetTitle>
+            <SheetTitle className="sr-only">Menu</SheetTitle>
             <SheetDescription className="pb-4 pt-6">
               <span className="italic">
                 "Software is like entropy: it is difficult to grasp, weighs
@@ -65,19 +61,22 @@ const MobileNavigation = () => {
               </span>{" "}
               — Norman Augustine
             </SheetDescription>
-            <div className="flex flex-col gap-4 mt-6">
+            <div className="flex flex-col mt-6 border-t border-line">
               {[
                 { href: "#about-me", label: "About" },
                 { href: "#building", label: "Building" },
                 { href: "#journey", label: "Journey" },
                 { href: "#connect", label: "Connect" },
-              ].map((item) => (
+              ].map((item, idx) => (
                 <Link
                   key={item.href}
-                  className="bg-muted-foreground/40 py-4 text-center px-4 rounded-lg"
+                  className="flex items-center gap-4 border-b border-line bg-paper/70 px-4 py-4 text-xs uppercase tracking-[0.2em]"
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
                 >
+                  <span className="text-ink/50">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
                   {item.label}
                 </Link>
               ))}

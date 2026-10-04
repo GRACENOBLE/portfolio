@@ -30,13 +30,13 @@ const ProjectShowcaseCard = ({
       <div className="flex px-8  pt-4 md:pt-8 pb-8 flex-col justify-end transition-all ease-in-out duration-300 unselectable bg-gradient-to-t">
         <div>
           <H3 className="pb-4 text-base font-medium">{title}</H3>
-          <p className="text-sm text-white/60">{description}</p>
+          <p className="text-sm text-ink/60">{description}</p>
         </div>
         {/* <div className="flex gap-2">
-          <span className="bg-white text-black px-4 py-1 rounded-full">
+          <span className="bg-ink text-paper px-4 py-1 rounded-full">
             RBAC
           </span>
-          <span className="bg-background text-black px-4 py-1 rounded-full">
+          <span className="bg-background text-paper px-4 py-1 rounded-full">
             TRPC
           </span>
         </div> */}

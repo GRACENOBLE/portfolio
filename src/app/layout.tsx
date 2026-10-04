@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Outfit, Funnel_Display, Oxanium, DM_Mono } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const dmMono = DM_Mono({
   variable: "--font-noble-mono",
@@ -32,15 +33,22 @@ export default function RootLayout({
 }>) {
   const gaID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || "";
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${funnelDisplay.variable} ${dmMono.variable} antialiased bg-noble-background font-body text-white`}
+        className={`${funnelDisplay.variable} ${dmMono.variable} antialiased bg-background font-body text-foreground`}
       >
-        <SmoothScroll>
-          <main className="">{children}</main>
-        </SmoothScroll>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SmoothScroll>
+            <main className="">{children}</main>
+          </SmoothScroll>
+          <Toaster />
+        </ThemeProvider>
         <GoogleAnalytics gaId={gaID} />
-        <Toaster />
       </body>
     </html>
   );

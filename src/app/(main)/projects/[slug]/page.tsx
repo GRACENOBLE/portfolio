@@ -109,7 +109,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 
   if (error) {
     return (
-      <div className="bg-black min-h-screen pt-20">
+      <div className="min-h-screen pt-20">
         <Container size="lg">
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
             <strong>Error fetching project:</strong> {error}
@@ -124,16 +124,13 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
   }
 
   return (
-    <div className="bg-black min-h-screen pt-20">
+    <div className="min-h-screen pt-20">
       <section className="pt-20 pb-32">
         <Container size="lg">
           {/* Back Navigation */}
           <div className="mb-8">
             <Link href="/all-projects">
-              <Button
-                variant="outline"
-                className="text-white border-white/20 hover:bg-white/10"
-              >
+              <Button variant="outline">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Projects
               </Button>
@@ -143,7 +140,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
           {/* Project Header */}
           <div className="mb-12">
             <H2 className="mb-4">{project.name}</H2>
-            <p className="text-white/80 text-lg leading-relaxed mb-6">
+            <p className="text-ink/80 text-lg leading-relaxed mb-6">
               {project.description}
             </p>
 
@@ -155,7 +152,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button className="bg-white text-black hover:bg-white/90">
+                  <Button>
                     <ExternalLink className="w-4 h-4 mr-2" />
                     View Live Project
                   </Button>
@@ -167,10 +164,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button
-                    variant="outline"
-                    className="text-white border-white/20 hover:bg-white/10"
-                  >
+                  <Button variant="outline">
                     <Github className="w-4 h-4 mr-2" />
                     View Source Code
                   </Button>
@@ -182,14 +176,14 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
             <div className="space-y-4">
               {project.tags && project.tags.length > 0 && (
                 <div>
-                  <h3 className="text-white/60 text-sm font-medium mb-2">
+                  <h3 className="text-ink/60 text-sm font-medium mb-2">
                     Categories
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="bg-white/10 text-white px-3 py-1 rounded-full text-sm"
+                        className="bg-ink/10 text-ink px-3 py-1 rounded-full text-sm"
                       >
                         {tag}
                       </span>
@@ -200,14 +194,14 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 
               {project.technologies && project.technologies.length > 0 && (
                 <div>
-                  <h3 className="text-white/60 text-sm font-medium mb-2">
+                  <h3 className="text-ink/60 text-sm font-medium mb-2">
                     Technologies
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, index) => (
                       <span
                         key={index}
-                        className="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm"
+                        className="bg-ink/10 text-ink px-3 py-1 rounded-full text-sm"
                       >
                         {tech}
                       </span>
@@ -248,7 +242,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
           {/* Project Gallery */}
           {project.gallery && project.gallery.length > 0 && (
             <div className="mb-12">
-              <h3 className="text-white text-2xl font-semibold mb-6">
+              <h3 className="text-ink text-2xl font-semibold mb-6">
                 Project Gallery
               </h3>
               <div className="grid md:grid-cols-2 gap-6">
@@ -263,7 +257,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
                       />
                     </div>
                     {image.caption && (
-                      <p className="text-white/60 text-sm text-center">
+                      <p className="text-ink/60 text-sm text-center">
                         {image.caption}
                       </p>
                     )}
@@ -276,10 +270,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
           {/* Related Projects or Call to Action */}
           <div className="text-center">
             <Link href="/all-projects">
-              <Button
-                variant="outline"
-                className="text-white border-white/20 hover:bg-white/10"
-              >
+              <Button variant="outline">
                 View All Projects
               </Button>
             </Link>

@@ -43,7 +43,7 @@ const page = async () => {
   }
 
   return (
-    <div className="bg-black min-h-screen pt-20">
+    <div className="min-h-screen pt-20">
       <section className="pt-20 pb-32">
         <Container size="lg">
           <H2>All projects</H2>
@@ -65,7 +65,7 @@ const page = async () => {
             ))}
           </div>
           {projects.length === 0 && !error && (
-            <p className="text-white/60 text-center py-8">
+            <p className="text-ink/60 text-center py-8">
               No projects found. Create some projects in your Sanity Studio!
             </p>
           )}

@@ -1,43 +1,47 @@
-import Container from "../common/container";
-import H2 from "../common/heading-two";
 import { journey } from "@/data/profile";
+import { CornerMarks, Section, Tab } from "../blueprint";
 
+// Laid out like the revision table on a drawing: latest revision first
 const JourneySection = () => {
   return (
-    <section id="journey" className="pb-28 md:pb-40">
-      <Container size="sm">
-        <H2 className="text-center pb-12">The journey so far</H2>
-        <div className="border border-white/20 rounded-[24px] p-2">
-          <ol className="bg-muted rounded-2xl px-8 py-10 md:px-12 md:py-14">
-            {journey.map((item, idx) => (
-              <li
-                key={`${item.org}-${item.role}`}
-                className="relative pl-8 pb-10 last:pb-0"
-              >
-                {idx < journey.length - 1 && (
-                  <span className="absolute left-[5px] top-3 bottom-0 w-px bg-white/20" />
-                )}
-                <span className="absolute left-0 top-1.5 size-[11px] rounded-full border border-white/60 bg-black" />
-                <div className="flex flex-col md:flex-row md:justify-between md:gap-8 gap-1">
-                  <div>
-                    <h4 className="font-title text-lg font-semibold">
-                      {item.role}
-                    </h4>
-                    <p className="text-white/70">{item.org}</p>
-                    {item.note && (
-                      <p className="text-sm text-white/50 mt-1">{item.note}</p>
-                    )}
-                  </div>
-                  <span className="text-sm text-white/50 shrink-0 md:pt-1">
-                    {item.period}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ol>
+    <Section id="journey" title="The journey so far">
+      <div className="relative border border-line bg-paper">
+        <CornerMarks />
+        <Tab>Revision history</Tab>
+        <div
+          aria-hidden="true"
+          className="hidden md:grid grid-cols-[5rem_12rem_1fr] border-b border-line text-[10px] uppercase tracking-[0.2em] text-ink/50"
+        >
+          <span className="px-5 py-3">Rev</span>
+          <span className="px-5 py-3 border-l border-line">Period</span>
+          <span className="px-5 py-3 border-l border-line">Description</span>
         </div>
-      </Container>
-    </section>
+        <ol>
+          {journey.map((item, idx) => (
+            <li
+              key={`${item.org}-${item.role}`}
+              className="grid grid-cols-[4rem_1fr] md:grid-cols-[5rem_12rem_1fr] border-b border-line last:border-b-0"
+            >
+              <span className="px-5 py-5 text-sm text-ink/60 md:row-auto row-span-2">
+                R{String(journey.length - idx).padStart(2, "0")}
+              </span>
+              <span className="px-5 pt-5 md:py-5 border-l border-line text-xs uppercase tracking-[0.12em] text-ink/60">
+                {item.period}
+              </span>
+              <div className="px-5 pb-5 pt-2 md:py-5 border-l border-line">
+                <h4 className="font-title text-lg font-semibold">
+                  {item.role}
+                </h4>
+                <p className="text-ink/75">{item.org}</p>
+                {item.note && (
+                  <p className="text-sm text-ink/55 mt-1">{item.note}</p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </Section>
   );
 };
 

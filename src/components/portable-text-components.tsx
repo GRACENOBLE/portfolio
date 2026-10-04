@@ -13,7 +13,7 @@ export const portableTextComponents: PortableTextComponents = {
             className="object-cover"
           />
           {value.caption && (
-            <p className="text-white/60 text-sm text-center mt-2">
+            <p className="text-ink/60 text-sm text-center mt-2">
               {value.caption}
             </p>
           )}
@@ -23,16 +23,16 @@ export const portableTextComponents: PortableTextComponents = {
   },
   block: {
     h2: ({ children }) => (
-      <h2 className="text-2xl font-bold text-white mb-4 mt-8">{children}</h2>
+      <h2 className="text-2xl font-bold text-ink mb-4 mt-8">{children}</h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-xl font-semibold text-white mb-3 mt-6">{children}</h3>
+      <h3 className="text-xl font-semibold text-ink mb-3 mt-6">{children}</h3>
     ),
     normal: ({ children }) => (
-      <p className="text-white/80 mb-4 leading-relaxed">{children}</p>
+      <p className="text-ink/80 mb-4 leading-relaxed">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-accent pl-4 italic text-white/70 my-6">
+      <blockquote className="border-l-4 border-ink pl-4 italic text-ink/70 my-6">
         {children}
       </blockquote>
     ),
@@ -43,28 +43,28 @@ export const portableTextComponents: PortableTextComponents = {
         href={value.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-accent hover:underline"
+        className="text-ink hover:underline"
       >
         {children}
       </a>
     ),
     strong: ({ children }) => (
-      <strong className="font-semibold text-white">{children}</strong>
+      <strong className="font-semibold text-ink">{children}</strong>
     ),
     code: ({ children }) => (
-      <code className="bg-white/10 px-2 py-1 rounded text-sm font-mono">
+      <code className="bg-ink/10 px-2 py-1 rounded text-sm font-mono">
         {children}
       </code>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside space-y-2 mb-4 text-white/80">
+      <ul className="list-disc list-inside space-y-2 mb-4 text-ink/80">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside space-y-2 mb-4 text-white/80">
+      <ol className="list-decimal list-inside space-y-2 mb-4 text-ink/80">
         {children}
       </ol>
     ),
