@@ -12,8 +12,10 @@ import { GetProjectBySlugData } from "@/lib/queries/get-project-by-slug";
 import { GetAllProjectsData } from "@/lib/queries/get-all-projects";
 import { Project } from "@/types/project";
 import { portableTextComponents } from "@/components/portable-text-components";
+import { JsonLd } from "@/components/json-ld";
 import { openGraphDefaults, twitterDefaults } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
+import { projectGraph } from "@/lib/structured-data";
 
 interface ProjectPageProps {
   params: Promise<{
@@ -118,6 +120,7 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 
   return (
     <div className="min-h-screen pt-20">
+      <JsonLd data={projectGraph(project)} />
       <section className="pt-20 pb-32">
         <Container size="lg">
           {/* Back Navigation */}

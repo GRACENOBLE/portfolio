@@ -4,8 +4,10 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { GetAllProjectsData } from "@/lib/queries/get-all-projects";
 import { Project } from "@/types/project";
 import { Metadata } from "next";
+import { JsonLd } from "@/components/json-ld";
 import { openGraphDefaults, twitterDefaults } from "@/lib/metadata";
 import { SITE } from "@/lib/site";
+import { projectsGraph } from "@/lib/structured-data";
 
 const description = `Software projects built by ${SITE.name}, the founder of Monarc Engineering, from product platforms to client systems.`;
 
@@ -38,6 +40,7 @@ const page = async () => {
 
   return (
     <div className="min-h-screen pt-20">
+      <JsonLd data={projectsGraph(projects)} />
       <section className="pt-20 pb-32">
         <Container size="lg">
           <h1 className="font-title text-4xl font-semibold pb-8">

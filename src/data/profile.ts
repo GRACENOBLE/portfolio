@@ -1,6 +1,6 @@
 // Content for the homepage. Edit here to update the site.
 
-export const MONARC_URL = "https://monarcengineering.com";
+export const MONARC_URL = "https://www.monarcengineering.com";
 export const MONARC_PORTFOLIO_URL = "https://www.monarcengineering.com/portfolio";
 export const MONARC_EMAIL = "info@monarcengineering.com";
 
