@@ -99,10 +99,6 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
       params: { slug },
     });
     project = result.data as Project | null;
-
-    if (!project) {
-      notFound();
-    }
   } catch (err) {
     error = err instanceof Error ? err.message : String(err);
     console.error("Error fetching project:", err);
