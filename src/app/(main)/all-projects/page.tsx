@@ -1,31 +1,25 @@
 import Container from "@/components/common/container";
-import H2 from "@/components/common/heading-two";
 import ProjectShowcaseCard from "@/components/project-showcase-card";
 import { sanityFetch } from "@/sanity/lib/live";
 import { GetAllProjectsData } from "@/lib/queries/get-all-projects";
 import { Project } from "@/types/project";
 import { Metadata } from "next";
+import { openGraphDefaults, twitterDefaults } from "@/lib/metadata";
+import { SITE } from "@/lib/site";
+
+const description = `Software projects built by ${SITE.name}, the founder of Monarc Engineering, from product platforms to client systems.`;
 
 export const metadata: Metadata = {
-  title: "My project showcase - Asiimwe Grace Noble",
-  description:
-    "View my comprehensive portfolio of projects. Discover work in front-end development, back-end development, and more.",
-  alternates: {
-    canonical: "https://asiimwenoble.com/all-projects",
-  },
+  title: "Projects",
+  description,
+  alternates: { canonical: "/all-projects" },
   openGraph: {
-    title: "My project showcase - Asiimwe Grace Noble",
-    description:
-      "View my comprehensive portfolio of projects. Discover work in front-end development, back-end development, and more.",
-    url: "https://asiimwenoble.com/all-projects",
-    type: "website",
+    ...openGraphDefaults,
+    title: `Projects | ${SITE.name}`,
+    description,
+    url: "/all-projects",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "My project showcase - Asiimwe Grace Noble",
-    description:
-      "View my comprehensive portfolio of projects. Discover work in front-end development, back-end development, and more.",
-  },
+  twitter: { ...twitterDefaults, title: `Projects | ${SITE.name}`, description },
 };
 
 const page = async () => {
@@ -46,7 +40,9 @@ const page = async () => {
     <div className="min-h-screen pt-20">
       <section className="pt-20 pb-32">
         <Container size="lg">
-          <H2>All projects</H2>
+          <h1 className="font-title text-4xl font-semibold pb-8">
+            All projects
+          </h1>
           {error && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
               <strong>Error fetching projects:</strong> {error}

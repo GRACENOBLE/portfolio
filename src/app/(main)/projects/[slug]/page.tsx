@@ -5,7 +5,6 @@ import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import { PortableText } from "@portabletext/react";
 
 import Container from "@/components/common/container";
-import H2 from "@/components/common/heading-two";
 import { Button } from "@/components/ui/button";
 import { sanityFetch } from "@/sanity/lib/live";
 import { client } from "@/sanity/lib/client";
@@ -13,6 +12,8 @@ import { GetProjectBySlugData } from "@/lib/queries/get-project-by-slug";
 import { GetAllProjectsData } from "@/lib/queries/get-all-projects";
 import { Project } from "@/types/project";
 import { portableTextComponents } from "@/components/portable-text-components";
+import { openGraphDefaults, twitterDefaults } from "@/lib/metadata";
+import { SITE } from "@/lib/site";
 
 interface ProjectPageProps {
   params: Promise<{
@@ -52,33 +53,28 @@ export async function generateMetadata({ params }: ProjectPageProps) {
       };
     }
 
+    const url = `/projects/${slug}`;
+    const images = project.image?.url
+      ? [{ url: project.image.url, alt: project.image.alt || project.name }]
+      : undefined;
+
     return {
-      title: `${project.name} - Project Details | Asiimwe Grace Noble`,
-      description: `Project ${project.name}, ${project.description} by Asiimwe Grace Noble`,
-      alternates: {
-        canonical: `https://asiimwenoble.com/projects/${slug}`,
-      },
+      title: project.name,
+      description: project.description,
+      alternates: { canonical: url },
       openGraph: {
-        title: project.name,
+        ...openGraphDefaults,
+        type: "article",
+        title: `${project.name} | ${SITE.name}`,
         description: project.description,
-        url: `https://asiimwenoble.com/projects/${slug}`,
-        type: "website",
-        images: project.image?.url
-          ? [
-              {
-                url: project.image.url,
-                width: 1200,
-                height: 630,
-                alt: project.name,
-              },
-            ]
-          : [],
+        url,
+        ...(images && { images }),
       },
       twitter: {
-        card: "summary_large_image",
-        title: project.name,
+        ...twitterDefaults,
+        title: `${project.name} | ${SITE.name}`,
         description: project.description,
-        images: project.image?.url ? [project.image.url] : [],
+        ...(images && { images: images.map((i) => i.url) }),
       },
     };
   } catch (error) {
@@ -136,7 +132,9 @@ const ProjectPage = async ({ params }: ProjectPageProps) => {
 
           {/* Project Header */}
           <div className="mb-12">
-            <H2 className="mb-4">{project.name}</H2>
+            <h1 className="font-title text-4xl font-semibold pb-8 mb-4">
+              {project.name}
+            </h1>
             <p className="text-ink/80 text-lg leading-relaxed mb-6">
               {project.description}
             </p>
