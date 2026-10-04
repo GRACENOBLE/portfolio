@@ -1,0 +1,61 @@
+<!doctype html>
+<!--
+  Source for src/app/opengraph-image.png and twitter-image.png (1200x630).
+  Edit, then regenerate from the repo root:
+
+    chromium --headless=new --hide-scrollbars --allow-file-access-from-files \
+      --virtual-time-budget=6000 --window-size=1200,630 \
+      --screenshot=src/app/opengraph-image.png "file://$PWD/scripts/og-image.html"
+    cp src/app/opengraph-image.png src/app/twitter-image.png
+-->
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Funnel+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --paper:#f4f4f4; --ink:#141414; --line:#cbcbcb; --strong:#8a8a8a; --hatch:#e0e0e0; }
+  body { width:1200px; height:630px; background:var(--paper); font-family:'DM Mono',monospace; color:var(--ink); position:relative; overflow:hidden; }
+  /* page guides */
+  .guide { position:absolute; top:0; bottom:0; width:1px; background:var(--line); }
+  .rule { position:absolute; left:0; right:0; height:1px; background:var(--line); }
+  .sheet { position:absolute; left:64px; right:64px; top:64px; bottom:64px; border:1px solid var(--strong); background:var(--paper); display:flex; flex-direction:column; }
+  .mark { position:absolute; background:var(--strong); }
+  .head { display:flex; border-bottom:1px solid var(--line); height:72px; }
+  .head .brand { display:flex; align-items:center; gap:14px; padding:0 24px; border-right:1px solid var(--line); font-family:'Funnel Display',sans-serif; font-size:26px; font-weight:600; }
+  .logo { width:38px; height:38px; background:var(--ink); -webkit-mask:url(../public/images/logo/icon.png) center/contain no-repeat; }
+  .head .ref { margin-left:auto; display:flex; align-items:center; padding:0 24px; border-left:1px solid var(--line); font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:#6b6b6b; }
+  .body { flex:1; position:relative; background-image:repeating-linear-gradient(-45deg, var(--hatch) 0 1px, transparent 1px 13px); }
+  .tab { display:inline-flex; align-items:stretch; height:40px; background:var(--paper); border-bottom:1px solid var(--line); border-right:1px solid var(--line); }
+  .tab span { display:flex; align-items:center; padding:0 22px; font-size:14px; letter-spacing:.2em; text-transform:uppercase; color:#6b6b6b; }
+  h1 { position:absolute; left:48px; top:78px; font-family:'Funnel Display',sans-serif; font-weight:600; font-size:104px; line-height:.95; letter-spacing:-.02em; }
+  .roles { position:absolute; left:48px; top:206px; border-left:3px solid var(--ink); padding:4px 0 4px 20px; background:rgba(244,244,244,.85); font-size:24px; line-height:1.55; color:#3d3d3d; }
+  .block { display:flex; border-top:1px solid var(--line); background:var(--paper); }
+  .cell { flex:1; padding:14px 22px; border-left:1px solid var(--line); }
+  .cell:first-child { border-left:none; }
+  .cell b { display:block; font-weight:400; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#8a8a8a; }
+  .cell i { display:block; font-style:normal; font-size:18px; margin-top:4px; }
+</style></head>
+<body>
+  <div class="guide" style="left:64px"></div><div class="guide" style="right:64px"></div>
+  <div class="rule" style="top:64px"></div><div class="rule" style="bottom:64px"></div>
+  <!-- corner overshoot marks -->
+  <div class="mark" style="left:44px;top:63px;width:16px;height:1px"></div><div class="mark" style="left:63px;top:44px;width:1px;height:16px"></div>
+  <div class="mark" style="right:44px;top:63px;width:16px;height:1px"></div><div class="mark" style="right:63px;top:44px;width:1px;height:16px"></div>
+  <div class="mark" style="left:44px;bottom:63px;width:16px;height:1px"></div><div class="mark" style="left:63px;bottom:44px;width:1px;height:16px"></div>
+  <div class="mark" style="right:44px;bottom:63px;width:16px;height:1px"></div><div class="mark" style="right:63px;bottom:44px;width:1px;height:16px"></div>
+  <div class="sheet">
+    <div class="head">
+      <div class="brand"><div class="logo"></div>Grace Noble</div>
+      <div class="ref">asiimwenoble.com</div>
+    </div>
+    <div class="body">
+      <div class="tab"><span>Sheet 00 · General arrangement</span></div>
+      <h1>Grace Noble</h1>
+      <div class="roles">Founder &amp; CEO, Monarc Engineering<br>Engineering Manager, Amplified Access</div>
+    </div>
+    <div class="block">
+      <div class="cell"><b>Drawn by</b><i>Grace Noble</i></div>
+      <div class="cell"><b>Location</b><i>Kampala, Uganda</i></div>
+      <div class="cell" style="flex:1.5"><b>Building</b><i>Software for the physical world</i></div>
+    </div>
+  </div>
+</body></html>
