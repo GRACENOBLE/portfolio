@@ -26,6 +26,7 @@ import { AnimatedTooltip } from "../animated-tooltip";
 import { toast } from "sonner";
 import { useState } from "react";
 import { MONARC_EMAIL } from "@/data/profile";
+import { SITE } from "@/lib/site";
 import { CornerMarks, Section, Tab } from "../blueprint";
 
 const formSchema = z.object({
@@ -103,50 +104,22 @@ const ContactMe = () => {
     }
   }
 
-  const people = [
-    {
-      id: 1,
-      name: "Twitter",
-      designation: "@graceno75417321",
-      icon: <FaSquareXTwitter />,
-      link: "https://x.com/graceno75417321",
-    },
-    {
-      id: 2,
-      name: "Linkedin",
-      designation: "Grace Noble",
-      icon: <FaLinkedinIn />,
-      link: "https://www.linkedin.com/in/mr-grace-noble",
-    },
-    {
-      id: 3,
-      name: "Instagram",
-      designation: "@i_am_grace_noble",
-      icon: <RiInstagramFill />,
-      link: "https://www.instagram.com/i_am_grace_noble/",
-    },
-    {
-      id: 4,
-      name: "Roadmap.sh",
-      designation: "grace noble",
-      icon: <SiRoadmapdotsh />,
-      link: "https://roadmap.sh/u/gracenoble",
-    },
-    {
-      id: 5,
-      name: "Dev Community",
-      designation: "grace noble",
-      icon: <FaDev />,
-      link: "https://dev.to/grace_noble",
-    },
-    {
-      id: 6,
-      name: "Github",
-      designation: "ASIIMWE GRACE NOBLE",
-      icon: <FaGithub />,
-      link: "https://github.com/GRACENOBLE",
-    },
-  ];
+  // Icons for each network in SITE.socials, which holds the links
+  const icons: Record<string, React.ReactNode> = {
+    "Twitter": <FaSquareXTwitter />,
+    "Linkedin": <FaLinkedinIn />,
+    "Instagram": <RiInstagramFill />,
+    "Roadmap.sh": <SiRoadmapdotsh />,
+    "Dev Community": <FaDev />,
+    "Github": <FaGithub />,
+  };
+  const people = SITE.socials.map((social, idx) => ({
+    id: idx + 1,
+    name: social.name,
+    designation: social.handle,
+    icon: icons[social.name],
+    link: social.url,
+  }));
 
   return (
     <Section id="connect" title={<>Let&apos;s connect</>}>
