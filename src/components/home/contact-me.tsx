@@ -210,7 +210,7 @@ const ContactMe = () => {
                     <FormControl>
                       <Textarea
                         className="h-40 placeholder:text-sm"
-                        placeholder="What are you working on?"
+                        placeholder="Hi Grace ..."
                         {...field}
                       />
                     </FormControl>
