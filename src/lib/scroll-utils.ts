@@ -23,18 +23,6 @@ export const scrollToSection = (
   }
 };
 
-// Handle scrolling to hash on page load
-export const handleHashOnLoad = (offset: number = 200, lenis?: Lenis) => {
-  const hash = window.location.hash;
-  if (hash) {
-    // Small delay to ensure page is fully rendered
-    setTimeout(() => {
-      const sectionId = hash.substring(1);
-      scrollToSection(sectionId, offset, lenis);
-    }, 500);
-  }
-};
-
 export const handleAnchorClick = (
   e: React.MouseEvent<HTMLAnchorElement>,
   href: string,
