@@ -59,7 +59,7 @@ const MobileNavigation = () => {
                 "Software is like entropy: it is difficult to grasp, weighs
                 nothing, and always tends to increase."
               </span>{" "}
-              — Norman Augustine
+              (Norman Augustine)
             </SheetDescription>
             <div className="flex flex-col mt-6 border-t border-line">
               {[

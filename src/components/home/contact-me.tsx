@@ -248,7 +248,7 @@ const ContactMe = () => {
                 "Software is like entropy: it is difficult to grasp, weighs
                 nothing, and always tends to increase."
               </span>{" "}
-              — Norman Augustine
+              (Norman Augustine)
             </p>
           </div>
         </div>
