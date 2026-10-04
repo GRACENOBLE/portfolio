@@ -49,7 +49,7 @@ const Masthead = ({
 }) => (
   <div className="border border-line bg-paper bp-hatch">
     <Tab className="bg-paper">{role}</Tab>
-    <div className="px-6 py-10 md:px-12 md:py-14 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+    <div className="px-6 py-14 md:px-12 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
       {children}
     </div>
   </div>

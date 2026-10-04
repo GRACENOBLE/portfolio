@@ -15,11 +15,11 @@ const HeroSection = () => {
   return (
     <section className="relative pt-16">
       <Container size="sm">
-        <div className="min-h-[calc(100svh-4rem)] flex flex-col justify-center py-16 md:py-20">
+        <div className="py-20">
           <div className="relative border border-line bg-paper/50 bp-hatch">
             <CornerMarks />
             <Tab className="bg-paper">Sheet 00 · General arrangement</Tab>
-            <div className="px-6 md:px-14 py-16 md:py-24">
+            <div className="px-6 md:px-14 py-20">
               <h1 className="font-title text-5xl md:text-7xl font-semibold leading-[0.95] tracking-tight pb-10 max-w-4xl">
                 A visionary builder
               </h1>

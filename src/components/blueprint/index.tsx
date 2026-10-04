@@ -63,10 +63,10 @@ export const Section = ({
   className?: string;
 }) => (
   <section id={id} className={cn("relative border-t border-line", className)}>
-    <Container size="sm" className="relative pt-16 md:pt-20 pb-20 md:pb-24">
+    <Container size="sm" className="relative pt-20 pb-24">
       <Cross className="absolute top-0 left-4 -translate-x-1/2 -translate-y-1/2" />
       <Cross className="absolute top-0 right-4 translate-x-1/2 -translate-y-1/2" />
-      <h2 className="font-title text-4xl md:text-5xl font-semibold px-6 md:px-12 pb-12 md:pb-16">
+      <h2 className="font-title text-4xl md:text-5xl font-semibold px-6 md:px-12 pb-16">
         {title}
       </h2>
       {children}
