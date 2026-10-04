@@ -6,7 +6,7 @@
  * llms.txt routes. Keep production facts here so they stay consistent.
  */
 export const SITE = {
-  url: "https://asiimwenoble.com",
+  url: "https://www.asiimwenoble.com",
   name: "Grace Noble",
   /** Full name, so searches for either form resolve to the same person. */
   alternateName: "Asiimwe Grace Noble",

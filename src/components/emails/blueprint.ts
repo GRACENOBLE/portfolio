@@ -2,7 +2,9 @@
 // and the plain HTML fallback. Email clients don't support CSS variables or
 // colour mixing, so the site's ink-on-paper mixes are baked in as hex values.
 
-export const SITE_URL = "https://asiimwenoble.com";
+import { SITE } from "@/lib/site";
+
+export const SITE_URL = SITE.url;
 
 export const color = {
   page: "#e9e9e9", // outside the sheet
