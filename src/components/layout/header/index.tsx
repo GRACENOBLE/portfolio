@@ -5,7 +5,7 @@ import { buttonVariants } from "../../ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import MobileNavigation from "./mobile-nav";
-import { handleAnchorClick } from "@/lib/scroll-utils";
+import { handleAnchorClick, handleHomeClick } from "@/lib/scroll-utils";
 import { useLenis } from "lenis/react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LogoMark } from "@/components/blueprint/logo-mark";
@@ -25,10 +25,11 @@ const Header = () => {
         <div className="flex h-16 items-stretch justify-between border-x border-line">
           <Link
             href={"/"}
-            className="flex items-center gap-3 px-4 font-title border-r border-line"
+            aria-label="Grace Noble, home"
+            onClick={(e) => handleHomeClick(e, lenis)}
+            className="flex items-center px-4 border-r border-line"
           >
             <LogoMark className="size-8" />
-            <span className="text-lg">Grace Noble</span>
           </Link>
           <nav className="hidden lg:flex items-stretch ml-auto">
             {NAV_ITEMS.map((item) => (

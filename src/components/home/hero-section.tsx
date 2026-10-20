@@ -21,7 +21,7 @@ const HeroSection = () => {
             <Tab className="bg-paper">Sheet 00 · General arrangement</Tab>
             <div className="px-6 md:px-14 py-20">
               <h1 className="font-title text-5xl md:text-7xl font-semibold leading-[0.95] tracking-tight pb-10 max-w-4xl">
-                A visionary builder
+                Asiimwe Grace Noble
               </h1>
               <p className="text-base md:text-lg max-w-2xl mb-12 border-l-2 border-ink pl-5 text-ink/80 bg-paper/70 py-1">
                 I dream of a world where the technological fantasies of today

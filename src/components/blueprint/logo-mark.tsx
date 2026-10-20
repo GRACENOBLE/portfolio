@@ -1,22 +1,16 @@
 import { cn } from "@/lib/utils";
 
-// The circled monogram. icon.png only exists in white, so it's used as a mask
-// over currentColor, which lets it follow the ink in both themes.
+// A lowercase "n" set in Corinthia. The glyph is inlined as a path so the
+// mark needs no font download and fills with currentColor in both themes.
 export function LogoMark({ className }: { className?: string }) {
   return (
-    <span
+    <svg
       aria-hidden="true"
-      className={cn("inline-block aspect-square bg-current", className)}
-      style={{
-        maskImage: "url(/images/logo/icon.png)",
-        WebkitMaskImage: "url(/images/logo/icon.png)",
-        maskSize: "contain",
-        WebkitMaskSize: "contain",
-        maskRepeat: "no-repeat",
-        WebkitMaskRepeat: "no-repeat",
-        maskPosition: "center",
-        WebkitMaskPosition: "center",
-      }}
-    />
+      viewBox="-3 -293.5 356 356"
+      fill="currentColor"
+      className={cn("inline-block aspect-square", className)}
+    >
+      <path d="M196 6Q139 6 139 -66Q139 -98 149.5 -128Q160 -158 174 -183Q139 -152 100.5 -106.5Q62 -61 25 -5Q19 4 16 4Q7 4 7 -14Q7 -18 9 -22Q20 -49 31 -84.5Q42 -120 53 -168Q55 -178 57 -188Q59 -198 63 -214Q65 -220 77 -228Q87 -235 97 -235Q104 -235 104 -229Q104 -224 92 -186Q80 -148 57 -77Q63 -85 82 -106.5Q101 -128 132 -162L194 -230Q201 -237 210 -237Q233 -237 233 -214Q233 -209 229 -202Q173 -110 173 -56Q173 -18 209 -18Q235 -18 269 -47Q283 -58 293.5 -71.5Q304 -85 316 -101Q337 -130 340 -130Q343 -130 343 -124Q343 -118 337 -107Q269 6 196 6Z" />
+    </svg>
   );
 }

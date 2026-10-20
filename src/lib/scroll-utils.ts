@@ -23,6 +23,26 @@ export const scrollToSection = (
   }
 };
 
+// On the home page the logo scrolls back to the top instead of re-navigating,
+// which Next skips because the URL hasn't changed. Elsewhere it navigates home.
+export const handleHomeClick = (
+  e: React.MouseEvent<HTMLAnchorElement>,
+  lenis?: Lenis
+) => {
+  if (window.location.pathname !== "/") return;
+  // Leave cmd/ctrl/shift-click alone so opening in a new tab still works.
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+  e.preventDefault();
+  if (window.location.hash) {
+    history.replaceState(null, "", "/");
+  }
+  if (lenis) {
+    lenis.scrollTo(0);
+    return;
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 export const handleAnchorClick = (
   e: React.MouseEvent<HTMLAnchorElement>,
   href: string,
