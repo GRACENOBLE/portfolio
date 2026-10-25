@@ -12,7 +12,6 @@ import {
   MONARC_EMAIL,
   MONARC_URL,
 } from "@/data/profile";
-import type { Project } from "@/types/project";
 import { abs, SITE } from "./site";
 
 const link = (title: string, url: string, note?: string) =>
@@ -52,12 +51,11 @@ export function buildLlmsIndex(): string {
     "",
     "## Optional",
     "",
-    link("Projects", abs("/all-projects"), "Software projects Grace has built."),
     ...SITE.socials.map((s) => link(s.name, s.url)),
   ]);
 }
 
-export function buildLlmsFull(projects: Project[]): string {
+export function buildLlmsFull(): string {
   const lines: string[] = [];
   const push = (...parts: string[]) => lines.push(...parts);
 
@@ -99,16 +97,6 @@ export function buildLlmsFull(projects: Project[]): string {
     push(`- ${item.role}, ${item.org} (${item.period})${item.note ? `: ${item.note}` : ""}`);
   }
 
-  if (projects.length) {
-    push("", "## Projects", `URL: ${abs("/all-projects")}`, "");
-    for (const project of projects) {
-      push(`### ${project.name}`, `URL: ${abs(`/projects/${project.slug.current}`)}`);
-      if (project.technologies?.length) {
-        push(`Technologies: ${project.technologies.join(", ")}`);
-      }
-      push("", project.description, "");
-    }
-  }
 
   push("", "## Contact", "");
   push(`Contact form: ${abs("/#connect")}`);

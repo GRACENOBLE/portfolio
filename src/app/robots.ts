@@ -37,13 +37,13 @@ const AI_CRAWLERS = [
 ];
 
 /**
- * Generates /robots.txt: the whole public site is open, while the Sanity
- * Studio, API routes and the internal email preview are kept out.
+ * Generates /robots.txt: the whole public site is open, while API routes and
+ * the internal email preview are kept out.
  */
 export default function robots(): MetadataRoute.Robots {
   const access = {
     allow: "/",
-    disallow: ["/studio/", "/api/", "/email-preview"],
+    disallow: ["/api/", "/email-preview"],
   };
   return {
     rules: [

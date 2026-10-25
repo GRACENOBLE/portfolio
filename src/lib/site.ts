@@ -67,7 +67,7 @@ export const SITE = {
   twitterHandle: "@graceno75417321",
 } as const;
 
-/** Absolute URL for a site-relative path, e.g. `abs("/all-projects")`. */
+/** Absolute URL for a site-relative path, e.g. `abs("/llms.txt")`. */
 export function abs(path: string): string {
   return new URL(path, SITE.url).toString();
 }

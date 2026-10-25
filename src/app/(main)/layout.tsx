@@ -1,6 +1,5 @@
 import Footer from "@/components/layout/footer";
 import Header from "@/components/layout/header";
-import { SanityLive } from "@/sanity/lib/live";
 import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -13,7 +12,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       >
         <div className="h-full border-x border-line" />
       </div>
-      <SanityLive />
       <Header />
       <div className="relative">
         {children}

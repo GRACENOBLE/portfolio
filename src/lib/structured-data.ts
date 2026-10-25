@@ -3,16 +3,14 @@
  *
  * Every page renders a single `@graph` whose nodes are linked by stable `@id`
  * anchors. Grace (`PERSON_ID`) is the hub: the home page is a ProfilePage
- * about her, she authors the WebSite and every project, founded Monarc and
- * works for Amplified Access. Modelled on the Monarc Engineering site.
+ * about her, she authors the WebSite, founded Monarc and works for
+ * Amplified Access. Modelled on the Monarc Engineering site.
  *
  * Types are limited to ones that validate cleanly in Google's Rich Results
- * Test: Person, Organization, WebSite, ProfilePage, CollectionPage, WebPage,
- * BreadcrumbList, ItemList and CreativeWork.
+ * Test: Person, Organization, WebSite, ProfilePage, ItemList and CreativeWork.
  */
 
 import { alsoLeading, monarc, MONARC_URL } from "@/data/profile";
-import type { Project } from "@/types/project";
 import { abs, SITE } from "./site";
 
 export const PERSON_ID = `${SITE.url}/#person`;
@@ -89,9 +87,8 @@ type WebPageOptions = {
   path: string;
   name: string;
   description: string;
-  type?: "WebPage" | "ProfilePage" | "CollectionPage";
+  type?: "WebPage" | "ProfilePage";
   primaryImage?: string;
-  breadcrumb?: boolean;
 };
 
 export function webPageNode({
@@ -100,7 +97,6 @@ export function webPageNode({
   description,
   type = "WebPage",
   primaryImage,
-  breadcrumb,
 }: WebPageOptions): Node {
   const url = abs(path);
   const node: Node = {
@@ -117,25 +113,7 @@ export function webPageNode({
   if (primaryImage) {
     node.primaryImageOfPage = { "@type": "ImageObject", url: abs(primaryImage) };
   }
-  if (breadcrumb) node.breadcrumb = { "@id": `${url}#breadcrumb` };
   return node;
-}
-
-/** Breadcrumb trail. `path` should match the owning WebPage's path. */
-export function breadcrumbNode(
-  path: string,
-  trail: { name: string; path: string }[]
-): Node {
-  return {
-    "@type": "BreadcrumbList",
-    "@id": `${abs(path)}#breadcrumb`,
-    itemListElement: trail.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: abs(item.path),
-    })),
-  };
 }
 
 /** Wraps nodes in a schema.org `@graph` document. */
@@ -184,71 +162,5 @@ export function homeGraph(): Node {
         },
       })),
     },
-  ]);
-}
-
-export function projectsGraph(projects: Project[]): Node {
-  const path = "/all-projects";
-  return graph([
-    personNode(),
-    websiteNode(),
-    webPageNode({
-      path,
-      name: `Projects | ${SITE.name}`,
-      description: `Software projects built by ${SITE.name}.`,
-      type: "CollectionPage",
-      breadcrumb: true,
-    }),
-    breadcrumbNode(path, [
-      { name: "Home", path: "/" },
-      { name: "Projects", path },
-    ]),
-    {
-      "@type": "ItemList",
-      "@id": `${abs(path)}#project-list`,
-      name: `Projects by ${SITE.name}`,
-      itemListElement: projects.map((project, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        item: projectWorkNode(project),
-      })),
-    },
-  ]);
-}
-
-function projectWorkNode(project: Project): Node {
-  const url = abs(`/projects/${project.slug.current}`);
-  return {
-    "@type": "CreativeWork",
-    "@id": `${url}#work`,
-    name: project.name,
-    description: project.description,
-    url,
-    ...(project.image?.url && { image: project.image.url }),
-    ...(project.technologies?.length && {
-      keywords: project.technologies.join(", "),
-    }),
-    ...(project.link && { sameAs: project.link }),
-    author: { "@id": PERSON_ID },
-  };
-}
-
-export function projectGraph(project: Project): Node {
-  const path = `/projects/${project.slug.current}`;
-  return graph([
-    personNode(),
-    websiteNode(),
-    webPageNode({
-      path,
-      name: `${project.name} | ${SITE.name}`,
-      description: project.description,
-      breadcrumb: true,
-    }),
-    breadcrumbNode(path, [
-      { name: "Home", path: "/" },
-      { name: "Projects", path: "/all-projects" },
-      { name: project.name, path },
-    ]),
-    { ...projectWorkNode(project), mainEntityOfPage: { "@id": `${abs(path)}#webpage` } },
   ]);
 }
