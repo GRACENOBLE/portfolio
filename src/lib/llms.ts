@@ -33,6 +33,7 @@ export function buildLlmsIndex(): string {
     "",
     link("Home", SITE.url, "About Grace, current work, career history and contact details."),
     link("Full profile for AI agents", abs("/llms-full.txt"), "Everything on the site as one plain-text document."),
+    link("Contact API", abs("/api.md"), "Send Grace a message on someone's behalf. OpenAPI spec at /openapi.json."),
     "",
     `## Building: ${monarc.name}`,
     "",
@@ -100,6 +101,7 @@ export function buildLlmsFull(): string {
 
   push("", "## Contact", "");
   push(`Contact form: ${abs("/#connect")}`);
+  push(`Contact API: ${abs("/api.md")}`);
   push(`Monarc enquiries: ${MONARC_EMAIL}`);
   for (const s of SITE.socials) push(`${s.name}: ${s.url}`);
 

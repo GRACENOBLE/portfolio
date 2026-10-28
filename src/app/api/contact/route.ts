@@ -2,10 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { render } from "@react-email/render";
 import { z } from "zod";
-import ContactEmailTemplate, {
-  ConfirmationEmailTemplate,
-} from "@/components/emails/contact-email-template";
-import { sheetContent, type EmailKind } from "@/components/emails/blueprint";
+import { contactSchema, RATE_LIMIT } from "@/lib/contact-api";
+import ContactEmailTemplate from "@/components/emails/contact-email-template";
+import { sheetContent } from "@/components/emails/blueprint";
 import { createEmailHTML, createEmailText } from "@/utils/email-template";
 
 // Mailjet's SMTP relay, as used across the Monarc projects
@@ -18,11 +17,42 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const contactSchema = z.object({
-  name: z.string().min(2).max(50),
-  email: z.email(),
-  message: z.string().min(10).max(500),
-});
+// Best-effort rate limit. State lives in this server instance's memory, so
+// it resets on cold starts and isn't shared between instances; the firm
+// limit is a Cloudflare rate-limiting rule on /api/contact.
+const { windowMs: WINDOW_MS, perSender: PER_SENDER, perInstance: PER_INSTANCE } =
+  RATE_LIMIT;
+const recent = new Map<string, number[]>();
+
+/** Returns seconds to wait if `ip` is over the limit, otherwise records it. */
+function rateLimit(ip: string): number | null {
+  const now = Date.now();
+  const cutoff = now - WINDOW_MS;
+  let total = 0;
+  for (const [key, times] of recent) {
+    const live = times.filter((t) => t > cutoff);
+    if (live.length) recent.set(key, live);
+    else recent.delete(key);
+    total += live.length;
+  }
+  const mine = recent.get(ip) ?? [];
+  if (mine.length >= PER_SENDER || total >= PER_INSTANCE) {
+    const oldest = mine[0] ?? now;
+    return Math.max(1, Math.ceil((oldest + WINDOW_MS - now) / 1000));
+  }
+  recent.set(ip, [...mine, now]);
+  return null;
+}
+
+/** The visitor's IP. Cloudflare sits in front of Vercel, so prefer its header. */
+function clientIp(request: NextRequest): string {
+  return (
+    request.headers.get("cf-connecting-ip") ??
+    request.headers.get("x-real-ip") ??
+    request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    "unknown"
+  );
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -39,6 +69,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const retryAfter = rateLimit(clientIp(request));
+    if (retryAfter !== null) {
+      return NextResponse.json(
+        { error: "Too many messages. Please try again in a few minutes." },
+        { status: 429, headers: { "Retry-After": String(retryAfter) } }
+      );
+    }
+
     // Parse and validate the request body
     const body = await request.json();
     const validatedData = contactSchema.parse(body);
@@ -47,48 +85,26 @@ export async function POST(request: NextRequest) {
 
     const submission = { name, email, message, receivedAt: new Date() };
 
-    // Render a React Email template, falling back to the plain HTML version
-    const renderEmail = async (kind: EmailKind) => {
-      const Template =
-        kind === "notification" ? ContactEmailTemplate : ConfirmationEmailTemplate;
-      try {
-        return await render(Template(submission));
-      } catch (renderError) {
-        console.warn(`React Email failed (${kind}), using HTML fallback:`, renderError);
-        return createEmailHTML(submission, kind);
-      }
-    };
-
-    const [notification, confirmation] = await Promise.allSettled([
-      // To Grace. Replying goes straight to the sender
-      transporter.sendMail({
-        from: EMAIL_FROM,
-        to: EMAIL_TO,
-        replyTo: email,
-        subject: sheetContent("notification", submission).subject,
-        html: await renderEmail("notification"),
-        text: createEmailText(submission, "notification"),
-      }),
-      // Receipt to the sender with a copy of their message. Replying reaches
-      // Grace rather than the sending address
-      transporter.sendMail({
-        from: EMAIL_FROM,
-        to: email,
-        replyTo: EMAIL_TO,
-        subject: sheetContent("confirmation", submission).subject,
-        html: await renderEmail("confirmation"),
-        text: createEmailText(submission, "confirmation"),
-      }),
-    ]);
-
-    // The receipt is a courtesy, so only a failed notification fails the request
-    if (confirmation.status === "rejected") {
-      console.error("Confirmation email failed:", confirmation.reason);
+    // Render the React Email template, falling back to the plain HTML version
+    let html: string;
+    try {
+      html = await render(ContactEmailTemplate(submission));
+    } catch (renderError) {
+      console.warn("React Email failed, using HTML fallback:", renderError);
+      html = createEmailHTML(submission, "notification");
     }
-    if (notification.status === "rejected") {
-      throw notification.reason;
-    }
-    const info = notification.value;
+
+    // Only Grace is emailed. No receipt goes to the sender: the address is
+    // unverified, so a receipt would let anyone use this API to send mail to
+    // any inbox. Replying goes straight to the sender.
+    const info = await transporter.sendMail({
+      from: EMAIL_FROM,
+      to: EMAIL_TO,
+      replyTo: email,
+      subject: sheetContent("notification", submission).subject,
+      html,
+      text: createEmailText(submission, "notification"),
+    });
 
     return NextResponse.json(
       { message: "Email sent successfully", data: { id: info.messageId } },
