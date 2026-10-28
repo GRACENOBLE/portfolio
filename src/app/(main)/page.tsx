@@ -8,7 +8,11 @@ import { openGraphDefaults } from "@/lib/metadata";
 import { homeGraph } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    // The same page as Markdown, for AI agents
+    types: { "text/markdown": "/index.md" },
+  },
   openGraph: {
     ...openGraphDefaults,
     type: "profile",
