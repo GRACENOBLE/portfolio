@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Funnel_Display, DM_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -8,15 +8,20 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SITE } from "@/lib/site";
 import { openGraphDefaults, twitterDefaults } from "@/lib/metadata";
 
-const dmMono = DM_Mono({
+// Self-hosted (latin subset, from Google Fonts, OFL) so dev and build never
+// depend on reaching Google Fonts
+const dmMono = localFont({
   variable: "--font-noble-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  src: [
+    { path: "./fonts/dm-mono-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/dm-mono-500.woff2", weight: "500", style: "normal" },
+  ],
 });
 
-const funnelDisplay = Funnel_Display({
+const funnelDisplay = localFont({
   variable: "--font-noble-display",
-  subsets: ["latin"],
+  src: "./fonts/funnel-display.woff2",
+  weight: "300 800",
 });
 
 // Site-wide defaults. Pages set their own canonical; it isn't set here
