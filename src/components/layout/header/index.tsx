@@ -20,7 +20,7 @@ const Header = () => {
   const lenis = useLenis();
 
   return (
-    <header className="fixed z-40 top-0 w-full border-b border-line bg-paper/85 backdrop-blur-md">
+    <header className="fixed z-40 top-0 w-full zoom-viewport border-b border-line bg-paper/85 backdrop-blur-md">
       <Container size="sm">
         <div className="flex h-16 items-stretch justify-between border-x border-line">
           <Link

@@ -1,5 +1,12 @@
 import type Lenis from "lenis";
 
+/** The page's zoom on wide screens; mirrors --viewport-scale in globals.css. */
+export const viewportScale = () => {
+  if (!CSS.supports("width", "calc(100vw / 80rem * 1px)")) return 1;
+  const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  return Math.min(Math.max(0.5 + window.innerWidth / (160 * rem), 1), 1.3);
+};
+
 // Pass the Lenis instance (from useLenis) so the jump uses its easing instead
 // of fighting it with a native smooth scroll.
 export const scrollToSection = (
@@ -9,6 +16,8 @@ export const scrollToSection = (
 ) => {
   const element = document.getElementById(sectionId);
   if (element) {
+    // Offsets are in CSS pixels; the header grows with the page's zoom
+    offset *= viewportScale();
     if (lenis) {
       lenis.scrollTo(element, { offset: -offset });
       return;
